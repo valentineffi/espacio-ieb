@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="preconnect" href="https://unpkg.com" crossorigin/>
-<link rel="dns-prefetch" href="https://unpkg.com"/>
+<link rel="preload" href="assets/react.production.min.js" as="script"/>
+<link rel="preload" href="assets/react-dom.production.min.js" as="script"/>
+<link rel="preload" href="app.js" as="script"/>
+<link rel="preload" href="assets/fonts/polysanstrial-slim.woff2" as="font" type="font/woff2" crossorigin/>
 
 <!-- SEO — Primary -->
 <title>Espacio IEB | Comunidad e infraestructura para asesores financieros externos</title>
@@ -42,8 +44,1553 @@
 
 <link rel="icon" type="image/svg+xml" href="assets/logos/ieb-monogram-on-dark.svg"/>
 <link rel="apple-touch-icon" href="assets/logos/ieb-monogram-on-dark.svg"/>
-<link rel="stylesheet" href="assets/colors_and_type.css"/>
-<link rel="stylesheet" href="styles.css"/>
+<style>
+/* =============================================================================
+   Espacio IEB — Design System
+   Colors + Typography Foundations
+   -----------------------------------------------------------------------------
+   Source of truth: Brandbook_EspacioIEB_2026 (Versión Abril 2026).
+   Espacio IEB is the brand for IEB's external-advisors program — a workspace
+   and partnership offering for independent financial advisors in Argentina.
+   ============================================================================= */
+
+/* ---------- FONTS ----------------------------------------------------------- */
+/* Poly Sans (Pangram Pangram) — the brandbook's official typeface, now        */
+/* loaded from local trial files in /fonts. Six weights map to four CSS slots: */
+/*   Slim (300) → Neutral (400) → Median (500) → Bulky (700)                   */
+/* Italic + Mono + Wide variants are exposed as separate families for editorial*/
+/* moments. The brandbook calls primarily for Poly Sans Slim (300) on display. */
+
+@font-face { font-family: 'Poly Sans'; src: url('assets/fonts/polysanstrial-slim.woff2') format('woff2'), url('assets/fonts/polysanstrial-slim.otf') format('opentype');         font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('assets/fonts/polysanstrial-neutral.woff2') format('woff2'), url('assets/fonts/polysanstrial-neutral.otf') format('opentype');   font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('assets/fonts/polysanstrial-median.woff2') format('woff2'), url('assets/fonts/polysanstrial-median.otf') format('opentype');     font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('assets/fonts/polysanstrial-bulky.woff2') format('woff2'), url('assets/fonts/polysanstrial-bulky.otf') format('opentype');       font-weight: 700; font-style: normal; font-display: swap; }
+
+/* Mono — for ticker, tabular numerals, code-y micro-copy */
+@font-face { font-family: 'Poly Sans Mono'; src: url('assets/fonts/polysanstrial-slimmono.woff2') format('woff2'), url('assets/fonts/polysanstrial-slimmono.otf') format('opentype');     font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans Mono'; src: url('assets/fonts/polysanstrial-medianmono.woff2') format('woff2'), url('assets/fonts/polysanstrial-medianmono.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+
+:root {
+  /* =========================================================================
+     COLOR — strict 60/30/10 institutional palette
+     -------------------------------------------------------------------------
+     The brandbook is explicit: only 3 colors. Black or White take 60% of
+     any composition (large surfaces / fields), the other Black or White
+     takes 30% (typography), Yellow takes 10% (CTAs, highlights, key data).
+     Black ↔ White can swap dominant/secondary roles depending on tone.
+     Yellow is the *activador visual* — never used as a 60% wash.
+     ========================================================================= */
+
+  /* — Core trio — */
+  --ieb-black:          #1D1D1B;   /* near-black — institutional anchor */
+  --ieb-white:          #FFFFFF;
+  --ieb-yellow:         #FDE100;   /* signature accent */
+
+  /* — Black tonal scale (for hairlines, panels on dark, hover states) — */
+  --ieb-black-95:       #28282710;
+  --ieb-ink-08:         #0A0A0A;   /* deeper than spec black, hero blacks */
+  --ieb-ink-12:         #121212;
+  --ieb-ink-14:         #141414;
+  --ieb-ink-1c:         #1C1C1C;
+  --ieb-ink-line:       #2A2A28;   /* hairline on dark */
+
+  /* — White tonal scale (off-whites for cream-ish surfaces) — */
+  --ieb-paper:          #F5F5F3;   /* off-white surface for content sections */
+  --ieb-paper-soft:     #FAFAF8;
+  --ieb-paper-line:     #E0E0DE;   /* hairline on light */
+
+  /* — Yellow tonal scale (accents only — never 60%) — */
+  --ieb-yellow-warm:    #FFE94D;   /* hover lift */
+  --ieb-yellow-deep:    #E6CC00;   /* press / underline depth */
+
+  /* — Functional grays (text only — yellow/gray are the two emphasis tints) */
+  --ieb-gray-key:       #888888;   /* "Color de Acento: Amarillo o Gris" */
+  --ieb-gray-dim:       #666666;
+  --ieb-gray-mute:      #444444;
+
+  /* =========================================================================
+     SEMANTIC ROLES — by 60/30/10 dominance
+     ========================================================================= */
+
+  /* 60% — dominant surface */
+  --surface-page:       var(--ieb-black);            /* default = black-led */
+  --surface-page-light: var(--ieb-white);            /* alternate = white-led */
+  --surface-paper:      var(--ieb-paper);            /* warm off-white panels */
+  --surface-card-dark:  var(--ieb-ink-12);           /* card on black */
+  --surface-card-light: var(--ieb-white);            /* card on light */
+
+  /* 30% — typography / secondary fields */
+  --fg-on-dark-1:       var(--ieb-white);
+  --fg-on-dark-2:       rgba(255,255,255,0.72);
+  --fg-on-dark-3:       rgba(255,255,255,0.65);
+  --fg-on-light-1:      var(--ieb-black);
+  --fg-on-light-2:      rgba(29,29,27,0.68);
+  --fg-on-light-3:      rgba(29,29,27,0.44);
+
+  /* 10% — accent */
+  --accent:             var(--ieb-yellow);
+  --accent-ink:         var(--ieb-black);            /* text on yellow */
+  --accent-deep:        var(--ieb-yellow-deep);
+  --accent-warm:        var(--ieb-yellow-warm);
+
+  /* — Borders / hairlines — */
+  --border-on-dark:     var(--ieb-ink-line);
+  --border-on-light:    var(--ieb-paper-line);
+  --border-subtle:      rgba(0,0,0,0.08);
+
+  /* — Status (kept narrow — brand is monochrome) — */
+  --success:            var(--ieb-yellow);
+  --warning:            var(--ieb-yellow-deep);
+  --info:               var(--ieb-gray-key);
+  --danger:             #E5484D;
+
+  /* =========================================================================
+     ELEVATION / RADII / SPACING
+     -------------------------------------------------------------------------
+     Brandbook says: NO SHADOWS on type. We extend that to a general
+     preference for flat surfaces — shadows below are ONLY for floating
+     UI affordances (modals, tooltips, hover lifts on cards), not headlines.
+     ========================================================================= */
+
+  --shadow-card:        0 8px 32px rgba(0,0,0,0.09);
+  --shadow-raised:      0 20px 48px rgba(0,0,0,0.13);
+  --shadow-on-dark:     0 12px 40px rgba(0,0,0,0.45);
+
+  /* — Radii — Espacio IEB is angular and editorial. Sharp 0–4px corners.    */
+  /*   Pills (999px) are intentionally NOT part of the system.                */
+  --radius-0:           0;
+  --radius-xs:          2px;
+  --radius-sm:          4px;
+  --radius-md:          4px;       /* default for buttons (rare) */
+
+  /* — Spacing scale — */
+  --space-1:            4px;
+  --space-2:            8px;
+  --space-3:            12px;
+  --space-4:            16px;
+  --space-5:            20px;
+  --space-6:            24px;
+  --space-8:            32px;
+  --space-10:           40px;
+  --space-12:           48px;
+  --space-14:           56px;      /* container horizontal padding default */
+  --space-16:           64px;
+  --space-20:           80px;
+  --space-24:           96px;
+
+  /* — Transitions — */
+  --t-quick:            0.15s ease;
+  --t-standard:         0.2s ease;
+  --t-smooth:           0.4s ease;
+
+  /* =========================================================================
+     TYPOGRAPHY
+     -------------------------------------------------------------------------
+     Brandbook: Poly Sans Slim is the *only* institutional typeface.
+     - Hierarchy by SIZE, not by family swaps.
+     - Yellow OR gray for accent words / numerical data.
+     - Underline for emphasis (single line, never decorative).
+     - Pastilla / recuadro for callout numbers and percentages.
+     - NO TEXT SHADOWS. Ever.
+     ========================================================================= */
+
+  --font-sans:    'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-body:    'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-wide:    'Poly Sans Wide', 'Poly Sans', system-ui, sans-serif;
+  --font-mono:    'Poly Sans Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* — Type scale — Poly Sans Slim renders airy; we lean on size for hierarchy. */
+  --fs-display-xl:   clamp(56px, 7vw, 104px);   /* hero / brand statement */
+  --fs-display-lg:   clamp(44px, 5.5vw, 80px);  /* landing hero h1 */
+  --fs-display-md:   clamp(34px, 4vw, 56px);    /* section opener */
+  --fs-h1:           clamp(28px, 3vw, 44px);
+  --fs-h2:           clamp(24px, 2.4vw, 36px);
+  --fs-h3:           20px;
+  --fs-h4:           17px;
+  --fs-body-lg:      18px;
+  --fs-body:         16px;
+  --fs-body-sm:      14px;
+  --fs-caption:      13px;
+  --fs-eyebrow:      11px;     /* uppercase eyebrow / "tag" labels */
+  --fs-ticker:       12px;
+
+  /* — Weights — Poly Sans Slim ships with weight variations; use sparingly. */
+  --fw-light:        300;
+  --fw-regular:      400;
+  --fw-medium:       500;
+  --fw-bold:         700;
+
+  /* — Line heights — */
+  --lh-tight:        1.05;
+  --lh-snug:         1.12;
+  --lh-normal:       1.35;
+  --lh-body:         1.6;
+  --lh-loose:        1.8;
+
+  /* — Tracking — Poly Sans behaves well at -0.01 to -0.02em on display. */
+  --tr-tight:        -0.02em;
+  --tr-snug:         -0.01em;
+  --tr-normal:       0;
+  --tr-wide:         0.08em;     /* eyebrows, ticker, tags */
+  --tr-extra-wide:   0.2em;      /* the brand's signature uppercase eyebrow */
+}
+
+/* =========================================================================
+   SEMANTIC ELEMENT STYLES
+   ========================================================================= */
+
+html, body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-on-dark-1);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4,
+.display-xl, .display-lg, .display-md {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-tight);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+}
+
+.display-xl { font-size: var(--fs-display-xl); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+.display-lg { font-size: var(--fs-display-lg); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+.display-md { font-size: var(--fs-display-md); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold); }
+h3, .h3 { font-size: var(--fs-h3); font-weight: var(--fw-medium); letter-spacing: var(--tr-snug); }
+h4, .h4 { font-size: var(--fs-h4); font-weight: var(--fw-medium); letter-spacing: var(--tr-snug); }
+
+p, .body      { font-size: var(--fs-body);    line-height: var(--lh-body); }
+.body-lg      { font-size: var(--fs-body-lg); line-height: var(--lh-body); }
+.body-sm      { font-size: var(--fs-body-sm); line-height: var(--lh-body); }
+.caption      { font-size: var(--fs-caption); line-height: var(--lh-normal); }
+
+/* The brand's signature eyebrow — uppercase, very wide tracking, yellow (or
+   gray if subdued). Always small. Always above an h1/h2. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-extra-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow--gray { color: var(--ieb-gray-key); }
+
+code, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-quick), opacity var(--t-quick);
+}
+
+/* =========================================================================
+   EMPHASIS UTILITIES — Brandbook-blessed:
+   • em-yellow / em-gray = accent color words
+   • em-underline = single-line emphasis
+   • pastilla / recuadro = boxed callout for stats and percentages
+   ========================================================================= */
+.em-yellow     { color: var(--accent); }
+.em-gray       { color: var(--ieb-gray-key); }
+.em-underline  { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.em-underline-gray { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--ieb-gray-key); }
+
+.pastilla {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 2px 12px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-snug);
+}
+.recuadro {
+  display: inline-block;
+  border: 2px solid var(--accent);
+  color: inherit;
+  padding: 4px 14px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-snug);
+}
+
+/* =========================================================================
+   60/30/10 SURFACE HELPERS
+   ========================================================================= */
+.surface-black { background: var(--ieb-black); color: var(--fg-on-dark-1); }
+.surface-white { background: var(--ieb-white); color: var(--fg-on-light-1); }
+.surface-paper { background: var(--ieb-paper); color: var(--fg-on-light-1); }
+
+/* The signature horizontal yellow ticker that runs between sections */
+.ticker {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--fs-ticker);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--fg-on-dark-1);
+  background: var(--ieb-black);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+button { font-family: inherit; }
+
+/* ============================================================
+   GLOBAL HELPERS
+   ============================================================ */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+.section { padding: 100px 0; }
+.section--tight { padding: 72px 0; }
+.section, [id] { scroll-margin-top: 80px; }
+
+.eyebrow-line {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 11px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 22px;
+}
+.eyebrow-line::before {
+  content: ""; width: 28px; height: 1px; background: var(--accent);
+}
+.eyebrow-line.is-gray { color: var(--ieb-gray-key); }
+.eyebrow-line.is-gray::before { background: var(--ieb-gray-key); }
+
+.section-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--ieb-gray-key);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ieb-ink-line);
+  height: 68px;
+}
+.nav__inner {
+  max-width: 1440px; margin: 0 auto;
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+}
+.nav__logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav__logo-mark { height: 28px; width: auto; }
+.nav__divider { width: 1px; height: 14px; background: #333; margin: 0 4px; }
+.nav__logo-sub { font-size: 11px; color: #888; font-weight: 400; letter-spacing: .04em; }
+
+.nav__links { display: flex; gap: 24px; align-items: center; }
+.nav__link {
+  font-size: 12px; color: #999; cursor: pointer; text-decoration: none;
+  letter-spacing: .01em; transition: color var(--t-quick);
+  background: none; border: none; padding: 0; font-family: inherit;
+  white-space: nowrap;
+}
+.nav__link:hover, .nav__link.is-active { color: #fff; }
+
+.nav__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: var(--accent-ink);
+  font-size: 12px; font-weight: 700;
+  padding: 10px 20px; border: none; cursor: pointer;
+  letter-spacing: .03em;
+  transition: opacity var(--t-quick);
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+}
+.nav__cta:hover { opacity: .85; }
+
+.nav__menu-btn { display: none; background: none; border: 1px solid #333; color: #fff; padding: 9px 14px; font-size: 12px; cursor: pointer; letter-spacing: .05em; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 116px 0 72px;
+  background: var(--ieb-ink-08);
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.hero__trama {
+  position: absolute; inset: 0; opacity: .22;
+  pointer-events: none;
+  background-image: url('assets/tramas/trama-isometric.svg');
+  background-size: 600px;
+  background-position: top right;
+  filter: invert(1);
+}
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,.96) 0%, rgba(10,10,10,.6) 70%, rgba(10,10,10,.2) 100%);
+}
+.hero__inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 80px; align-items: end;
+}
+.hero__copy { max-width: 760px; }
+.hero__meta {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px; color: #666; letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero__meta-tick { width: 8px; height: 8px; background: var(--accent); flex-shrink: 0; }
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.2vw, 62px);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 22px;
+  text-wrap: balance;
+}
+.hero__title em { color: var(--accent); font-style: normal; }
+.hero__title u {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+  text-decoration-color: var(--accent);
+}
+.hero__sub {
+  font-size: 17px; color: #aaa; line-height: 1.65;
+  max-width: 580px; margin-bottom: 36px;
+}
+.hero__pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 40px;
+}
+.hero__pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500;
+  padding: 7px 14px;
+  border: 1px solid #2a2a28;
+  color: #ccc;
+  letter-spacing: .02em;
+  background: rgba(255,255,255,0.02);
+}
+.hero__pill--accent {
+  background: var(--accent); color: var(--accent-ink); border-color: var(--accent);
+  font-weight: 700;
+}
+.hero__pill-dot {
+  width: 6px; height: 6px; background: var(--accent);
+  display: inline-block; flex-shrink: 0;
+}
+.hero__pill--accent .hero__pill-dot { background: #000; }
+.hero__cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-body); font-weight: 700; font-size: 13.5px;
+  padding: 16px 30px; border: none; cursor: pointer;
+  letter-spacing: .04em;
+  transition: opacity var(--t-quick), border-color var(--t-quick), color var(--t-quick), background var(--t-quick);
+  text-decoration: none;
+}
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { opacity: .85; }
+.btn--outline { background: transparent; border: 1.5px solid #444; color: #ddd; padding: 14.5px 28px; }
+.btn--outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn--dark { background: var(--ieb-black); color: #fff; padding: 14.5px 28px; border: 1px solid var(--ieb-black); }
+.btn--dark:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+.hero__aside {
+  position: relative;
+  border: 1px solid var(--ieb-ink-line);
+  background: rgba(0,0,0,0.35);
+  padding: 36px 32px;
+  align-self: end;
+}
+.hero__aside-label {
+  font-family: var(--font-mono);
+  font-size: 10px; color: #666;
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex; justify-content: space-between;
+}
+.hero__aside-label span:last-child { color: var(--accent); }
+.hero__aside-stack { display: flex; flex-direction: column; gap: 20px; }
+.hero__aside-row {
+  display: grid; grid-template-columns: 24px 1fr auto;
+  gap: 14px; align-items: baseline;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #1c1c1c;
+}
+.hero__aside-row:last-child { border-bottom: none; padding-bottom: 0; }
+.hero__aside-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: #555; letter-spacing: .1em;
+}
+.hero__aside-text { font-size: 14px; color: #ddd; line-height: 1.45; }
+.hero__aside-tag {
+  font-size: 10px; color: var(--accent);
+  letter-spacing: .14em; text-transform: uppercase;
+  font-weight: 700;
+}
+
+.hero__floor {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+  padding-top: 36px;
+  margin-top: 60px;
+  border-top: 1px solid #1c1c1c;
+  font-family: var(--font-mono);
+  font-size: 11px; color: #555;
+  letter-spacing: .15em; text-transform: uppercase;
+}
+.hero__floor-item { display: flex; align-items: center; gap: 10px; }
+.hero__floor-item strong { color: #ddd; font-weight: 500; letter-spacing: .08em; }
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker {
+  background: var(--accent); padding: 16px 0;
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid var(--ieb-ink-line);
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.ticker__inner { display: inline-flex; animation: ticker-scroll 36s linear infinite; }
+.ticker__item {
+  font-size: 12px; font-weight: 700; color: #000;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 0 36px;
+  display: inline-flex; align-items: center; gap: 36px;
+}
+.ticker__item::after {
+  content: "·"; color: #000; opacity: .5; font-size: 14px;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   SECTION HEADER (shared)
+   ============================================================ */
+.sec-head {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 72px; align-items: start;
+  margin-bottom: 56px;
+}
+.sec-head__meta { padding-top: 8px; border-top: 1px solid; border-color: inherit; }
+.sec-head__meta--dark { border-top-color: var(--ieb-ink-line); }
+.sec-head__meta--light { border-top-color: var(--ieb-paper-line); }
+.sec-head__num {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .15em;
+  color: var(--ieb-gray-key);
+  margin-top: 16px;
+  display: block;
+}
+.sec-head__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 52px);
+  font-weight: 700; line-height: 1.08;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+.sec-head__title em { color: var(--accent); font-style: normal; }
+.sec-head__title u {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--accent);
+}
+
+/* ============================================================
+   POR QUÉ EXISTE
+   ============================================================ */
+.tension { background: var(--ieb-black); position: relative; overflow: hidden; padding-top: 80px; }
+.tension__inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.tension__cell {
+  padding: 80px 56px;
+  min-height: 540px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.tension__cell--before {
+  background: var(--ieb-ink-08);
+  border-right: 1px solid var(--ieb-ink-line);
+}
+.tension__cell--after {
+  background: var(--ieb-black);
+}
+.tension__label {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ieb-gray-key);
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 12px;
+}
+.tension__label--accent { color: var(--accent); }
+.tension__label-dot {
+  width: 8px; height: 8px;
+  background: var(--ieb-gray-mute); flex-shrink: 0;
+}
+.tension__label--accent .tension__label-dot { background: var(--accent); }
+.tension__heading {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700;
+  line-height: 1.18; letter-spacing: -.015em;
+  color: #ddd;
+  margin-bottom: 24px;
+}
+.tension__cell--after .tension__heading { color: #fff; }
+.tension__list { display: flex; flex-direction: column; gap: 14px; }
+.tension__item {
+  font-size: 15px; line-height: 1.55;
+  padding-left: 28px; position: relative;
+  color: #888;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding-left: 0;
+}
+.tension__item-icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ieb-gray-mute);
+}
+.tension__cell--after .tension__item { color: #ccc; }
+.tension__cell--after .tension__item-icon { color: var(--accent); }
+.tension__big {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -.02em;
+  color: #fff;
+  text-wrap: balance;
+  margin-top: 40px;
+}
+.tension__big em { color: var(--accent); font-style: normal; }
+
+.tension__cap {
+  background: var(--ieb-ink-08);
+  border-top: 1px solid var(--ieb-ink-line);
+  padding: 36px 0;
+}
+.tension__cap-inner {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.tension__cap-text {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 500;
+  color: #ddd; letter-spacing: -.01em;
+  max-width: 740px;
+}
+.tension__cap-text em { color: var(--accent); font-style: normal; font-weight: 700; }
+
+/* ============================================================
+   QUÉ ES
+   ============================================================ */
+.que-es {
+  background: var(--ieb-paper);
+  color: var(--fg-on-light-1);
+  border-top: 1px solid var(--ieb-paper-line);
+}
+.que-es__top {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 72px; padding-bottom: 64px;
+  border-bottom: 1px solid var(--ieb-paper-line);
+}
+.que-es__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.4vw, 64px);
+  font-weight: 700; line-height: 1.04;
+  letter-spacing: -.025em;
+  color: var(--ieb-black);
+  text-wrap: balance;
+}
+.que-es__title em {
+  color: var(--ieb-black); font-style: normal;
+  background: var(--accent); padding: 0 8px;
+}
+.que-es__lead {
+  font-size: 18px; color: #444; line-height: 1.65;
+  max-width: 720px; margin-top: 28px;
+}
+
+.que-es__cols {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; margin-top: 64px;
+}
+.que-es__col {
+  padding: 36px 36px 36px 0;
+  border-right: 1px solid var(--ieb-paper-line);
+}
+.que-es__col:last-child { border-right: none; }
+.que-es__col:not(:first-child) { padding-left: 36px; }
+.que-es__col-num {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .18em;
+  color: var(--ieb-gray-key);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.que-es__col-num::before {
+  content: ""; width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;
+}
+.que-es__col-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -.01em; line-height: 1.2;
+  color: var(--ieb-black);
+  margin-bottom: 14px;
+}
+.que-es__col-body {
+  font-size: 14.5px; color: #555; line-height: 1.65;
+}
+
+/* ============================================================
+   BENEFICIOS
+   ============================================================ */
+.beneficios {
+  background: var(--ieb-black);
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.beneficios__head {
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+  margin-bottom: 0;
+}
+.beneficios__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--ieb-ink-line);
+  margin: 0 -56px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.benefit {
+  background: var(--ieb-ink-08);
+  padding: 48px 40px 56px;
+  transition: background var(--t-standard);
+  position: relative;
+  cursor: default;
+}
+.benefit:hover { background: var(--ieb-ink-12); }
+.benefit__num {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .15em;
+  margin-bottom: 100px;
+  display: flex; justify-content: space-between;
+}
+.benefit__num-arrow { color: var(--accent); transition: transform var(--t-standard); }
+.benefit:hover .benefit__num-arrow { transform: translate(4px, -4px); }
+.benefit__icon {
+  width: 40px; height: 40px;
+  margin-bottom: 24px;
+  color: var(--accent);
+}
+.benefit__title {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700;
+  letter-spacing: -.015em; line-height: 1.15;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.benefit__title em { color: var(--accent); font-style: normal; }
+.benefit__body {
+  font-size: 14.5px; color: #888; line-height: 1.65;
+  margin-bottom: 28px;
+}
+.benefit__tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.benefit__tag {
+  font-size: 10.5px; color: #aaa;
+  padding: 5px 10px;
+  border: 1px solid #2a2a28;
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   COMUNIDAD
+   ============================================================ */
+.comunidad {
+  background: var(--ieb-paper);
+  color: var(--fg-on-light-1);
+  position: relative; overflow: hidden;
+}
+.comunidad__head {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 80px; align-items: end;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ieb-paper-line);
+  margin-bottom: 56px;
+}
+.comunidad__title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -.022em;
+  color: var(--ieb-black);
+  text-wrap: balance;
+}
+.comunidad__title em {
+  color: var(--ieb-black); font-style: normal;
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 2px;
+}
+.comunidad__lead {
+  font-size: 16.5px; color: #555; line-height: 1.7;
+}
+.comunidad__lead strong { color: var(--ieb-black); font-weight: 500; }
+
+.comunidad__grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--ieb-paper-line);
+  border: 1px solid var(--ieb-paper-line);
+}
+.com-block {
+  background: var(--ieb-paper);
+  padding: 32px 24px 36px;
+  display: flex; flex-direction: column;
+  min-height: 280px;
+  transition: background var(--t-standard);
+}
+.com-block:hover { background: #FFF; }
+.com-block__num {
+  font-family: var(--font-mono);
+  font-size: 10.5px; color: var(--ieb-gray-key);
+  letter-spacing: .18em;
+  margin-bottom: 40px;
+}
+.com-block__icon {
+  width: 36px; height: 36px;
+  margin-bottom: 20px;
+  color: var(--ieb-black);
+  position: relative;
+}
+.com-block__icon svg {
+  width: 100%; height: 100%;
+}
+.com-block__icon::after {
+  content: ""; position: absolute;
+  width: 8px; height: 8px; background: var(--accent);
+  top: -1px; right: -1px;
+}
+.com-block__title {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -.01em; line-height: 1.25;
+  color: var(--ieb-black);
+  margin-bottom: 8px;
+}
+.com-block__body {
+  font-size: 13px; color: #666; line-height: 1.55;
+  margin-top: auto;
+}
+
+/* ============================================================
+   PARA QUIÉN
+   ============================================================ */
+.audience {
+  background: var(--ieb-black);
+  border-top: 1px solid var(--ieb-ink-line);
+  position: relative;
+}
+.audience__head {
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+  margin-bottom: 0;
+}
+.audience__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--ieb-ink-line);
+  margin: 0 -56px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.aud {
+  background: var(--ieb-ink-08);
+  padding: 40px 32px 44px;
+  display: flex; flex-direction: column;
+  min-height: 380px;
+  transition: background var(--t-standard);
+}
+.aud:hover { background: var(--ieb-ink-12); }
+.aud__num {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.04em; line-height: 1;
+  margin-bottom: 24px;
+}
+.aud__title {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  color: #fff; line-height: 1.25;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+.aud__body {
+  font-size: 13.5px; color: #888;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.aud__tag {
+  margin-top: auto;
+  font-size: 10.5px; color: var(--accent);
+  letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ============================================================
+   INFRAESTRUCTURA
+   ============================================================ */
+.infra {
+  background: var(--ieb-paper);
+  color: var(--fg-on-light-1);
+  position: relative;
+}
+.infra__top {
+  display: grid; grid-template-columns: 240px 1fr 1fr;
+  gap: 56px; align-items: end;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ieb-paper-line);
+  margin-bottom: 0;
+}
+.infra__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 700; line-height: 1.08;
+  letter-spacing: -.022em;
+  color: var(--ieb-black);
+  text-wrap: balance;
+}
+.infra__lead {
+  font-size: 15px; color: #555;
+  line-height: 1.65;
+}
+.infra__main {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 0 -56px;
+}
+.infra__col {
+  padding: 56px;
+  border-right: 1px solid var(--ieb-paper-line);
+}
+.infra__col:last-child { border-right: none; }
+.infra__col-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ieb-gray-key);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ieb-paper-line);
+}
+.infra__col-label::before {
+  content: ""; width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;
+}
+.infra__list { display: flex; flex-direction: column; }
+.infra__item {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  gap: 16px; align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ieb-paper-line);
+}
+.infra__item:last-child { border-bottom: none; }
+.infra__item-num {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .12em;
+}
+.infra__item-name {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 500;
+  color: var(--ieb-black);
+  letter-spacing: -.005em;
+}
+.infra__item-meta {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.infra__location {
+  background: var(--ieb-black);
+  color: #fff;
+  padding: 56px;
+  margin: 0 -56px;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 56px; align-items: center;
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.infra__location-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--accent);
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.infra__location-eyebrow::before {
+  content: ""; width: 24px; height: 1px; background: var(--accent);
+}
+.infra__location h3 {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1.1;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.infra__location p {
+  font-size: 14.5px; color: #888; line-height: 1.6;
+}
+.infra__map {
+  position: relative;
+  border: 1px solid var(--ieb-ink-line);
+  background: var(--ieb-ink-08);
+  height: 280px;
+  overflow: hidden;
+}
+.infra__map svg { width: 100%; height: 100%; display: block; }
+.infra__map-pin {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 2;
+}
+.infra__map-pin-dot {
+  width: 14px; height: 14px;
+  background: var(--accent);
+  outline: 2px solid var(--ieb-black);
+  outline-offset: 4px;
+}
+.infra__map-pin-label {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--accent);
+  letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ============================================================
+   RESPALDO GRUPO IEB
+   ============================================================ */
+.respaldo {
+  background: var(--ieb-black);
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.respaldo__bg {
+  position: absolute; inset: 0;
+  background-image: url('assets/tramas/trama-grid.svg');
+  background-size: 600px;
+  opacity: .12;
+  filter: invert(1);
+  pointer-events: none;
+}
+.respaldo__inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.respaldo__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.6vw, 68px);
+  font-weight: 700; line-height: 1.04;
+  letter-spacing: -.025em;
+  color: #fff;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.respaldo__title em { color: var(--accent); font-style: normal; }
+.respaldo__lead {
+  font-size: 16.5px; color: #999; line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+.respaldo__sig {
+  display: flex; align-items: center; gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ieb-ink-line);
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .15em; text-transform: uppercase;
+}
+.respaldo__sig img { height: 28px; }
+
+.respaldo__stats {
+  border: 1px solid var(--ieb-ink-line);
+  background: rgba(0,0,0,0.4);
+}
+.respaldo__stat {
+  display: grid; grid-template-columns: 60px 1fr auto;
+  gap: 20px; align-items: baseline;
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.respaldo__stat:last-child { border-bottom: none; }
+.respaldo__stat-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--ieb-gray-key); letter-spacing: .1em;
+}
+.respaldo__stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 700; line-height: 1;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+.respaldo__stat-value em { color: var(--accent); font-style: normal; }
+.respaldo__stat-value sup {
+  font-size: 16px; vertical-align: super;
+  font-weight: 500; color: var(--accent);
+  margin-right: 4px;
+}
+.respaldo__stat-label {
+  font-size: 13px; color: #888;
+  line-height: 1.4; text-align: right;
+  max-width: 180px;
+}
+
+/* ============================================================
+   MODELO DE ACCESO
+   ============================================================ */
+.modelo {
+  background: var(--ieb-paper);
+  color: var(--fg-on-light-1);
+  border-top: 1px solid var(--ieb-paper-line);
+}
+.modelo__inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.modelo__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.4vw, 64px);
+  font-weight: 700; line-height: 1.04;
+  letter-spacing: -.025em;
+  color: var(--ieb-black);
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.modelo__title em {
+  color: var(--ieb-black); font-style: normal;
+  background: var(--accent); padding: 0 8px;
+}
+.modelo__lead {
+  font-size: 16.5px; color: #555; line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.modelo__rules {
+  border: 1px solid var(--ieb-paper-line);
+  background: #fff;
+}
+.modelo__rule {
+  display: grid; grid-template-columns: 60px 1fr 100px;
+  gap: 20px; align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--ieb-paper-line);
+}
+.modelo__rule:last-child { border-bottom: none; }
+.modelo__rule-num {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .12em;
+}
+.modelo__rule-text {
+  font-size: 15px; color: var(--ieb-black);
+  line-height: 1.5;
+}
+.modelo__rule-text strong { font-weight: 700; color: var(--ieb-black); }
+.modelo__rule-flag {
+  font-size: 10.5px; font-weight: 700;
+  color: #000; background: var(--accent);
+  padding: 5px 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+  text-align: center;
+}
+.modelo__rule-flag--neutral {
+  background: transparent; color: var(--ieb-gray-key);
+  border: 1px solid var(--ieb-paper-line);
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq {
+  background: var(--ieb-black);
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.faq__head {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  padding-bottom: 56px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.faq__title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 700; line-height: 1.04;
+  letter-spacing: -.022em;
+  color: #fff;
+  text-wrap: balance;
+}
+.faq__title em { color: var(--accent); font-style: normal; }
+.faq__lead {
+  font-size: 15.5px; color: #888; line-height: 1.7;
+}
+
+.faq__list { display: flex; flex-direction: column; }
+.faq__item {
+  display: grid; grid-template-columns: 60px 1fr 40px;
+  gap: 24px; align-items: start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--ieb-ink-line);
+  cursor: pointer;
+  transition: background var(--t-standard);
+}
+.faq__item:hover { background: rgba(255,255,255,0.02); }
+.faq__item-num {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ieb-gray-key);
+  letter-spacing: .12em;
+  padding-top: 6px;
+}
+.faq__item-q {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 500;
+  color: #fff; line-height: 1.4;
+  letter-spacing: -.005em;
+}
+.faq__item.is-open .faq__item-q { color: var(--accent); }
+.faq__item-a {
+  display: none;
+  grid-column: 2 / 3;
+  font-size: 15px; color: #aaa;
+  line-height: 1.7;
+  margin-top: 20px;
+  max-width: 720px;
+}
+.faq__item.is-open .faq__item-a { display: block; }
+.faq__item-a strong { color: #fff; font-weight: 500; }
+.faq__item-toggle {
+  width: 28px; height: 28px;
+  border: 1px solid var(--ieb-ink-line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: #aaa;
+  transition: all var(--t-standard);
+  margin-top: 2px; flex-shrink: 0;
+}
+.faq__item.is-open .faq__item-toggle {
+  background: var(--accent); color: #000; border-color: var(--accent);
+}
+
+/* ============================================================
+   ACCESO — form CTA
+   ============================================================ */
+.acceso {
+  background: var(--ieb-ink-08);
+  border-top: 1px solid var(--ieb-ink-line);
+  position: relative; overflow: hidden;
+}
+.acceso__trama {
+  position: absolute; inset: 0;
+  background-image: url('assets/tramas/trama-isometric.svg');
+  background-size: 500px;
+  opacity: .12; filter: invert(1);
+  pointer-events: none;
+}
+.acceso__inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.acceso__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.6vw, 68px);
+  font-weight: 700; line-height: 1.02;
+  letter-spacing: -.025em;
+  color: #fff;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.acceso__title em { color: var(--accent); font-style: normal; }
+.acceso__lead {
+  font-size: 16.5px; color: #aaa; line-height: 1.65;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.acceso__points {
+  display: flex; flex-direction: column; gap: 16px;
+  margin-bottom: 36px;
+}
+.acceso__point {
+  display: grid; grid-template-columns: 16px 1fr;
+  gap: 16px; align-items: baseline;
+  font-size: 14.5px; color: #ccc;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+}
+.acceso__point:last-child { border-bottom: none; padding-bottom: 0; }
+.acceso__point-tick {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  display: inline-block;
+  margin-top: 4px; flex-shrink: 0;
+}
+
+.form {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--ieb-ink-line);
+  padding: 40px 36px;
+}
+.form__label-row {
+  display: flex; justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ieb-ink-line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ieb-gray-key);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+.form__label-row span:last-child { color: var(--accent); }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form__field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.form__field--full { grid-column: 1 / -1; }
+.form__field label {
+  font-size: 11px; font-weight: 700;
+  color: #888; letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.form__field label sup { color: var(--accent); margin-left: 2px; }
+.form__field input,
+.form__field select,
+.form__field textarea {
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--ieb-ink-line);
+  padding: 10px 0;
+  font-family: var(--font-body); font-size: 14.5px;
+  color: #fff;
+  transition: border-color var(--t-quick);
+}
+.form__field input::placeholder,
+.form__field textarea::placeholder { color: #444; }
+.form__field input:focus,
+.form__field select:focus,
+.form__field textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.form__field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23FDE100' stroke-width='1.5' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 24px;
+}
+.form__field select option { background: var(--ieb-black); color: #fff; }
+.form__field textarea { resize: vertical; min-height: 80px; }
+.form__check {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 12.5px; color: #888; line-height: 1.5;
+  margin: 8px 0 24px;
+  cursor: pointer;
+}
+.form__check input { margin-top: 3px; accent-color: var(--accent); }
+.form__check a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.form__submit {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--accent); color: #000;
+  font-family: var(--font-body); font-weight: 700;
+  font-size: 14px; letter-spacing: .04em;
+  padding: 18px 24px;
+  border: none; cursor: pointer;
+  transition: opacity var(--t-quick);
+}
+.form__submit:hover { opacity: .85; }
+.form__submit:disabled { opacity: .4; cursor: not-allowed; }
+.form__success {
+  border: 1.5px solid var(--accent);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.form__success-tick {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--accent);
+  letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 700;
+}
+.form__success-tick::before { content: ""; width: 10px; height: 10px; background: var(--accent); }
+.form__success h4 { font-size: 18px; color: #fff; font-weight: 700; letter-spacing: -.01em; }
+.form__success p { font-size: 14px; color: #aaa; line-height: 1.6; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #000;
+  border-top: 1px solid var(--ieb-ink-line);
+}
+.footer__top {
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 56px; padding: 72px 0 56px;
+  border-bottom: 1px solid #111;
+}
+.footer__brand img { height: 28px; margin-bottom: 24px; }
+.footer__brand p { font-size: 13px; color: #666; line-height: 1.6; max-width: 320px; }
+.footer__col h5,
+.footer__col-heading {
+  font-family: var(--font-mono);
+  font-size: 11px; color: rgba(255,255,255,0.65);
+  letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__col a {
+  font-size: 13.5px; color: #aaa;
+  text-decoration: none;
+  transition: color var(--t-quick);
+}
+.footer__col a:hover { color: var(--accent); }
+.footer__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 28px 0;
+  font-family: var(--font-mono);
+  font-size: 11px; color: #555;
+  letter-spacing: .12em;
+}
+.footer__bottom a { color: #888; text-decoration: none; }
+.footer__bottom a:hover { color: var(--accent); }
+.footer__legal { display: flex; gap: 28px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .hero__inner { grid-template-columns: 1fr; gap: 56px; }
+  .que-es__cols { grid-template-columns: repeat(2, 1fr); }
+  .beneficios__grid { grid-template-columns: repeat(2, 1fr); }
+  .audience__grid { grid-template-columns: repeat(2, 1fr); }
+  .comunidad__grid { grid-template-columns: repeat(2, 1fr); }
+  .respaldo__inner, .modelo__inner, .acceso__inner, .faq__head, .comunidad__head { grid-template-columns: 1fr; gap: 40px; }
+  .infra__top { grid-template-columns: 1fr; gap: 24px; }
+  .infra__main { grid-template-columns: 1fr; }
+  .infra__col { border-right: none; border-bottom: 1px solid var(--ieb-paper-line); }
+  .infra__location { grid-template-columns: 1fr; gap: 32px; padding: 40px; }
+}
+@media (max-width: 1200px) {
+  .nav__links { gap: 16px; }
+  .nav__link { font-size: 11px; }
+}
+@media (max-width: 960px) {
+  .nav__inner { padding: 0 20px; }
+  .nav__links { display: none; }
+  .nav__cta { display: none; }
+  .nav__menu-btn { display: block; }
+  .nav__logo-sub { display: none; }
+  .nav__divider { display: none; }
+}
+.nav__mobile-menu {
+  position: absolute; top: 68px; left: 0; right: 0;
+  background: rgba(10,10,10,0.98); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ieb-ink-line);
+  display: flex; flex-direction: column;
+  padding: 8px 0 16px;
+  z-index: 99;
+}
+.nav__mobile-link {
+  padding: 14px 32px;
+  font-size: 13px; font-weight: 600; letter-spacing: .06em;
+  color: #aaa; text-decoration: none; text-transform: uppercase;
+  border-bottom: 1px solid #1a1a1a;
+  transition: color var(--t-quick), background var(--t-quick);
+}
+.nav__mobile-link:last-of-type { border-bottom: none; }
+.nav__mobile-link:hover { color: #fff; background: rgba(255,255,255,.04); }
+.nav__mobile-cta {
+  margin: 12px 32px 0;
+  background: var(--accent); color: var(--ieb-black);
+  text-decoration: none; text-align: center;
+  padding: 12px; font-weight: 700; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.ticker__market { display: inline-flex; align-items: baseline; gap: 6px; }
+.ticker__market-sym { font-weight: 700; color: #fff; font-size: 11px; letter-spacing: .1em; }
+.ticker__market-val { font-size: 12px; color: #aaa; }
+.ticker__market-chg { font-size: 11px; font-weight: 700; }
+.ticker__market-chg--up { color: #4ade80; }
+.ticker__market-chg--dn { color: #f87171; }
+@media (max-width: 760px) {
+  .container { padding: 0 24px; }
+  .section { padding: 64px 0; }
+  .nav__inner { padding: 0 20px; }
+  .hero { padding: 130px 0 72px; }
+  .sec-head, .que-es__top { grid-template-columns: 1fr; gap: 24px; }
+  .tension__inner { grid-template-columns: 1fr; }
+  .tension__cell--before { border-right: none; border-bottom: 1px solid var(--ieb-ink-line); }
+  .tension__cell { padding: 56px 24px; min-height: 0; }
+  .que-es__cols { grid-template-columns: 1fr; }
+  .que-es__col { padding: 28px 0; border-right: none; border-bottom: 1px solid var(--ieb-paper-line); }
+  .que-es__col:not(:first-child) { padding-left: 0; }
+  .que-es__col:last-child { border-bottom: none; }
+  .beneficios__grid, .audience__grid, .comunidad__grid { grid-template-columns: 1fr; margin: 0 -24px; }
+  .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .form__row { grid-template-columns: 1fr; }
+  .infra__main { margin: 0 -24px; }
+  .infra__col { padding: 32px 24px; }
+  .infra__location { margin: 0 -24px; padding: 32px 24px; }
+  .respaldo__stat { padding: 22px 20px; grid-template-columns: 1fr; gap: 8px; }
+  .respaldo__stat-label { text-align: left; max-width: none; }
+  .modelo__rule { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+  .footer__bottom { flex-direction: column; gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+</style>
 
 <!-- JSON-LD — Organization -->
 <script type="application/ld+json">
@@ -192,9 +1739,9 @@
 }
 </script>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" defer></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous" defer></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous" defer></script>
+<script src="assets/react.production.min.js" defer></script>
+<script src="assets/react-dom.production.min.js" defer></script>
+<script src="app.js" defer></script>
 </head>
 <body>
 
@@ -244,763 +1791,7 @@
 </noscript>
 
 <div id="root"></div>
-<script type="text/babel">
-/* global React, ReactDOM */
-const { useState, useEffect } = React;
 
-const Icon = ({ name, size = 20 }) => {
-  const icons = {
-    briefcase: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>,
-    users: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-    shield: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-    'trending-up': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
-    zap: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
-    'bar-chart': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>,
-    mic: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>,
-    globe: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
-    layers: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
-    activity: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>,
-    slash: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>,
-    check: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
-  };
-  return icons[name] || null;
-};
-
-function Logo({ dark = false, height = 30 }) {
-  const src = dark
-    ? 'assets/logos/espacio%20ieb%20horizontal%20negro.png'
-    : 'assets/logos/espacio%20ieb%20horizontal%20blanco.png';
-  return (
-    <img src={src} alt="Espacio IEB" height={height} style={{display:'block', width:'auto'}}/>
-  );
-}
-
-function Nav() {
-  const [active, setActive] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const links = [
-    { id: 'que-es', label: 'Qué es' },
-    { id: 'por-que', label: 'Por qué' },
-    { id: 'beneficios', label: 'Beneficios' },
-    { id: 'comunidad', label: 'Comunidad' },
-    { id: 'infraestructura', label: 'Infraestructura' },
-    { id: 'faq', label: 'FAQ' },
-  ];
-  useEffect(() => {
-    const onScroll = () => {
-      let cur = '';
-      for (const l of links) {
-        const el = document.getElementById(l.id);
-        if (el && el.getBoundingClientRect().top < 120) cur = l.id;
-      }
-      setActive(cur);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-  const close = () => setMenuOpen(false);
-  return (
-    <nav className="nav" aria-label="Navegación principal" style={{position:'fixed'}}>
-      <div className="nav__inner">
-        <a href="#top" className="nav__logo" aria-label="Espacio IEB — inicio" onClick={close}>
-          <Logo height={28}/>
-          <span className="nav__divider"></span>
-          <span className="nav__logo-sub">Una iniciativa de Grupo IEB</span>
-        </a>
-        <div className="nav__links">
-          {links.map(l => (
-            <a key={l.id} href={`#${l.id}`} className={`nav__link ${active === l.id ? 'is-active' : ''}`}>{l.label}</a>
-          ))}
-        </div>
-        <a href="#acceso" className="nav__cta">Solicitar acceso <span>→</span></a>
-        <button className="nav__menu-btn" aria-label="Menú" onClick={() => setMenuOpen(o => !o)}>
-          {menuOpen ? '✕' : 'MENÚ'}
-        </button>
-      </div>
-      {menuOpen && (
-        <div className="nav__mobile-menu">
-          {links.map(l => (
-            <a key={l.id} href={`#${l.id}`} className="nav__mobile-link" onClick={close}>{l.label}</a>
-          ))}
-          <a href="#acceso" className="nav__mobile-cta" onClick={close}>Solicitar acceso →</a>
-        </div>
-      )}
-    </nav>
-  );
-}
-
-function Hero() {
-  const pills = [
-    { label: 'Núñez, Buenos Aires', accent: false },
-    { label: 'Acceso gratuito', accent: true },
-    { label: 'Sin exclusividad', accent: false },
-    { label: 'Comunidad de asesores', accent: false },
-    { label: 'Grupo IEB', accent: false }
-  ];
-  return (
-    <section className="hero" id="top">
-      <div className="hero__trama"></div>
-      <div className="hero__overlay"></div>
-      <div className="container">
-        <div className="hero__inner">
-          <div className="hero__copy">
-            <div className="hero__meta">
-              <span className="hero__meta-tick"></span>
-              <span>Espacio IEB · Para asesores financieros externos</span>
-            </div>
-            <h1 className="hero__title">
-              El espacio donde los <em>asesores financieros</em> hacen <u>crecer</u> su negocio.
-            </h1>
-            <p className="hero__sub">
-              Una iniciativa de Grupo IEB para fortalecer la comunidad de asesores externos
-              en Argentina, combinando infraestructura profesional, soporte operativo,
-              cercanía con especialistas y un entorno pensado para trabajar mejor.
-            </p>
-            <div className="hero__pills" role="list">
-              {pills.map((p, i) => (
-                <span key={i} role="listitem" className={`hero__pill ${p.accent ? 'hero__pill--accent' : ''}`}>
-                  <span className="hero__pill-dot"></span>{p.label}
-                </span>
-              ))}
-            </div>
-            <div className="hero__cta-row">
-              <a href="#acceso" className="btn btn--primary">Solicitar acceso <span>→</span></a>
-              <a href="#que-es" className="btn btn--outline">Ver cómo funciona</a>
-            </div>
-          </div>
-          <aside className="hero__aside" aria-label="Resumen rápido">
-            <div className="hero__aside-label"><span>Resumen</span><span>EIB · 2026</span></div>
-            <div className="hero__aside-stack">
-              {[
-                ['01', 'Puestos de trabajo modernos en Núñez, CABA.', 'Espacio'],
-                ['02', 'Salas de reunión y boxes para videollamadas.', 'Clientes'],
-                ['03', 'Cercanía con traders, research y Middle Office.', 'Mercado'],
-                ['04', 'Charlas, encuentros y comunidad de asesores.', 'Red'],
-              ].map(([num, text, tag]) => (
-                <div className="hero__aside-row" key={num}>
-                  <span className="hero__aside-num">{num}</span>
-                  <span className="hero__aside-text">{text}</span>
-                  <span className="hero__aside-tag">{tag}</span>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
-        <div className="hero__floor">
-          <div className="hero__floor-item"><span>Coord.</span><strong>34°32'42"S 58°27'34"O</strong></div>
-          <div className="hero__floor-item"><span>Modalidad</span><strong>Acceso libre · sin exclusividad</strong></div>
-          <div className="hero__floor-item"><span>Operador</span><strong>Grupo IEB</strong></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Ticker() {
-  const items = [
-    'Independencia con estructura', 'Comunidad de asesores externos',
-    'Acceso 100% gratuito', 'Núñez · Buenos Aires',
-    'Cercanía con especialistas', 'Middle Office en el mismo edificio',
-    'Sin exclusividad · Sin membresía', 'Grupo IEB · Mercado de capitales',
-  ];
-  const stream = [...items, ...items];
-  return (
-    <div className="ticker" aria-hidden="true">
-      <div className="ticker__inner">
-        {stream.map((text, i) => <span key={i} className="ticker__item">{text}</span>)}
-      </div>
-    </div>
-  );
-}
-
-function PorQue() {
-  const before = [
-    { icon: 'slash', text: 'Sin oficina profesional para recibir clientes.' },
-    { icon: 'slash', text: 'Sin acceso ágil a soporte operativo.' },
-    { icon: 'slash', text: 'Sin contacto cotidiano con especialistas.' },
-    { icon: 'slash', text: 'Sin comunidad donde compartir visión de mercado.' },
-  ];
-  const after = [
-    { icon: 'check', text: 'Infraestructura para trabajar y recibir clientes.' },
-    { icon: 'check', text: 'Middle Office para resolver lo operativo.' },
-    { icon: 'check', text: 'Cercanía con traders, research y comerciales.' },
-    { icon: 'check', text: 'Comunidad activa de asesores externos.' },
-  ];
-  return (
-    <section className="tension" id="por-que" aria-labelledby="por-que-title" style={{scrollMarginTop:'80px'}}>
-      <div className="container">
-        <div className="sec-head">
-          <div className="sec-head__meta sec-head__meta--dark">
-            <span className="eyebrow-line">02 · Por qué existe</span>
-            <span className="section-num">El contexto del asesor independiente</span>
-          </div>
-          <h2 className="sec-head__title" id="por-que-title">
-            El mercado necesita más asesores <em>conectados</em>, informados y con <u>estructura</u>.
-          </h2>
-        </div>
-      </div>
-      <div className="tension__inner">
-        <div className="tension__cell tension__cell--before">
-          <div>
-            <div className="tension__label"><span className="tension__label-dot"></span>Hoy · Trabajar aislado</div>
-            <h3 className="tension__heading">El asesor financiero cumple un rol clave en el mercado de capitales argentino.</h3>
-            <ul className="tension__list">
-              {before.map((b, i) => (
-                <li className="tension__item" key={i}>
-                  <span className="tension__item-icon"><Icon name={b.icon} size={16}/></span>
-                  <span>{b.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="tension__cell tension__cell--after">
-          <div>
-            <div className="tension__label tension__label--accent"><span className="tension__label-dot"></span>Espacio IEB · Trabajar acompañado</div>
-            <h3 className="tension__heading">Un entorno profesional, conectado al mercado y con respaldo institucional.</h3>
-            <ul className="tension__list">
-              {after.map((a, i) => (
-                <li className="tension__item" key={i}>
-                  <span className="tension__item-icon"><Icon name={a.icon} size={16}/></span>
-                  <span>{a.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="tension__cap">
-        <div className="container">
-          <div className="tension__cap-inner">
-            <p className="tension__cap-text">Espacio IEB nace para crear ese lugar: <em>un punto de encuentro</em> profesional entre asesores externos y el ecosistema financiero argentino.</p>
-            <a href="#que-es" className="btn btn--outline">Ver qué es →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function QueEs() {
-  const cols = [
-    { title: 'Una base operativa', body: 'Puestos de trabajo, salas de reunión, boxes privados para videollamadas y cocheras. Todo lo necesario para trabajar y recibir clientes en condiciones profesionales.' },
-    { title: 'Un entorno de mercado', body: 'Acceso cercano a equipos comerciales, traders, research y especialistas de IEB, con Middle Office en el mismo edificio para resolver cuestiones operativas.' },
-    { title: 'Una comunidad activa', body: 'Charlas de mercado, encuentros con especialistas e intercambio entre pares. Un lugar para crecer profesionalmente con el respaldo institucional de Grupo IEB.' }
-  ];
-  return (
-    <section className="que-es section" id="que-es" aria-labelledby="que-es-title">
-      <div className="container">
-        <div className="que-es__top">
-          <div>
-            <span className="eyebrow-line is-gray">03 · Qué es</span>
-            <span className="section-num"><br/>Definición · 2026</span>
-          </div>
-          <div>
-            <h2 className="que-es__title" id="que-es-title">Una base para trabajar.<br/>Un punto de encuentro <em>para crecer</em>.</h2>
-            <p className="que-es__lead">Espacio IEB combina oficinas, salas de reunión, boxes privados, soporte operativo, encuentros de mercado y comunidad profesional. No es solo infraestructura: es un entorno creado por Grupo IEB para que los asesores externos puedan trabajar mejor, recibir clientes y crecer con más respaldo.</p>
-          </div>
-        </div>
-        <div className="que-es__cols">
-          {cols.map((c, i) => (
-            <div className="que-es__col" key={i}>
-              <div className="que-es__col-num">0{i+1} · Capa</div>
-              <h3 className="que-es__col-title">{c.title}</h3>
-              <p className="que-es__col-body">{c.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Beneficios() {
-  const items = [
-    { icon: 'briefcase', title: <>Trabajá <em>mejor</em></>, body: 'Puestos modernos, espacios comunes y cocheras propias. Pensado para asesores que necesitan foco y un entorno profesional todos los días.', tags: ['Puestos', 'Espacios comunes', 'Cocheras'] },
-    { icon: 'users', title: <>Recibí mejor a <em>tus clientes</em></>, body: 'Salas de reunión y boxes privados para videollamadas. Una infraestructura institucional para recibir clientes con la presencia que tu negocio necesita.', tags: ['Salas de reunión', 'Boxes privados', 'Videollamadas'] },
-    { icon: 'zap', title: <>Resolvé más <em>rápido</em></>, body: 'Acceso al equipo de Middle Office para resolver cuestiones operativas. Menos fricción para vos y mejor experiencia para tus clientes.', tags: ['Middle Office', 'Soporte', 'Operaciones'] },
-    { icon: 'trending-up', title: <>Estate más cerca <em>del mercado</em></>, body: 'Cercanía cotidiana con traders, comerciales, research y especialistas de IEB. Información, visión de mercado y contacto operativo en el mismo lugar.', tags: ['Trading', 'Research', 'Comercial'] },
-    { icon: 'globe', title: <>Formá parte de una <em>comunidad</em></>, body: 'Encuentros, charlas de mercado e intercambio entre asesores externos. Un entorno donde compartir conocimiento y construir red profesional.', tags: ['Encuentros', 'Charlas', 'Networking'] },
-    { icon: 'shield', title: <>Crecé con <em>respaldo</em></>, body: 'Trayectoria de Grupo IEB en mercado de capitales, equipos especializados y soluciones para individuos, empresas e instituciones a tu disposición.', tags: ['Grupo IEB', 'Trayectoria', 'Respaldo'] }
-  ];
-  return (
-    <section className="beneficios section" id="beneficios" aria-labelledby="beneficios-title">
-      <div className="container">
-        <div className="sec-head beneficios__head">
-          <div className="sec-head__meta sec-head__meta--dark">
-            <span className="eyebrow-line">04 · Beneficios</span>
-            <span className="section-num">Lo que vas a encontrar al sumarte</span>
-          </div>
-          <h2 className="sec-head__title" id="beneficios-title">Lo que ganás cuando trabajás <em>desde Espacio IEB</em>.</h2>
-        </div>
-      </div>
-      <div className="container">
-        <div className="beneficios__grid">
-          {items.map((b, i) => (
-            <article className="benefit" key={i}>
-              <div className="benefit__num"><span>0{i+1}</span><span className="benefit__num-arrow">↗</span></div>
-              <div className="benefit__icon"><Icon name={b.icon} size={32}/></div>
-              <h3 className="benefit__title">{b.title}</h3>
-              <p className="benefit__body">{b.body}</p>
-              <div className="benefit__tags">{b.tags.map(t => <span className="benefit__tag" key={t}>{t}</span>)}</div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Comunidad() {
-  const blocks = [
-    { icon: 'mic', title: 'Charlas de mercado', body: 'Encuentros recurrentes con foco en macro, renta fija, renta variable y coyuntura local.' },
-    { icon: 'globe', title: 'Encuentros con especialistas', body: 'Acceso directo a referentes de Grupo IEB y del ecosistema financiero argentino.' },
-    { icon: 'users', title: 'Intercambio entre asesores', body: 'Espacio común para conversar, compartir visión y conocer a otros asesores externos.' },
-    { icon: 'bar-chart', title: 'Research y visión de mercado', body: 'Material y lecturas del equipo de research IEB para enriquecer tu asesoramiento.' },
-    { icon: 'layers', title: 'Equipos comerciales y operativos', body: 'Conexión cotidiana con traders, comerciales y Middle Office en el mismo edificio.' }
-  ];
-  return (
-    <section className="comunidad section" id="comunidad" aria-labelledby="comunidad-title">
-      <div className="container">
-        <div className="comunidad__head">
-          <div>
-            <span className="eyebrow-line is-gray">05 · Comunidad</span>
-            <h2 className="comunidad__title" id="comunidad-title">Un espacio para fortalecer la <em>comunidad financiera</em> local.</h2>
-          </div>
-          <p className="comunidad__lead">Espacio IEB busca reunir <strong>asesores externos y profesionales del mercado</strong> en un entorno activo, donde el intercambio de información, la cercanía con especialistas y la formación continua ayuden a elevar la calidad del asesoramiento financiero en Argentina.</p>
-        </div>
-        <div className="comunidad__grid">
-          {blocks.map((b, i) => (
-            <div className="com-block" key={i}>
-              <div className="com-block__num">0{i+1} / 0{blocks.length}</div>
-              <div className="com-block__icon"><Icon name={b.icon} size={24}/></div>
-              <h3 className="com-block__title">{b.title}</h3>
-              <p className="com-block__body">{b.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Audience() {
-  const cards = [
-    { n: '01', title: 'Agentes Productores Independientes', body: 'Profesionales registrados que buscan una base operativa, infraestructura para recibir clientes y cercanía cotidiana con el mercado.', tag: 'API' },
-    { n: '02', title: 'Asesores en ALyCs', body: 'Asesores que ya operan con una o varias ALyCs y quieren un entorno profesional y una red de pares para crecer su negocio.', tag: 'ALyC' },
-    { n: '03', title: 'Team leaders y asesores senior', body: 'Líderes que están desarrollando equipo propio o quieren consolidar su práctica con un espacio institucional de respaldo.', tag: 'Senior' },
-    { n: '04', title: 'Profesionales conectados al ecosistema', body: 'Asesores que buscan más independencia sin perder estructura, y quieren estar más conectados con el mercado y con sus pares.', tag: 'Independientes' }
-  ];
-  return (
-    <section className="audience section" id="para-quien" aria-labelledby="para-quien-title">
-      <div className="container">
-        <div className="sec-head audience__head">
-          <div className="sec-head__meta sec-head__meta--dark">
-            <span className="eyebrow-line">06 · Para quién es</span>
-            <span className="section-num">Pensado para asesores externos en Argentina</span>
-          </div>
-          <h2 className="sec-head__title" id="para-quien-title">Pensado para vos, si <em>asesorás clientes</em> y querés crecer con estructura.</h2>
-        </div>
-      </div>
-      <div className="container">
-        <div className="audience__grid">
-          {cards.map(c => (
-            <article className="aud" key={c.n}>
-              <div className="aud__num">{c.n}</div>
-              <h3 className="aud__title">{c.title}</h3>
-              <p className="aud__body">{c.body}</p>
-              <div className="aud__tag">→ {c.tag}</div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Infra() {
-  const fisica = [
-    { name: 'Puestos de trabajo modernos', meta: 'Espacio principal' },
-    { name: 'Salas de reunión para clientes', meta: 'Reservables' },
-    { name: 'Boxes privados para videollamadas', meta: 'Insonorizados' },
-    { name: 'Espacios comunes', meta: 'Común' },
-    { name: 'Cocheras', meta: 'Disponible' }
-  ];
-  const servicios = [
-    { name: 'Middle Office en el edificio', meta: 'Operativo' },
-    { name: 'Equipos comerciales y traders', meta: 'Mercado' },
-    { name: 'Research y visión de mercado', meta: 'Información' },
-    { name: 'Charlas y encuentros', meta: 'Comunidad' },
-    { name: 'Comunidad de asesores externos', meta: 'Red' }
-  ];
-  return (
-    <section className="infra section" id="infraestructura" aria-labelledby="infra-title">
-      <div className="container">
-        <div className="infra__top">
-          <div>
-            <span className="eyebrow-line is-gray">07 · Infraestructura</span>
-            <span className="section-num"><br/>Lo físico + lo institucional</span>
-          </div>
-          <h2 className="infra__title" id="infra-title">Todo lo que necesitás para trabajar mejor, en un solo lugar.</h2>
-          <p className="infra__lead" style={{alignSelf:'end'}}>Espacio IEB combina infraestructura física y soporte institucional. No es un coworking: es una base profesional pensada para asesores financieros externos.</p>
-        </div>
-        <div className="infra__main">
-          <div className="infra__col">
-            <div className="infra__col-label">A · Infraestructura física</div>
-            <div className="infra__list">
-              {fisica.map((f, i) => (
-                <div className="infra__item" key={i}>
-                  <span className="infra__item-num">A.0{i+1}</span>
-                  <span className="infra__item-name">{f.name}</span>
-                  <span className="infra__item-meta">{f.meta}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="infra__col">
-            <div className="infra__col-label">B · Servicios y comunidad</div>
-            <div className="infra__list">
-              {servicios.map((s, i) => (
-                <div className="infra__item" key={i}>
-                  <span className="infra__item-num">B.0{i+1}</span>
-                  <span className="infra__item-name">{s.name}</span>
-                  <span className="infra__item-meta">{s.meta}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="infra__location">
-          <div>
-            <div className="infra__location-eyebrow">Ubicación</div>
-            <h3>Núñez, Buenos Aires</h3>
-            <p>Una zona estratégica de CABA, conectada a las principales avenidas y con cercanía al corredor financiero de la ciudad. Acceso por auto, transporte público y cocheras disponibles.</p>
-          </div>
-          <div className="infra__map" role="img" aria-label="Mapa de Núñez, Buenos Aires">
-            <svg viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <pattern id="grid-map" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1f1f1d" strokeWidth="1"/>
-                </pattern>
-              </defs>
-              <rect width="600" height="280" fill="url(#grid-map)"/>
-              <path d="M0 80 L600 60" stroke="#2a2a28" strokeWidth="1.5"/>
-              <path d="M0 180 L600 200" stroke="#2a2a28" strokeWidth="1.5"/>
-              <path d="M120 0 L160 280" stroke="#2a2a28" strokeWidth="1.5"/>
-              <path d="M380 0 L440 280" stroke="#2a2a28" strokeWidth="1.5"/>
-              <path d="M40 280 Q200 140 600 100" stroke="#FDE100" strokeWidth="1" fill="none" strokeDasharray="3 6" opacity="0.5"/>
-              <text x="20" y="22" fill="#444" fontSize="10" fontFamily="monospace" letterSpacing="2">NÚÑEZ · CABA</text>
-              <text x="500" y="270" fill="#444" fontSize="10" fontFamily="monospace" letterSpacing="2">RÍO DE LA PLATA</text>
-            </svg>
-            <div className="infra__map-pin">
-              <span className="infra__map-pin-dot"></span>
-              <span className="infra__map-pin-label">Espacio IEB</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Respaldo() {
-  const stats = [
-    { n: '01', value: <><sup>+USD</sup>2.000<em>M</em></>, label: 'gestionados a través de Grupo IEB' },
-    { n: '02', value: <><sup>+</sup>200</>, label: 'personas en el equipo IEB' },
-    { n: '03', value: <><sup>+</sup>150</>, label: 'productores externos vinculados' },
-    { n: '04', value: <>Mercado<br/><em>de capitales</em></>, label: 'trayectoria institucional comprobada' }
-  ];
-  return (
-    <section className="respaldo section" id="respaldo" aria-labelledby="respaldo-title">
-      <div className="respaldo__bg"></div>
-      <div className="container">
-        <div className="respaldo__inner">
-          <div>
-            <span className="eyebrow-line">08 · Respaldo</span>
-            <h2 className="respaldo__title" id="respaldo-title">Con el respaldo de <em>Grupo IEB</em>.</h2>
-            <p className="respaldo__lead">Grupo IEB cuenta con trayectoria en mercado de capitales, equipos especializados y una oferta de soluciones para individuos, empresas e instituciones. Espacio IEB toma esa estructura y la pone al servicio de los asesores externos.</p>
-            <div className="respaldo__sig">
-              <Logo height={34}/>
-              <span>Grupo IEB · Buenos Aires, Argentina</span>
-            </div>
-          </div>
-          <div className="respaldo__stats" aria-label="Métricas de Grupo IEB">
-            {stats.map(s => (
-              <div className="respaldo__stat" key={s.n}>
-                <div className="respaldo__stat-num">{s.n}</div>
-                <div className="respaldo__stat-value">{s.value}</div>
-                <div className="respaldo__stat-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Modelo() {
-  const rules = [
-    { text: <>El acceso a Espacio IEB es <strong>100% gratuito</strong> para asesores externos validados.</>, flag: 'Gratuito', neutral: false },
-    { text: <>Podés <strong>seguir operando con las ALyCs</strong> con las que ya trabajás. No hay exclusividad con IEB.</>, flag: 'Sin exclusividad', neutral: false },
-    { text: <>Usás el espacio cuando lo necesitás. <strong>Sin mínimos de uso</strong> ni horarios obligatorios.</>, flag: 'Flexible', neutral: false },
-    { text: <>Recibí clientes en salas de reunión, hacé videollamadas en boxes privados y participá de la comunidad.</>, flag: 'Cliente', neutral: true },
-    { text: <>Acceso al equipo de <strong>Middle Office</strong> y cercanía con especialistas, traders y research.</>, flag: 'Soporte', neutral: true }
-  ];
-  return (
-    <section className="modelo section" id="modelo" aria-labelledby="modelo-title">
-      <div className="container">
-        <div className="modelo__inner">
-          <div>
-            <span className="eyebrow-line is-gray">09 · Modelo de acceso</span>
-            <h2 className="modelo__title" id="modelo-title">Gratuito, flexible y <em>sin exclusividad</em>.</h2>
-            <p className="modelo__lead">Espacio IEB está pensado para adaptarse a la forma de trabajo de cada asesor. Podés usar el espacio, recibir clientes, participar de encuentros y seguir operando con las ALyCs con las que ya trabajás.</p>
-            <a href="#acceso" className="btn btn--dark">Solicitar acceso →</a>
-          </div>
-          <div className="modelo__rules">
-            {rules.map((r, i) => (
-              <div className="modelo__rule" key={i}>
-                <div className="modelo__rule-num">REGLA · 0{i+1}</div>
-                <div className="modelo__rule-text">{r.text}</div>
-                <div className={`modelo__rule-flag ${r.neutral ? 'modelo__rule-flag--neutral' : ''}`}>{r.flag}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const FAQ_ITEMS = [
-  { q: '¿Qué es Espacio IEB?', a: 'Espacio IEB es una iniciativa de Grupo IEB para fortalecer la comunidad de asesores financieros externos en Argentina. Combina puestos de trabajo, salas de reunión, boxes privados, soporte de Middle Office, charlas de mercado y comunidad profesional, en una base ubicada en Núñez, Buenos Aires.' },
-  { q: '¿Por qué Grupo IEB creó Espacio IEB?', a: 'Porque el asesor financiero cumple un rol clave en el desarrollo del mercado de capitales argentino, pero muchas veces trabaja de forma aislada. Espacio IEB nace para crear un entorno profesional donde los asesores externos puedan trabajar, recibir clientes, estar cerca de especialistas y fortalecer la comunidad.' },
-  { q: '¿Espacio IEB es un coworking?', a: 'No. Espacio IEB no es un coworking. Es una base operativa, comercial y profesional pensada exclusivamente para asesores financieros externos, con infraestructura de oficinas, salas de reunión, soporte operativo, cercanía con equipos de Grupo IEB y una comunidad de pares del mercado de capitales.' },
-  { q: '¿Quiénes pueden usar Espacio IEB?', a: 'Está pensado para Agentes Productores Independientes, asesores financieros que trabajan en ALyCs, asesores senior, team leaders que quieren desarrollar equipo propio y profesionales del mercado de capitales que buscan más independencia sin perder estructura.' },
-  { q: '¿Dónde queda Espacio IEB?', a: 'Espacio IEB está ubicado en el barrio de Núñez, en la Ciudad Autónoma de Buenos Aires (CABA), Argentina. Es una zona estratégica con buena conectividad y cocheras disponibles.' },
-  { q: '¿Tiene costo?', a: 'No. El acceso a Espacio IEB es 100% gratuito para los asesores financieros externos validados por Grupo IEB. No hay membresía ni pagos asociados al uso del espacio.' },
-  { q: '¿Exige exclusividad con IEB?', a: 'No. Espacio IEB no exige exclusividad. El asesor puede seguir operando con las ALyCs con las que ya trabaja. La propuesta es sumar estructura, comunidad y respaldo, sin condicionar la libertad operativa del asesor.' },
-  { q: '¿Puedo recibir clientes?', a: 'Sí. Espacio IEB cuenta con salas de reunión y boxes privados para videollamadas, pensados específicamente para que el asesor pueda recibir y atender a sus clientes en un entorno profesional e institucional.' },
-  { q: '¿Cómo puedo solicitar acceso?', a: 'Podés solicitar acceso completando el formulario al final de esta página. El equipo de Espacio IEB se va a contactar para validar el perfil, coordinar una visita y explicarte cómo funciona el espacio en detalle.' }
-];
-
-function FAQ() {
-  const [open, setOpen] = useState(0);
-  return (
-    <section className="faq section" id="faq" aria-labelledby="faq-title">
-      <div className="container">
-        <div className="faq__head">
-          <div>
-            <span className="eyebrow-line">10 · FAQ</span>
-            <h2 className="faq__title" id="faq-title">Lo que asesores como vos <em>nos preguntan</em>.</h2>
-          </div>
-          <p className="faq__lead">Si tu pregunta no está acá, escribinos en el formulario de abajo. El equipo de Espacio IEB responde personalmente cada solicitud.</p>
-        </div>
-        <div className="faq__list" itemScope itemType="https://schema.org/FAQPage">
-          {FAQ_ITEMS.map((item, i) => (
-            <div key={i}
-              className={`faq__item ${open === i ? 'is-open' : ''}`}
-              onClick={() => setOpen(open === i ? -1 : i)}
-              itemProp="mainEntity" itemScope itemType="https://schema.org/Question"
-              role="button" tabIndex={0}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(open === i ? -1 : i); } }}>
-              <span className="faq__item-num">{String(i+1).padStart(2,'0')}</span>
-              <h3 className="faq__item-q" itemProp="name">{item.q}</h3>
-              <span className="faq__item-toggle" aria-hidden="true">{open === i ? '−' : '+'}</span>
-              <div className="faq__item-a" itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                <span itemProp="text">{item.a}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{marginTop:'40px', textAlign:'center'}}>
-          <a href="faq.html" style={{fontSize:'14px', color:'var(--fg-on-dark-3)', textDecoration:'none', borderBottom:'1px solid var(--ieb-ink-line)', paddingBottom:'2px', transition:'color 0.15s ease, border-color 0.15s ease'}}
-            onMouseEnter={(e)=>{e.currentTarget.style.color='var(--accent)';e.currentTarget.style.borderColor='var(--accent)';}}
-            onMouseLeave={(e)=>{e.currentTarget.style.color='var(--fg-on-dark-3)';e.currentTarget.style.borderColor='var(--ieb-ink-line)';}}>
-            Ver todas las preguntas frecuentes →
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Acceso() {
-  const [data, setData] = useState({ nombre: '', email: '', telefono: '', perfil: '', alyc: '', clientes: '', mensaje: '', consent: false });
-  const [sent, setSent] = useState(false);
-  const valid = data.nombre.length > 1 && /\S+@\S+\.\S+/.test(data.email) && data.perfil && data.consent;
-  const onChange = (k) => (e) => { const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value; setData({ ...data, [k]: val }); };
-  const submit = (e) => { e.preventDefault(); if (!valid) return; setSent(true); };
-  return (
-    <section className="acceso section" id="acceso" aria-labelledby="acceso-title">
-      <div className="acceso__trama"></div>
-      <div className="container">
-        <div className="acceso__inner">
-          <div>
-            <span className="eyebrow-line">11 · Solicitar acceso</span>
-            <h2 className="acceso__title" id="acceso-title">Sumate a la comunidad de <em>asesores externos</em> de Espacio IEB.</h2>
-            <p className="acceso__lead">Completá el formulario y el equipo de Espacio IEB se va a contactar para validar tu perfil, coordinar una visita y explicarte cómo funciona el espacio en detalle.</p>
-            <div className="acceso__points">
-              <div className="acceso__point"><span className="acceso__point-tick"></span><span><strong style={{color:'#fff'}}>Acceso 100% gratuito</strong> · sin membresía ni pagos asociados.</span></div>
-              <div className="acceso__point"><span className="acceso__point-tick"></span><span><strong style={{color:'#fff'}}>Sin exclusividad</strong> · seguí operando con las ALyCs con las que ya trabajás.</span></div>
-              <div className="acceso__point"><span className="acceso__point-tick"></span><span><strong style={{color:'#fff'}}>Visita coordinada</strong> · conocé el espacio antes de definir nada.</span></div>
-              <div className="acceso__point"><span className="acceso__point-tick"></span><span><strong style={{color:'#fff'}}>Atención personalizada</strong> · respuesta del equipo en menos de 48hs hábiles.</span></div>
-            </div>
-          </div>
-          <form className="form" onSubmit={submit} noValidate>
-            <div className="form__label-row">
-              <span>Formulario · Acceso</span>
-              <span>{sent ? 'Enviado' : (valid ? 'Listo' : 'Completar')}</span>
-            </div>
-            {sent ? (
-              <div className="form__success">
-                <div className="form__success-tick">Solicitud recibida</div>
-                <h4>Gracias, {data.nombre.split(' ')[0]}.</h4>
-                <p>El equipo de Espacio IEB va a contactarte a <strong style={{color:'#fff'}}>{data.email}</strong> en menos de 48 horas hábiles para coordinar tu visita.</p>
-              </div>
-            ) : (
-              <>
-                <div className="form__row">
-                  <div className="form__field">
-                    <label htmlFor="nombre">Nombre y apellido<sup>*</sup></label>
-                    <input id="nombre" type="text" placeholder="Ej. Lucía Fernández" value={data.nombre} onChange={onChange('nombre')} required/>
-                  </div>
-                  <div className="form__field">
-                    <label htmlFor="email">Email<sup>*</sup></label>
-                    <input id="email" type="email" placeholder="lucia@dominio.com" value={data.email} onChange={onChange('email')} required/>
-                  </div>
-                </div>
-                <div className="form__row">
-                  <div className="form__field">
-                    <label htmlFor="telefono">Teléfono</label>
-                    <input id="telefono" type="tel" placeholder="+54 11 ..." value={data.telefono} onChange={onChange('telefono')}/>
-                  </div>
-                  <div className="form__field">
-                    <label htmlFor="perfil">Perfil profesional<sup>*</sup></label>
-                    <select id="perfil" value={data.perfil} onChange={onChange('perfil')} required>
-                      <option value="">Seleccionar...</option>
-                      <option value="API">Agente Productor Independiente</option>
-                      <option value="ALyC">Asesor financiero en ALyC</option>
-                      <option value="Senior">Asesor senior / Team leader</option>
-                      <option value="Otro">Otro</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form__row">
-                  <div className="form__field">
-                    <label htmlFor="alyc">ALyC con la que operás</label>
-                    <input id="alyc" type="text" placeholder="Opcional" value={data.alyc} onChange={onChange('alyc')}/>
-                  </div>
-                  <div className="form__field">
-                    <label htmlFor="clientes">Cartera aproximada</label>
-                    <select id="clientes" value={data.clientes} onChange={onChange('clientes')}>
-                      <option value="">Seleccionar...</option>
-                      <option>1 – 25 clientes</option>
-                      <option>26 – 100 clientes</option>
-                      <option>101 – 300 clientes</option>
-                      <option>+300 clientes</option>
-                      <option>Prefiero no responder</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form__field form__field--full">
-                  <label htmlFor="mensaje">Comentario (opcional)</label>
-                  <textarea id="mensaje" placeholder="Contanos brevemente qué te interesa de Espacio IEB" value={data.mensaje} onChange={onChange('mensaje')}/>
-                </div>
-                <label className="form__check">
-                  <input type="checkbox" checked={data.consent} onChange={onChange('consent')}/>
-                  <span>Acepto que Grupo IEB use mis datos para contactarme y validar mi perfil. Consultar la <a href="privacidad.html">política de privacidad</a>.</span>
-                </label>
-                <button type="submit" className="form__submit" disabled={!valid}>
-                  <span>Enviar solicitud</span><span>→</span>
-                </button>
-              </>
-            )}
-          </form>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer__top">
-          <div className="footer__brand">
-            <Logo height={38}/>
-            <p>Una iniciativa de Grupo IEB para fortalecer la comunidad de asesores financieros externos en Argentina. Núñez, Buenos Aires.</p>
-          </div>
-          <div className="footer__col">
-            <h5>Navegar</h5>
-            <ul>
-              <li><a href="#que-es">Qué es</a></li>
-              <li><a href="#por-que">Por qué existe</a></li>
-              <li><a href="#beneficios">Beneficios</a></li>
-              <li><a href="#comunidad">Comunidad</a></li>
-              <li><a href="#infraestructura">Infraestructura</a></li>
-            </ul>
-          </div>
-          <div className="footer__col">
-            <h5>Sumate</h5>
-            <ul>
-              <li><a href="#para-quien">Para quién es</a></li>
-              <li><a href="#modelo">Modelo de acceso</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="#acceso">Solicitar acceso</a></li>
-            </ul>
-          </div>
-          <div className="footer__col">
-            <h5>Grupo IEB</h5>
-            <ul>
-              <li><a href="sobre-ieb.html">Sobre Espacio IEB</a></li>
-              <li><a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer">grupoieb.com.ar</a></li>
-              <li><a href="https://ar.linkedin.com/company/grupoieb" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              <li><a href="#acceso">Contacto</a></li>
-              <li><a href="privacidad.html">Privacidad</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="footer__bottom">
-          <span>© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
-          <div className="footer__legal">
-            <a href="#">Términos</a>
-            <a href="privacidad.html">Privacidad</a>
-            <a href="#">Cookies</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function App() {
-  return (
-    <>
-      <Nav/>
-      <main>
-        <Hero/>
-        <Ticker/>
-        <PorQue/>
-        <QueEs/>
-        <Beneficios/>
-        <Comunidad/>
-        <Audience/>
-        <Infra/>
-        <Respaldo/>
-        <Modelo/>
-        <FAQ/>
-        <Acceso/>
-      </main>
-      <Footer/>
-    </>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
 <script>if(location.hostname==='localhost'||location.hostname==='127.0.0.1'){var s=document.createElement('script');s.src='annotator.js';document.body.appendChild(s);}</script>
 </body>
 </html>

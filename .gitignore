@@ -6,3 +6,7 @@ qa/
 
 # macOS
 .DS_Store
+
+# Build dependencies (run: npm install)
+node_modules/
+package-lock.json
