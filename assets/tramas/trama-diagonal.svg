@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <pattern id="diag" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="currentColor" stroke-width="0.7"></line>
+    </pattern>
+  </defs>
+  <rect width="240" height="240" fill="url(#diag)"></rect>
+</svg>

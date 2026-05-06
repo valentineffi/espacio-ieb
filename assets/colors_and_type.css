@@ -1,0 +1,295 @@
+/* =============================================================================
+   Espacio IEB — Design System
+   Colors + Typography Foundations
+   -----------------------------------------------------------------------------
+   Source of truth: Brandbook_EspacioIEB_2026 (Versión Abril 2026).
+   Espacio IEB is the brand for IEB's external-advisors program — a workspace
+   and partnership offering for independent financial advisors in Argentina.
+   ============================================================================= */
+
+/* ---------- FONTS ----------------------------------------------------------- */
+/* Poly Sans (Pangram Pangram) — the brandbook's official typeface, now        */
+/* loaded from local trial files in /fonts. Six weights map to four CSS slots: */
+/*   Slim (300) → Neutral (400) → Median (500) → Bulky (700)                   */
+/* Italic + Mono + Wide variants are exposed as separate families for editorial*/
+/* moments. The brandbook calls primarily for Poly Sans Slim (300) on display. */
+
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-slim.otf') format('opentype');     font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-neutral.otf') format('opentype');  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-median.otf') format('opentype');   font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-bulky.otf') format('opentype');    font-weight: 700; font-style: normal; font-display: swap; }
+
+/* Mono — for ticker, tabular numerals, code-y micro-copy */
+@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-slimmono.otf') format('opentype');   font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-medianmono.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+
+:root {
+  /* =========================================================================
+     COLOR — strict 60/30/10 institutional palette
+     -------------------------------------------------------------------------
+     The brandbook is explicit: only 3 colors. Black or White take 60% of
+     any composition (large surfaces / fields), the other Black or White
+     takes 30% (typography), Yellow takes 10% (CTAs, highlights, key data).
+     Black ↔ White can swap dominant/secondary roles depending on tone.
+     Yellow is the *activador visual* — never used as a 60% wash.
+     ========================================================================= */
+
+  /* — Core trio — */
+  --ieb-black:          #1D1D1B;   /* near-black — institutional anchor */
+  --ieb-white:          #FFFFFF;
+  --ieb-yellow:         #FDE100;   /* signature accent */
+
+  /* — Black tonal scale (for hairlines, panels on dark, hover states) — */
+  --ieb-black-95:       #28282710;
+  --ieb-ink-08:         #0A0A0A;   /* deeper than spec black, hero blacks */
+  --ieb-ink-12:         #121212;
+  --ieb-ink-14:         #141414;
+  --ieb-ink-1c:         #1C1C1C;
+  --ieb-ink-line:       #2A2A28;   /* hairline on dark */
+
+  /* — White tonal scale (off-whites for cream-ish surfaces) — */
+  --ieb-paper:          #F5F5F3;   /* off-white surface for content sections */
+  --ieb-paper-soft:     #FAFAF8;
+  --ieb-paper-line:     #E0E0DE;   /* hairline on light */
+
+  /* — Yellow tonal scale (accents only — never 60%) — */
+  --ieb-yellow-warm:    #FFE94D;   /* hover lift */
+  --ieb-yellow-deep:    #E6CC00;   /* press / underline depth */
+
+  /* — Functional grays (text only — yellow/gray are the two emphasis tints) */
+  --ieb-gray-key:       #888888;   /* "Color de Acento: Amarillo o Gris" */
+  --ieb-gray-dim:       #666666;
+  --ieb-gray-mute:      #444444;
+
+  /* =========================================================================
+     SEMANTIC ROLES — by 60/30/10 dominance
+     ========================================================================= */
+
+  /* 60% — dominant surface */
+  --surface-page:       var(--ieb-black);            /* default = black-led */
+  --surface-page-light: var(--ieb-white);            /* alternate = white-led */
+  --surface-paper:      var(--ieb-paper);            /* warm off-white panels */
+  --surface-card-dark:  var(--ieb-ink-12);           /* card on black */
+  --surface-card-light: var(--ieb-white);            /* card on light */
+
+  /* 30% — typography / secondary fields */
+  --fg-on-dark-1:       var(--ieb-white);
+  --fg-on-dark-2:       rgba(255,255,255,0.72);
+  --fg-on-dark-3:       rgba(255,255,255,0.48);
+  --fg-on-light-1:      var(--ieb-black);
+  --fg-on-light-2:      rgba(29,29,27,0.68);
+  --fg-on-light-3:      rgba(29,29,27,0.44);
+
+  /* 10% — accent */
+  --accent:             var(--ieb-yellow);
+  --accent-ink:         var(--ieb-black);            /* text on yellow */
+  --accent-deep:        var(--ieb-yellow-deep);
+  --accent-warm:        var(--ieb-yellow-warm);
+
+  /* — Borders / hairlines — */
+  --border-on-dark:     var(--ieb-ink-line);
+  --border-on-light:    var(--ieb-paper-line);
+  --border-subtle:      rgba(0,0,0,0.08);
+
+  /* — Status (kept narrow — brand is monochrome) — */
+  --success:            var(--ieb-yellow);
+  --warning:            var(--ieb-yellow-deep);
+  --info:               var(--ieb-gray-key);
+  --danger:             #E5484D;
+
+  /* =========================================================================
+     ELEVATION / RADII / SPACING
+     -------------------------------------------------------------------------
+     Brandbook says: NO SHADOWS on type. We extend that to a general
+     preference for flat surfaces — shadows below are ONLY for floating
+     UI affordances (modals, tooltips, hover lifts on cards), not headlines.
+     ========================================================================= */
+
+  --shadow-card:        0 8px 32px rgba(0,0,0,0.09);
+  --shadow-raised:      0 20px 48px rgba(0,0,0,0.13);
+  --shadow-on-dark:     0 12px 40px rgba(0,0,0,0.45);
+
+  /* — Radii — Espacio IEB is angular and editorial. Sharp 0–4px corners.    */
+  /*   Pills (999px) are intentionally NOT part of the system.                */
+  --radius-0:           0;
+  --radius-xs:          2px;
+  --radius-sm:          4px;
+  --radius-md:          4px;       /* default for buttons (rare) */
+
+  /* — Spacing scale — */
+  --space-1:            4px;
+  --space-2:            8px;
+  --space-3:            12px;
+  --space-4:            16px;
+  --space-5:            20px;
+  --space-6:            24px;
+  --space-8:            32px;
+  --space-10:           40px;
+  --space-12:           48px;
+  --space-14:           56px;      /* container horizontal padding default */
+  --space-16:           64px;
+  --space-20:           80px;
+  --space-24:           96px;
+
+  /* — Transitions — */
+  --t-quick:            0.15s ease;
+  --t-standard:         0.2s ease;
+  --t-smooth:           0.4s ease;
+
+  /* =========================================================================
+     TYPOGRAPHY
+     -------------------------------------------------------------------------
+     Brandbook: Poly Sans Slim is the *only* institutional typeface.
+     - Hierarchy by SIZE, not by family swaps.
+     - Yellow OR gray for accent words / numerical data.
+     - Underline for emphasis (single line, never decorative).
+     - Pastilla / recuadro for callout numbers and percentages.
+     - NO TEXT SHADOWS. Ever.
+     ========================================================================= */
+
+  --font-sans:    'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-body:    'Poly Sans', system-ui, -apple-system, sans-serif;
+  --font-wide:    'Poly Sans Wide', 'Poly Sans', system-ui, sans-serif;
+  --font-mono:    'Poly Sans Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* — Type scale — Poly Sans Slim renders airy; we lean on size for hierarchy. */
+  --fs-display-xl:   clamp(56px, 7vw, 104px);   /* hero / brand statement */
+  --fs-display-lg:   clamp(44px, 5.5vw, 80px);  /* landing hero h1 */
+  --fs-display-md:   clamp(34px, 4vw, 56px);    /* section opener */
+  --fs-h1:           clamp(28px, 3vw, 44px);
+  --fs-h2:           clamp(24px, 2.4vw, 36px);
+  --fs-h3:           20px;
+  --fs-h4:           17px;
+  --fs-body-lg:      18px;
+  --fs-body:         16px;
+  --fs-body-sm:      14px;
+  --fs-caption:      13px;
+  --fs-eyebrow:      11px;     /* uppercase eyebrow / "tag" labels */
+  --fs-ticker:       12px;
+
+  /* — Weights — Poly Sans Slim ships with weight variations; use sparingly. */
+  --fw-light:        300;
+  --fw-regular:      400;
+  --fw-medium:       500;
+  --fw-bold:         700;
+
+  /* — Line heights — */
+  --lh-tight:        1.05;
+  --lh-snug:         1.12;
+  --lh-normal:       1.35;
+  --lh-body:         1.6;
+  --lh-loose:        1.8;
+
+  /* — Tracking — Poly Sans behaves well at -0.01 to -0.02em on display. */
+  --tr-tight:        -0.02em;
+  --tr-snug:         -0.01em;
+  --tr-normal:       0;
+  --tr-wide:         0.08em;     /* eyebrows, ticker, tags */
+  --tr-extra-wide:   0.2em;      /* the brand's signature uppercase eyebrow */
+}
+
+/* =========================================================================
+   SEMANTIC ELEMENT STYLES
+   ========================================================================= */
+
+html, body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-on-dark-1);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4,
+.display-xl, .display-lg, .display-md {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-tight);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+}
+
+.display-xl { font-size: var(--fs-display-xl); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+.display-lg { font-size: var(--fs-display-lg); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+.display-md { font-size: var(--fs-display-md); line-height: var(--lh-tight); font-weight: var(--fw-bold); }
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold); }
+h3, .h3 { font-size: var(--fs-h3); font-weight: var(--fw-medium); letter-spacing: var(--tr-snug); }
+h4, .h4 { font-size: var(--fs-h4); font-weight: var(--fw-medium); letter-spacing: var(--tr-snug); }
+
+p, .body      { font-size: var(--fs-body);    line-height: var(--lh-body); }
+.body-lg      { font-size: var(--fs-body-lg); line-height: var(--lh-body); }
+.body-sm      { font-size: var(--fs-body-sm); line-height: var(--lh-body); }
+.caption      { font-size: var(--fs-caption); line-height: var(--lh-normal); }
+
+/* The brand's signature eyebrow — uppercase, very wide tracking, yellow (or
+   gray if subdued). Always small. Always above an h1/h2. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-extra-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow--gray { color: var(--ieb-gray-key); }
+
+code, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-quick), opacity var(--t-quick);
+}
+
+/* =========================================================================
+   EMPHASIS UTILITIES — Brandbook-blessed:
+   • em-yellow / em-gray = accent color words
+   • em-underline = single-line emphasis
+   • pastilla / recuadro = boxed callout for stats and percentages
+   ========================================================================= */
+.em-yellow     { color: var(--accent); }
+.em-gray       { color: var(--ieb-gray-key); }
+.em-underline  { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.em-underline-gray { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--ieb-gray-key); }
+
+.pastilla {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 2px 12px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-snug);
+}
+.recuadro {
+  display: inline-block;
+  border: 2px solid var(--accent);
+  color: inherit;
+  padding: 4px 14px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-snug);
+}
+
+/* =========================================================================
+   60/30/10 SURFACE HELPERS
+   ========================================================================= */
+.surface-black { background: var(--ieb-black); color: var(--fg-on-dark-1); }
+.surface-white { background: var(--ieb-white); color: var(--fg-on-light-1); }
+.surface-paper { background: var(--ieb-paper); color: var(--fg-on-light-1); }
+
+/* The signature horizontal yellow ticker that runs between sections */
+.ticker {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--fs-ticker);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+}
