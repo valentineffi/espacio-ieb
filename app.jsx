@@ -53,7 +53,7 @@ function Nav() {
     <nav className="nav" aria-label="Navegación principal">
       <div className="nav__inner">
         <a href="#top" className="nav__logo" aria-label="Espacio IEB — inicio">
-          <img className="nav__logo-mark" src="assets/logos/espacio%20ieb%20horizontal%20blanco.png" alt="Espacio IEB"/>
+          <img className="nav__logo-mark" src="assets/logos/espacio-ieb-nav.png" alt="Espacio IEB" width="558" height="98"/>
           <span className="nav__divider"></span>
           <span className="nav__logo-sub">Una iniciativa de Grupo IEB</span>
         </a>
@@ -627,7 +627,7 @@ function Respaldo() {
               toma esa estructura y la pone al servicio de los asesores externos.
             </p>
             <div className="respaldo__sig">
-              <img src="assets/logos/espacio%20ieb%20horizontal%20blanco.png" alt="Espacio IEB"/>
+              <img src="assets/logos/espacio-ieb-nav.png" alt="Espacio IEB" width="558" height="98" style={{height:'34px',width:'auto'}}/>
               <span>Grupo IEB · Buenos Aires, Argentina</span>
             </div>
           </div>
@@ -883,11 +883,11 @@ function Footer() {
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <img src="assets/logos/espacio%20ieb%20horizontal%20blanco.png" alt="Espacio IEB"/>
+            <img src="assets/logos/espacio-ieb-nav.png" alt="Espacio IEB" width="558" height="98" style={{height:'28px',width:'auto'}}/>
             <p>Una iniciativa de Grupo IEB para fortalecer la comunidad de asesores financieros externos en Argentina. Núñez, Buenos Aires.</p>
           </div>
           <div className="footer__col">
-            <h5>Navegar</h5>
+            <p className="footer__col-heading">Navegar</p>
             <ul>
               <li><a href="#que-es">Qué es</a></li>
               <li><a href="#por-que">Por qué existe</a></li>
@@ -897,7 +897,7 @@ function Footer() {
             </ul>
           </div>
           <div className="footer__col">
-            <h5>Sumate</h5>
+            <p className="footer__col-heading">Sumate</p>
             <ul>
               <li><a href="#para-quien">Para quién es</a></li>
               <li><a href="#modelo">Modelo de acceso</a></li>
@@ -906,12 +906,12 @@ function Footer() {
             </ul>
           </div>
           <div className="footer__col">
-            <h5>Grupo IEB</h5>
+            <p className="footer__col-heading">Grupo IEB</p>
             <ul>
-              <li><a href="https://ieb.com.ar" target="_blank" rel="noopener">ieb.com.ar</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Contacto</a></li>
-              <li><a href="#privacidad">Privacidad</a></li>
+              <li><a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer">grupoieb.com.ar</a></li>
+              <li><a href="https://ar.linkedin.com/company/grupoieb" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="#acceso">Contacto</a></li>
+              <li><a href="privacidad.html">Privacidad</a></li>
             </ul>
           </div>
         </div>

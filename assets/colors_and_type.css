@@ -14,14 +14,14 @@
 /* Italic + Mono + Wide variants are exposed as separate families for editorial*/
 /* moments. The brandbook calls primarily for Poly Sans Slim (300) on display. */
 
-@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-slim.otf') format('opentype');     font-weight: 300; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-neutral.otf') format('opentype');  font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-median.otf') format('opentype');   font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-bulky.otf') format('opentype');    font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-slim.woff2') format('woff2'), url('fonts/polysanstrial-slim.otf') format('opentype');         font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-neutral.woff2') format('woff2'), url('fonts/polysanstrial-neutral.otf') format('opentype');   font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-median.woff2') format('woff2'), url('fonts/polysanstrial-median.otf') format('opentype');     font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans'; src: url('fonts/polysanstrial-bulky.woff2') format('woff2'), url('fonts/polysanstrial-bulky.otf') format('opentype');       font-weight: 700; font-style: normal; font-display: swap; }
 
 /* Mono — for ticker, tabular numerals, code-y micro-copy */
-@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-slimmono.otf') format('opentype');   font-weight: 300; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-medianmono.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-slimmono.woff2') format('woff2'), url('fonts/polysanstrial-slimmono.otf') format('opentype');     font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poly Sans Mono'; src: url('fonts/polysanstrial-medianmono.woff2') format('woff2'), url('fonts/polysanstrial-medianmono.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
 
 :root {
   /* =========================================================================
@@ -75,7 +75,7 @@
   /* 30% — typography / secondary fields */
   --fg-on-dark-1:       var(--ieb-white);
   --fg-on-dark-2:       rgba(255,255,255,0.72);
-  --fg-on-dark-3:       rgba(255,255,255,0.48);
+  --fg-on-dark-3:       rgba(255,255,255,0.65);
   --fg-on-light-1:      var(--ieb-black);
   --fg-on-light-2:      rgba(29,29,27,0.68);
   --fg-on-light-3:      rgba(29,29,27,0.44);
