@@ -236,6 +236,27 @@ const Icon = ({
       strokeLinejoin: "round"
     }, /*#__PURE__*/React.createElement("polyline", {
       points: "20 6 9 17 4 12"
+    })),
+    smartphone: /*#__PURE__*/React.createElement("svg", {
+      width: size,
+      height: size,
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.5",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, /*#__PURE__*/React.createElement("rect", {
+      x: "5",
+      y: "2",
+      width: "14",
+      height: "20",
+      rx: "2"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "12",
+      y1: "18",
+      x2: "12",
+      y2: "18"
     }))
   };
   return icons[name] || null;
@@ -247,20 +268,20 @@ const Icon = ({
 function Nav() {
   const [active, setActive] = useState('');
   const links = [{
-    id: 'que-es',
-    label: 'Qué es'
+    id: 'simulador',
+    label: 'Simulador'
   }, {
-    id: 'por-que',
-    label: 'Por qué'
+    id: 'partners',
+    label: 'Partners'
   }, {
-    id: 'beneficios',
+    id: 'espacio',
+    label: 'Espacio'
+  }, {
+    id: 'hospitalities',
     label: 'Beneficios'
   }, {
-    id: 'comunidad',
-    label: 'Comunidad'
-  }, {
-    id: 'infraestructura',
-    label: 'Infraestructura'
+    id: 'tecnologia',
+    label: 'Tecnología'
   }, {
     id: 'faq',
     label: 'FAQ'
@@ -322,13 +343,13 @@ function Hero() {
     label: 'Núñez, Buenos Aires',
     accent: false
   }, {
-    label: 'Acceso gratuito',
+    label: 'Payout más alto del mercado',
     accent: true
   }, {
     label: 'Sin exclusividad',
     accent: false
   }, {
-    label: 'Comunidad de asesores',
+    label: 'Acceso 100% gratuito',
     accent: false
   }, {
     label: 'Grupo IEB',
@@ -351,11 +372,11 @@ function Hero() {
     className: "hero__meta"
   }, /*#__PURE__*/React.createElement("span", {
     className: "hero__meta-tick"
-  }), /*#__PURE__*/React.createElement("span", null, "Espacio IEB \xB7 Para asesores financieros externos")), /*#__PURE__*/React.createElement("h1", {
+  }), /*#__PURE__*/React.createElement("span", null, "Espacio IEB \xB7 Partners para asesores financieros externos")), /*#__PURE__*/React.createElement("h1", {
     className: "hero__title"
-  }, "El espacio donde los ", /*#__PURE__*/React.createElement("em", null, "asesores financieros"), " hacen ", /*#__PURE__*/React.createElement("u", null, "crecer"), " su negocio."), /*#__PURE__*/React.createElement("p", {
+  }, "La propuesta m\xE1s completa del mercado para ", /*#__PURE__*/React.createElement("em", null, "asesores financieros"), " externos."), /*#__PURE__*/React.createElement("p", {
     className: "hero__sub"
-  }, "Una iniciativa de Grupo IEB para fortalecer la comunidad de asesores externos en Argentina, combinando infraestructura profesional, soporte operativo, cercan\xEDa con especialistas y un entorno pensado para trabajar mejor."), /*#__PURE__*/React.createElement("div", {
+  }, "Escal\xE1 tu cartera y la de tu equipo con el respaldo de Grupo IEB. Sin exclusividad, sin costos fijos y con el payout m\xE1s alto del mercado."), /*#__PURE__*/React.createElement("div", {
     className: "hero__pills",
     role: "list"
   }, pills.map((p, i) => /*#__PURE__*/React.createElement("span", {
@@ -367,19 +388,19 @@ function Hero() {
   }), p.label))), /*#__PURE__*/React.createElement("div", {
     className: "hero__cta-row"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "#acceso",
+    href: "#simulador",
     className: "btn btn--primary"
-  }, "Solicitar acceso ", /*#__PURE__*/React.createElement("span", null, "\u2192")), /*#__PURE__*/React.createElement("a", {
-    href: "#que-es",
+  }, "Simular mi upside ", /*#__PURE__*/React.createElement("span", null, "\u2192")), /*#__PURE__*/React.createElement("a", {
+    href: "#partners",
     className: "btn btn--outline"
   }, "Ver c\xF3mo funciona"))), /*#__PURE__*/React.createElement("aside", {
     className: "hero__aside",
     "aria-label": "Resumen r\xE1pido"
   }, /*#__PURE__*/React.createElement("div", {
     className: "hero__aside-label"
-  }, /*#__PURE__*/React.createElement("span", null, "Resumen"), /*#__PURE__*/React.createElement("span", null, "EIB \xB7 2026")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Resumen"), /*#__PURE__*/React.createElement("span", null, "Partners \xB7 2026")), /*#__PURE__*/React.createElement("div", {
     className: "hero__aside-stack"
-  }, [['01', 'Puestos de trabajo modernos en Núñez, CABA.', 'Espacio'], ['02', 'Salas de reunión y boxes para videollamadas.', 'Clientes'], ['03', 'Cercanía con traders, research y Middle Office.', 'Mercado'], ['04', 'Charlas, encuentros y comunidad de asesores.', 'Red']].map(([num, text, tag]) => /*#__PURE__*/React.createElement("div", {
+  }, [['01', 'Payout del 60% — el más alto del mercado.', 'Comisiones'], ['02', 'Oficinas en Núñez con Middle Office en el edificio.', 'Espacio'], ['03', 'App propia para Team Leaders con Grow Finance.', 'Tecnología'], ['04', 'Hospitalities: tennis, fútbol, shows y más.', 'Beneficios']].map(([num, text, tag]) => /*#__PURE__*/React.createElement("div", {
     className: "hero__aside-row",
     key: num
   }, /*#__PURE__*/React.createElement("span", {
@@ -403,7 +424,7 @@ function Hero() {
    TICKER
    ============================================================ */
 function Ticker() {
-  const items = ['Independencia con estructura', 'Comunidad de asesores externos', 'Acceso 100% gratuito', 'Sin exclusividad con IEB', 'Núñez · Buenos Aires', 'Cercanía con especialistas', 'Middle Office en el mismo edificio', 'Charlas y research'];
+  const items = ['Broker #1 en servicio a Agentes Productores', 'Acceso 100% gratuito', 'Sin exclusividad con IEB', 'Espacio IEB · Núñez, CABA', 'Payout más alto del mercado', '+15 años de trayectoria en mercado de capitales', 'Middle Office en el mismo edificio', 'Hospitalities exclusivas para asesores'];
   const stream = [...items, ...items];
   return /*#__PURE__*/React.createElement("div", {
     className: "ticker",
@@ -417,39 +438,456 @@ function Ticker() {
 }
 
 /* ============================================================
-   POR QUÉ EXISTE
+   SIMULADOR
    ============================================================ */
-function PorQue() {
-  const before = [{
-    icon: 'slash',
-    text: 'Sin oficina profesional para recibir clientes.'
+function Simulador() {
+  const [comision, setComision] = useState(2000000);
+  const [payout, setPayout] = useState(30);
+  const PARTNERS_PAYOUT = 0.60;
+  const netoHoy = comision * (payout / 100);
+  const netoPartners = comision * PARTNERS_PAYOUT;
+  const incrementoPct = payout < 60 ? Math.round((PARTNERS_PAYOUT - payout / 100) / (payout / 100) * 100) : 0;
+  const difAnual = (netoPartners - netoHoy) * 12;
+  const sliderPct = (payout - 10) / (55 - 10) * 100;
+  const fmt = n => 'US$ ' + Math.round(Math.abs(n)).toLocaleString('es-AR');
+  return /*#__PURE__*/React.createElement("section", {
+    className: "sim-section section",
+    id: "simulador",
+    "aria-labelledby": "sim-title"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-head"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow-line"
+  }, "Simulador de upside"), /*#__PURE__*/React.createElement("h2", {
+    className: "sim-title",
+    id: "sim-title"
+  }, "\xBFCu\xE1nto m\xE1s ganar\xEDas operando ", /*#__PURE__*/React.createElement("em", null, "con Partners"), "?"), /*#__PURE__*/React.createElement("p", {
+    className: "sim-lead"
+  }, "Ingres\xE1 tu comisi\xF3n mensual bruta y el payout que te paga tu AlyC actual. Calculamos cu\xE1nto m\xE1s podr\xEDas ganar con el 60% que paga Partners."))), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-inputs"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-field"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sim-label",
+    htmlFor: "sim-comision"
+  }, "Comisi\xF3n mensual bruta (US$)"), /*#__PURE__*/React.createElement("input", {
+    id: "sim-comision",
+    className: "sim-input-number",
+    type: "number",
+    value: comision,
+    min: "0",
+    step: "100000",
+    onChange: e => setComision(parseFloat(e.target.value) || 0)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "sim-field"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sim-label",
+    htmlFor: "sim-payout"
+  }, "Payout actual en tu AlyC: ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--ieb-yellow)'
+    }
+  }, payout, "%")), /*#__PURE__*/React.createElement("input", {
+    id: "sim-payout",
+    type: "range",
+    min: "10",
+    max: "55",
+    value: payout,
+    step: "1",
+    className: "sim-range",
+    onChange: e => setPayout(parseInt(e.target.value)),
+    style: {
+      background: `linear-gradient(to right, var(--ieb-yellow) ${sliderPct}%, #333 ${sliderPct}%)`
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "sim-range-labels"
+  }, /*#__PURE__*/React.createElement("span", null, "10%"), /*#__PURE__*/React.createElement("span", null, "55%")))), /*#__PURE__*/React.createElement("div", {
+    className: "sim-result"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-badge"
+  }, incrementoPct > 0 ? `+${incrementoPct}%` : payout >= 60 ? 'Ya tenés 60%' : '='), /*#__PURE__*/React.createElement("div", {
+    className: "sim-cards-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-today"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-label"
+  }, "Hoy en tu AlyC (", payout, "%)"), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-value"
+  }, fmt(netoHoy)), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-annual"
+  }, "\u2248 ", fmt(netoHoy * 12), " / a\xF1o")), /*#__PURE__*/React.createElement("div", {
+    className: "sim-arrow"
+  }, "\u2192"), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-partners"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-label"
+  }, "Con Partners (60%)"), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-value"
+  }, fmt(netoPartners)), /*#__PURE__*/React.createElement("div", {
+    className: "sim-card-annual"
+  }, "\u2248 ", fmt(netoPartners * 12), " / a\xF1o"))), difAnual > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "sim-diff"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "sim-diff-label"
+  }, "Diferencia anual"), /*#__PURE__*/React.createElement("span", {
+    className: "sim-diff-value"
+  }, "+ ", fmt(difAnual))), /*#__PURE__*/React.createElement("p", {
+    className: "sim-disclaimer"
+  }, "Partners paga el payout m\xE1s alto del mercado \xB7 Sin exclusividad \xB7 Sin costos fijos \xB7 Estructura 100% gratuita."))), /*#__PURE__*/React.createElement("div", {
+    className: "sim-cta-row"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#acceso",
+    className: "btn btn--primary"
+  }, "Quiero conocer m\xE1s ", /*#__PURE__*/React.createElement("span", null, "\u2192")), /*#__PURE__*/React.createElement("a", {
+    href: "#partners",
+    className: "btn btn--outline"
+  }, "Ver perfiles de acceso"))));
+}
+
+/* ============================================================
+   PARTNERS (comparison table)
+   ============================================================ */
+function Partners() {
+  const features = [{
+    label: 'Oficinas privadas',
+    agente: true,
+    asesor: true,
+    tl: true
   }, {
-    icon: 'slash',
-    text: 'Sin acceso ágil a soporte operativo.'
+    label: 'Salas de reuniones',
+    agente: true,
+    asesor: true,
+    tl: true
   }, {
-    icon: 'slash',
-    text: 'Sin contacto cotidiano con especialistas.'
+    label: 'Soporte operativo',
+    agente: true,
+    asesor: true,
+    tl: true
   }, {
-    icon: 'slash',
-    text: 'Sin comunidad donde compartir visión de mercado.'
+    label: 'Soporte comercial',
+    agente: true,
+    asesor: true,
+    tl: true
+  }, {
+    label: 'Charlas con referentes',
+    agente: true,
+    asesor: true,
+    tl: true
+  }, {
+    label: 'Hospitalities',
+    agente: true,
+    asesor: true,
+    tl: true
+  }, {
+    label: 'Trabajás con AlyCs que quieras',
+    agente: true,
+    asesor: true,
+    tl: true
+  }, {
+    label: '100% gratuito',
+    agente: true,
+    asesor: true,
+    tl: true
+  }, {
+    label: 'Sala exclusiva para desayunos',
+    agente: true,
+    asesor: false,
+    tl: true
+  }, {
+    label: 'Acceso directo a mesa de operaciones',
+    agente: true,
+    asesor: false,
+    tl: true
+  }, {
+    label: 'Coordinador / tutor',
+    agente: false,
+    asesor: true,
+    tl: false
+  }, {
+    label: 'Soporte para reuniones con clientes',
+    agente: false,
+    asesor: true,
+    tl: false
+  }, {
+    label: 'Seguimiento y armado de carteras',
+    agente: false,
+    asesor: true,
+    tl: false
+  }, {
+    label: 'Atención de clientes nuevos',
+    agente: false,
+    asesor: true,
+    tl: false
+  }, {
+    label: 'App propia (Grow Finance)',
+    agente: false,
+    asesor: false,
+    tl: true
+  }, {
+    label: 'Atención de clientes propios',
+    agente: false,
+    asesor: false,
+    tl: true
+  }, {
+    label: 'APIs para informes propios',
+    agente: false,
+    asesor: false,
+    tl: true
+  }, {
+    label: 'Reclutamiento y selección',
+    agente: false,
+    asesor: false,
+    tl: true
   }];
-  const after = [{
-    icon: 'check',
-    text: 'Infraestructura para trabajar y recibir clientes.'
+  const Cell = ({
+    val
+  }) => /*#__PURE__*/React.createElement("span", {
+    className: `partners-cell ${val ? 'partners-cell--yes' : 'partners-cell--no'}`
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: val ? 'check' : 'minus',
+    size: 16
+  }));
+  return /*#__PURE__*/React.createElement("section", {
+    className: "partners-section section section--light",
+    id: "partners",
+    "aria-labelledby": "partners-title"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head__meta"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow-line is-gray"
+  }, "Partners \xB7 Perfiles de acceso")), /*#__PURE__*/React.createElement("h2", {
+    id: "partners-title"
+  }, "Eleg\xED el perfil que ", /*#__PURE__*/React.createElement("em", null, "mejor se adapta"), " a tu forma de trabajar.")), /*#__PURE__*/React.createElement("div", {
+    className: "partners-table-wrap"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "partners-table"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+    className: "partners-th-feature"
+  }), /*#__PURE__*/React.createElement("th", {
+    className: "partners-th-col"
+  }, "Agente", /*#__PURE__*/React.createElement("br", null), "Productor"), /*#__PURE__*/React.createElement("th", {
+    className: "partners-th-col"
+  }, "Asesor", /*#__PURE__*/React.createElement("br", null), "Financiero"), /*#__PURE__*/React.createElement("th", {
+    className: "partners-th-col partners-th-col--highlight"
+  }, "Team Leader", /*#__PURE__*/React.createElement("span", {
+    className: "partners-badge"
+  }, "\u2605 Completo")))), /*#__PURE__*/React.createElement("tbody", null, features.map((f, i) => /*#__PURE__*/React.createElement("tr", {
+    key: i,
+    className: "partners-row"
+  }, /*#__PURE__*/React.createElement("td", {
+    className: "partners-td-feature"
+  }, f.label), /*#__PURE__*/React.createElement("td", {
+    className: "partners-td-cell"
+  }, /*#__PURE__*/React.createElement(Cell, {
+    val: f.agente
+  })), /*#__PURE__*/React.createElement("td", {
+    className: "partners-td-cell"
+  }, /*#__PURE__*/React.createElement(Cell, {
+    val: f.asesor
+  })), /*#__PURE__*/React.createElement("td", {
+    className: "partners-td-cell partners-td-cell--highlight"
+  }, /*#__PURE__*/React.createElement(Cell, {
+    val: f.tl
+  }))))))), /*#__PURE__*/React.createElement("p", {
+    className: "partners-note"
+  }, "Sin exclusividad \xB7 Sin costos fijos \xB7 Acceso 100% gratuito para asesores validados por Grupo IEB.")));
+}
+
+/* ============================================================
+   GRUPO IEB (6 pillars)
+   ============================================================ */
+function GrupoIEB() {
+  const pillars = [{
+    icon: 'shield',
+    title: 'Respaldo',
+    body: 'La solidez institucional de Grupo IEB, con más de 15 años de trayectoria en el mercado de capitales argentino.'
   }, {
-    icon: 'check',
-    text: 'Middle Office para resolver lo operativo.'
+    icon: 'layers',
+    title: 'Todo en un lugar',
+    body: 'Todos los productos e instrumentos del mercado desde una sola operatoria integrada.'
   }, {
-    icon: 'check',
-    text: 'Cercanía con traders, research y comerciales.'
+    icon: 'bar-chart',
+    title: 'Información actualizada',
+    body: 'Especialistas en cada área que te mantienen al tanto de la macro, los mercados y las oportunidades.'
   }, {
-    icon: 'check',
-    text: 'Comunidad activa de asesores externos.'
+    icon: 'users',
+    title: 'Soporte comercial',
+    body: 'Equipo de Asesores Idóneos a tu disposición para acompañarte en el desarrollo de tu negocio.'
+  }, {
+    icon: 'activity',
+    title: 'Las mejores plataformas',
+    body: 'Una plataforma para que tus clientes inviertan y otra exclusiva para que vos gestiones tu cartera.'
+  }, {
+    icon: 'trending-up',
+    title: 'Condiciones competitivas',
+    body: 'Acuerdos y beneficios exclusivos diseñados para el crecimiento de asesores y team leaders.'
   }];
   return /*#__PURE__*/React.createElement("section", {
-    className: "tension",
-    id: "por-que",
-    "aria-labelledby": "por-que-title"
+    className: "grupo-ieb section",
+    id: "grupo",
+    "aria-labelledby": "grupo-title"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head grupo-ieb-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head__meta sec-head__meta--dark"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow-line"
+  }, "Por qu\xE9 Grupo IEB")), /*#__PURE__*/React.createElement("h2", {
+    id: "grupo-title"
+  }, "El respaldo de una instituci\xF3n con ", /*#__PURE__*/React.createElement("em", null, "trayectoria comprobada"), ".")), /*#__PURE__*/React.createElement("div", {
+    className: "grupo-ieb-grid"
+  }, pillars.map((p, i) => /*#__PURE__*/React.createElement("div", {
+    className: "grupo-ieb-card",
+    key: i
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grupo-ieb-icon"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: p.icon,
+    size: 22
+  })), /*#__PURE__*/React.createElement("h3", {
+    className: "grupo-ieb-title"
+  }, p.title), /*#__PURE__*/React.createElement("p", {
+    className: "grupo-ieb-body"
+  }, p.body))))));
+}
+
+/* ============================================================
+   ESPACIO IEB (6 numbered features)
+   ============================================================ */
+function EspacioIEB() {
+  const features = [{
+    n: '01',
+    keyword: 'productividad',
+    desc: 'Trabajá rodeado de colegas en un espacio profesional. Puestos modernos, espacios comunes y ambiente de foco.'
+  }, {
+    n: '02',
+    keyword: 'dinámica comercial',
+    desc: 'Codo a codo con traders y el equipo comercial de IEB. Acceso cotidiano a información y pulso de mercado.'
+  }, {
+    n: '03',
+    keyword: 'agilidad',
+    desc: 'Middle Office en el mismo edificio para resolver cuestiones operativas sin demoras ni fricción.'
+  }, {
+    n: '04',
+    keyword: 'información',
+    desc: 'Charlas de expertos y research de IEB para tomar mejores decisiones de asesoramiento todos los días.'
+  }, {
+    n: '05',
+    keyword: 'sin exclusividad',
+    desc: 'Seguís operando con las ALyCs con las que ya tenés contrato. No hay restricciones operativas.'
+  }, {
+    n: '06',
+    keyword: 'disponibilidad libre',
+    desc: 'Venís cuando lo necesitás. Traés clientes, hacés reuniones, usás las salas y los boxes privados.'
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "espacio-ieb section section--light",
+    id: "espacio",
+    "aria-labelledby": "espacio-title"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-top"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow-line is-gray"
+  }, "El espacio")), /*#__PURE__*/React.createElement("h2", {
+    id: "espacio-title"
+  }, "Una base dise\xF1ada para que ", /*#__PURE__*/React.createElement("em", null, "trabajes mejor"), ".")), /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-list"
+  }, features.map(f => /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-item",
+    key: f.n
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "espacio-ieb-num"
+  }, f.n), /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-keyword"
+  }, "M\xE1s ", /*#__PURE__*/React.createElement("strong", null, f.keyword)), /*#__PURE__*/React.createElement("p", {
+    className: "espacio-ieb-desc"
+  }, f.desc))))), /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-img",
+    "aria-label": "Espacio IEB \u2014 N\xFA\xF1ez, Buenos Aires"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-placeholder"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 500 360",
+    preserveAspectRatio: "xMidYMid slice",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("pattern", {
+    id: "grid-esp",
+    width: "40",
+    height: "40",
+    patternUnits: "userSpaceOnUse"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M 40 0 L 0 0 0 40",
+    fill: "none",
+    stroke: "#2a2a28",
+    strokeWidth: "1"
+  }))), /*#__PURE__*/React.createElement("rect", {
+    width: "500",
+    height: "360",
+    fill: "#141414"
+  }), /*#__PURE__*/React.createElement("rect", {
+    width: "500",
+    height: "360",
+    fill: "url(#grid-esp)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "50%",
+    y: "45%",
+    textAnchor: "middle",
+    fill: "#333",
+    fontSize: "13",
+    fontFamily: "monospace",
+    letterSpacing: "3"
+  }, "N\xDA\xD1EZ \xB7 BUENOS AIRES"), /*#__PURE__*/React.createElement("text", {
+    x: "50%",
+    y: "55%",
+    textAnchor: "middle",
+    fill: "#222",
+    fontSize: "11",
+    fontFamily: "monospace",
+    letterSpacing: "2"
+  }, "Espacio IEB \xB7 Fotos pr\xF3ximamente")))))));
+}
+
+/* ============================================================
+   HOSPITALITIES (4 benefit cards)
+   ============================================================ */
+function Hospitalities() {
+  const cards = [{
+    emoji: '🎾',
+    title: 'Argentina Open',
+    desc: 'IEB+ es naming sponsor del torneo. Palcos preferenciales y acceso exclusivo al evento más importante del tenis argentino.'
+  }, {
+    emoji: '⚽',
+    title: 'River Plate · Monumental',
+    desc: 'Acceso VIP a partidos en el estadio más grande de Argentina. Una experiencia única para vos y tus mejores clientes.'
+  }, {
+    emoji: '🏟️',
+    title: 'Atlético Talleres · Kempes',
+    desc: 'Experiencias premium en uno de los estadios más modernos del país, con atención y espacios de primer nivel.'
+  }, {
+    emoji: '🎵',
+    title: 'Movistar Arena',
+    desc: 'Espacios preferenciales en los principales shows y eventos del año. El entretenimiento como herramienta comercial.'
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "hospitalities section",
+    id: "hospitalities",
+    "aria-labelledby": "hosp-title"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
@@ -458,588 +896,131 @@ function PorQue() {
     className: "sec-head__meta sec-head__meta--dark"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow-line"
-  }, "02 \xB7 Por qu\xE9 existe"), /*#__PURE__*/React.createElement("span", {
-    className: "section-num"
-  }, "El contexto del asesor independiente")), /*#__PURE__*/React.createElement("h2", {
-    className: "sec-head__title",
-    id: "por-que-title"
-  }, "El mercado necesita m\xE1s asesores ", /*#__PURE__*/React.createElement("em", null, "conectados"), ", informados y con ", /*#__PURE__*/React.createElement("u", null, "estructura"), "."))), /*#__PURE__*/React.createElement("div", {
-    className: "tension__inner"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "tension__cell tension__cell--before"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "tension__label"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tension__label-dot"
-  }), "Hoy \xB7 Trabajar aislado"), /*#__PURE__*/React.createElement("h3", {
-    className: "tension__heading"
-  }, "El asesor financiero cumple un rol clave en el mercado de capitales argentino."), /*#__PURE__*/React.createElement("ul", {
-    className: "tension__list"
-  }, before.map((b, i) => /*#__PURE__*/React.createElement("li", {
-    className: "tension__item",
-    key: i
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tension__item-icon"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: b.icon,
-    size: 16
-  })), /*#__PURE__*/React.createElement("span", null, b.text)))))), /*#__PURE__*/React.createElement("div", {
-    className: "tension__cell tension__cell--after"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "tension__label tension__label--accent"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tension__label-dot"
-  }), "Espacio IEB \xB7 Trabajar acompa\xF1ado"), /*#__PURE__*/React.createElement("h3", {
-    className: "tension__heading"
-  }, "Un entorno profesional, conectado al mercado y con respaldo institucional."), /*#__PURE__*/React.createElement("ul", {
-    className: "tension__list"
-  }, after.map((a, i) => /*#__PURE__*/React.createElement("li", {
-    className: "tension__item",
-    key: i
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tension__item-icon"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: a.icon,
-    size: 16
-  })), /*#__PURE__*/React.createElement("span", null, a.text))))))), /*#__PURE__*/React.createElement("div", {
-    className: "tension__cap"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "tension__cap-inner"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "tension__cap-text"
-  }, "Espacio IEB nace para crear ese lugar: ", /*#__PURE__*/React.createElement("em", null, "un punto de encuentro"), " profesional entre asesores externos y el ecosistema financiero argentino."), /*#__PURE__*/React.createElement("a", {
-    href: "#que-es",
-    className: "btn btn--outline"
-  }, "Ver qu\xE9 es \u2192")))));
-}
-
-/* ============================================================
-   QUÉ ES
-   ============================================================ */
-function QueEs() {
-  const cols = [{
-    icon: 'briefcase',
-    title: 'Una base operativa',
-    body: 'Puestos de trabajo, salas de reunión, boxes privados para videollamadas y cocheras. Todo lo necesario para trabajar y recibir clientes en condiciones profesionales.'
-  }, {
-    icon: 'activity',
-    title: 'Un entorno de mercado',
-    body: 'Acceso cercano a equipos comerciales, traders, research y especialistas de IEB, con Middle Office en el mismo edificio para resolver cuestiones operativas.'
-  }, {
-    icon: 'users',
-    title: 'Una comunidad activa',
-    body: 'Charlas de mercado, encuentros con especialistas e intercambio entre pares. Un lugar para crecer profesionalmente con el respaldo institucional de Grupo IEB.'
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "que-es section",
-    id: "que-es",
-    "aria-labelledby": "que-es-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "que-es__top"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line is-gray"
-  }, "03 \xB7 Qu\xE9 es"), /*#__PURE__*/React.createElement("span", {
-    className: "section-num"
-  }, /*#__PURE__*/React.createElement("br", null), "Definici\xF3n \xB7 2026")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
-    className: "que-es__title",
-    id: "que-es-title"
-  }, "Una base para trabajar.", /*#__PURE__*/React.createElement("br", null), "Un punto de encuentro ", /*#__PURE__*/React.createElement("em", null, "para crecer"), "."), /*#__PURE__*/React.createElement("p", {
-    className: "que-es__lead"
-  }, "Espacio IEB combina oficinas, salas de reuni\xF3n, boxes privados, soporte operativo, encuentros de mercado y comunidad profesional. No es solo infraestructura: es un entorno creado por Grupo IEB para que los asesores externos puedan trabajar mejor, recibir clientes y crecer con m\xE1s respaldo."))), /*#__PURE__*/React.createElement("div", {
-    className: "que-es__cols"
-  }, cols.map((c, i) => /*#__PURE__*/React.createElement("div", {
-    className: "que-es__col",
+  }, "Hospitalities")), /*#__PURE__*/React.createElement("h2", {
+    id: "hosp-title"
+  }, "Experiencias exclusivas para vos ", /*#__PURE__*/React.createElement("em", null, "y tus clientes"), ".")), /*#__PURE__*/React.createElement("div", {
+    className: "hosp-grid"
+  }, cards.map((c, i) => /*#__PURE__*/React.createElement("div", {
+    className: "hosp-card",
     key: i
   }, /*#__PURE__*/React.createElement("div", {
-    className: "que-es__col-num"
-  }, "0", i + 1, " \xB7 Capa"), /*#__PURE__*/React.createElement("h3", {
-    className: "que-es__col-title"
+    className: "hosp-emoji",
+    "aria-hidden": "true"
+  }, c.emoji), /*#__PURE__*/React.createElement("h3", {
+    className: "hosp-title"
   }, c.title), /*#__PURE__*/React.createElement("p", {
-    className: "que-es__col-body"
-  }, c.body))))));
+    className: "hosp-desc"
+  }, c.desc))))));
 }
 
 /* ============================================================
-   BENEFICIOS
+   GROW FINANCE (custom app for Team Leaders)
    ============================================================ */
-function Beneficios() {
-  const items = [{
-    icon: 'briefcase',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Trabaj\xE1 ", /*#__PURE__*/React.createElement("em", null, "mejor")),
-    body: 'Puestos modernos, espacios comunes y cocheras propias. Pensado para asesores que necesitan foco y un entorno profesional todos los días.',
-    tags: ['Puestos', 'Espacios comunes', 'Cocheras']
-  }, {
-    icon: 'users',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Recib\xED mejor a ", /*#__PURE__*/React.createElement("em", null, "tus clientes")),
-    body: 'Salas de reunión y boxes privados para videollamadas. Una infraestructura institucional para recibir clientes con la presencia que tu negocio necesita.',
-    tags: ['Salas de reunión', 'Boxes privados', 'Videollamadas']
-  }, {
-    icon: 'zap',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Resolv\xE9 m\xE1s ", /*#__PURE__*/React.createElement("em", null, "r\xE1pido")),
-    body: 'Acceso al equipo de Middle Office para resolver cuestiones operativas. Menos fricción para vos y mejor experiencia para tus clientes.',
-    tags: ['Middle Office', 'Soporte', 'Operaciones']
-  }, {
-    icon: 'trending-up',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Estate m\xE1s cerca ", /*#__PURE__*/React.createElement("em", null, "del mercado")),
-    body: 'Cercanía cotidiana con traders, comerciales, research y especialistas de IEB. Información, visión de mercado y contacto operativo en el mismo lugar.',
-    tags: ['Trading', 'Research', 'Comercial']
-  }, {
-    icon: 'globe',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Form\xE1 parte de una ", /*#__PURE__*/React.createElement("em", null, "comunidad")),
-    body: 'Encuentros, charlas de mercado e intercambio entre asesores externos. Un entorno donde compartir conocimiento y construir red profesional.',
-    tags: ['Encuentros', 'Charlas', 'Networking']
-  }, {
-    icon: 'shield',
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "Crec\xE9 con ", /*#__PURE__*/React.createElement("em", null, "respaldo")),
-    body: 'Trayectoria de Grupo IEB en mercado de capitales, equipos especializados y soluciones para individuos, empresas e instituciones a tu disposición.',
-    tags: ['Grupo IEB', 'Trayectoria', 'Respaldo']
-  }];
+function GrowFinance() {
+  const features = ['App propia en App Store y Google Play', 'Web 100% personalizada con tu logo y colores', 'Alta automática de cuentas bajo tu manager', 'Fondo común propio (o fondo dedicado)', 'Sin costos de desarrollo ni estructura adicional', 'Respaldada por la trayectoria de Grupo IEB'];
   return /*#__PURE__*/React.createElement("section", {
-    className: "beneficios section",
-    id: "beneficios",
-    "aria-labelledby": "beneficios-title"
+    className: "grow-finance section",
+    id: "grow-finance",
+    "aria-labelledby": "gf-title"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "sec-head beneficios__head"
+    className: "gf-inner"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "sec-head__meta sec-head__meta--dark"
+    className: "gf-copy"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line"
-  }, "04 \xB7 Beneficios"), /*#__PURE__*/React.createElement("span", {
-    className: "section-num"
-  }, "Lo que vas a encontrar al sumarte")), /*#__PURE__*/React.createElement("h2", {
-    className: "sec-head__title",
-    id: "beneficios-title"
-  }, "Lo que gan\xE1s cuando trabaj\xE1s ", /*#__PURE__*/React.createElement("em", null, "desde Espacio IEB"), "."))), /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "beneficios__grid"
-  }, items.map((b, i) => /*#__PURE__*/React.createElement("article", {
-    className: "benefit",
-    key: i
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "benefit__num"
-  }, /*#__PURE__*/React.createElement("span", null, "0", i + 1), /*#__PURE__*/React.createElement("span", {
-    className: "benefit__num-arrow"
-  }, "\u2197")), /*#__PURE__*/React.createElement("div", {
-    className: "benefit__icon"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: b.icon,
-    size: 32
-  })), /*#__PURE__*/React.createElement("h3", {
-    className: "benefit__title"
-  }, b.title), /*#__PURE__*/React.createElement("p", {
-    className: "benefit__body"
-  }, b.body), /*#__PURE__*/React.createElement("div", {
-    className: "benefit__tags"
-  }, b.tags.map(t => /*#__PURE__*/React.createElement("span", {
-    className: "benefit__tag",
-    key: t
-  }, t))))))));
-}
-
-/* ============================================================
-   COMUNIDAD
-   ============================================================ */
-function Comunidad() {
-  const blocks = [{
-    icon: 'mic',
-    title: 'Charlas de mercado',
-    body: 'Encuentros recurrentes con foco en macro, renta fija, renta variable y coyuntura local.'
-  }, {
-    icon: 'globe',
-    title: 'Encuentros con especialistas',
-    body: 'Acceso directo a referentes de Grupo IEB y del ecosistema financiero argentino.'
-  }, {
-    icon: 'users',
-    title: 'Intercambio entre asesores',
-    body: 'Espacio común para conversar, compartir visión y conocer a otros asesores externos.'
-  }, {
-    icon: 'bar-chart',
-    title: 'Research y visión de mercado',
-    body: 'Material y lecturas del equipo de research IEB para enriquecer tu asesoramiento.'
-  }, {
-    icon: 'layers',
-    title: 'Equipos comerciales y operativos',
-    body: 'Conexión cotidiana con traders, comerciales y Middle Office en el mismo edificio.'
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "comunidad section",
-    id: "comunidad",
-    "aria-labelledby": "comunidad-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "comunidad__head"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line is-gray"
-  }, "05 \xB7 Comunidad"), /*#__PURE__*/React.createElement("h2", {
-    className: "comunidad__title",
-    id: "comunidad-title"
-  }, "Un espacio para fortalecer la ", /*#__PURE__*/React.createElement("em", null, "comunidad financiera"), " local.")), /*#__PURE__*/React.createElement("p", {
-    className: "comunidad__lead"
-  }, "Espacio IEB busca reunir ", /*#__PURE__*/React.createElement("strong", null, "asesores externos y profesionales del mercado"), " en un entorno activo, donde el intercambio de informaci\xF3n, la cercan\xEDa con especialistas y la formaci\xF3n continua ayuden a elevar la calidad del asesoramiento financiero en Argentina.")), /*#__PURE__*/React.createElement("div", {
-    className: "comunidad__grid"
-  }, blocks.map((b, i) => /*#__PURE__*/React.createElement("div", {
-    className: "com-block",
-    key: i
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "com-block__num"
-  }, "0", i + 1, " / 0", blocks.length), /*#__PURE__*/React.createElement("div", {
-    className: "com-block__icon"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: b.icon,
-    size: 24
-  })), /*#__PURE__*/React.createElement("h3", {
-    className: "com-block__title"
-  }, b.title), /*#__PURE__*/React.createElement("p", {
-    className: "com-block__body"
-  }, b.body))))));
-}
-
-/* ============================================================
-   PARA QUIÉN
-   ============================================================ */
-function Audience() {
-  const cards = [{
-    n: '01',
-    title: 'Agentes Productores Independientes',
-    body: 'Profesionales registrados que buscan una base operativa, infraestructura para recibir clientes y cercanía cotidiana con el mercado.',
-    tag: 'API'
-  }, {
-    n: '02',
-    title: 'Asesores en ALyCs',
-    body: 'Asesores que ya operan con una o varias ALyCs y quieren un entorno profesional y una red de pares para crecer su negocio.',
-    tag: 'ALyC'
-  }, {
-    n: '03',
-    title: 'Team leaders y asesores senior',
-    body: 'Líderes que están desarrollando equipo propio o quieren consolidar su práctica con un espacio institucional de respaldo.',
-    tag: 'Senior'
-  }, {
-    n: '04',
-    title: 'Profesionales conectados al ecosistema',
-    body: 'Asesores que buscan más independencia sin perder estructura, y quieren estar más conectados con el mercado y con sus pares.',
-    tag: 'Independientes'
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "audience section",
-    id: "para-quien",
-    "aria-labelledby": "para-quien-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "sec-head audience__head"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "sec-head__meta sec-head__meta--dark"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line"
-  }, "06 \xB7 Para qui\xE9n es"), /*#__PURE__*/React.createElement("span", {
-    className: "section-num"
-  }, "Pensado para asesores externos en Argentina")), /*#__PURE__*/React.createElement("h2", {
-    className: "sec-head__title",
-    id: "para-quien-title"
-  }, "Pensado para vos, si ", /*#__PURE__*/React.createElement("em", null, "asesor\xE1s clientes"), " y quer\xE9s crecer con estructura."))), /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "audience__grid"
-  }, cards.map(c => /*#__PURE__*/React.createElement("article", {
-    className: "aud",
-    key: c.n
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "aud__num"
-  }, c.n), /*#__PURE__*/React.createElement("h3", {
-    className: "aud__title"
-  }, c.title), /*#__PURE__*/React.createElement("p", {
-    className: "aud__body"
-  }, c.body), /*#__PURE__*/React.createElement("div", {
-    className: "aud__tag"
-  }, "\u2192 ", c.tag))))));
-}
-
-/* ============================================================
-   INFRAESTRUCTURA
-   ============================================================ */
-function Infra() {
-  const fisica = [{
-    name: 'Puestos de trabajo modernos',
-    meta: 'Espacio principal'
-  }, {
-    name: 'Salas de reunión para clientes',
-    meta: 'Reservables'
-  }, {
-    name: 'Boxes privados para videollamadas',
-    meta: 'Insonorizados'
-  }, {
-    name: 'Espacios comunes',
-    meta: 'Común'
-  }, {
-    name: 'Cocheras',
-    meta: 'Disponible'
-  }];
-  const servicios = [{
-    name: 'Middle Office en el edificio',
-    meta: 'Operativo'
-  }, {
-    name: 'Equipos comerciales y traders',
-    meta: 'Mercado'
-  }, {
-    name: 'Research y visión de mercado',
-    meta: 'Información'
-  }, {
-    name: 'Charlas y encuentros',
-    meta: 'Comunidad'
-  }, {
-    name: 'Comunidad de asesores externos',
-    meta: 'Red'
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "infra section",
-    id: "infraestructura",
-    "aria-labelledby": "infra-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "infra__top"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line is-gray"
-  }, "07 \xB7 Infraestructura"), /*#__PURE__*/React.createElement("span", {
-    className: "section-num"
-  }, /*#__PURE__*/React.createElement("br", null), "Lo f\xEDsico + lo institucional")), /*#__PURE__*/React.createElement("h2", {
-    className: "infra__title",
-    id: "infra-title"
-  }, "Todo lo que necesit\xE1s para trabajar mejor, en un solo lugar."), /*#__PURE__*/React.createElement("p", {
-    className: "infra__lead",
-    style: {
-      alignSelf: 'end'
-    }
-  }, "Espacio IEB combina infraestructura f\xEDsica y soporte institucional. No es un coworking: es una base profesional pensada para asesores financieros externos.")), /*#__PURE__*/React.createElement("div", {
-    className: "infra__main"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "infra__col"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "infra__col-label"
-  }, "A \xB7 Infraestructura f\xEDsica"), /*#__PURE__*/React.createElement("div", {
-    className: "infra__list"
-  }, fisica.map((f, i) => /*#__PURE__*/React.createElement("div", {
-    className: "infra__item",
+    className: "eyebrow"
+  }, "Para Team Leaders"), /*#__PURE__*/React.createElement("h2", {
+    className: "gf-title",
+    id: "gf-title"
+  }, "Tu propia plataforma ", /*#__PURE__*/React.createElement("em", null, "de inversiones"), "."), /*#__PURE__*/React.createElement("p", {
+    className: "gf-lead"
+  }, "Los team leaders que se suman a Partners pueden acceder a Grow Finance: una plataforma con marca blanca propia, app en las tiendas y gesti\xF3n integrada de cartera de clientes. Sin costos de desarrollo."), /*#__PURE__*/React.createElement("div", {
+    className: "gf-features"
+  }, features.map((f, i) => /*#__PURE__*/React.createElement("div", {
+    className: "gf-feature",
     key: i
   }, /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-num"
-  }, "A.0", i + 1), /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-name"
-  }, f.name), /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-meta"
-  }, f.meta))))), /*#__PURE__*/React.createElement("div", {
-    className: "infra__col"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "infra__col-label"
-  }, "B \xB7 Servicios y comunidad"), /*#__PURE__*/React.createElement("div", {
-    className: "infra__list"
-  }, servicios.map((s, i) => /*#__PURE__*/React.createElement("div", {
-    className: "infra__item",
-    key: i
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-num"
-  }, "B.0", i + 1), /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-name"
-  }, s.name), /*#__PURE__*/React.createElement("span", {
-    className: "infra__item-meta"
-  }, s.meta)))))), /*#__PURE__*/React.createElement("div", {
-    className: "infra__location"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "infra__location-eyebrow"
-  }, "Ubicaci\xF3n"), /*#__PURE__*/React.createElement("h3", null, "N\xFA\xF1ez, Buenos Aires"), /*#__PURE__*/React.createElement("p", null, "Una zona estrat\xE9gica de CABA, conectada a las principales avenidas y con cercan\xEDa al corredor financiero de la ciudad. Acceso por auto, transporte p\xFAblico y cocheras disponibles.")), /*#__PURE__*/React.createElement("div", {
-    className: "infra__map",
-    role: "img",
-    "aria-label": "Mapa de N\xFA\xF1ez, Buenos Aires"
-  }, /*#__PURE__*/React.createElement("svg", {
-    viewBox: "0 0 600 280",
-    preserveAspectRatio: "xMidYMid slice"
-  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("pattern", {
-    id: "grid-map",
-    width: "40",
-    height: "40",
-    patternUnits: "userSpaceOnUse"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M 40 0 L 0 0 0 40",
-    fill: "none",
-    stroke: "#1f1f1d",
-    strokeWidth: "1"
-  }))), /*#__PURE__*/React.createElement("rect", {
-    width: "600",
-    height: "280",
-    fill: "url(#grid-map)"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M0 80 L600 60",
-    stroke: "#2a2a28",
-    strokeWidth: "1.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M0 180 L600 200",
-    stroke: "#2a2a28",
-    strokeWidth: "1.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M120 0 L160 280",
-    stroke: "#2a2a28",
-    strokeWidth: "1.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M380 0 L440 280",
-    stroke: "#2a2a28",
-    strokeWidth: "1.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M40 280 Q200 140 600 100",
-    stroke: "#FDE100",
-    strokeWidth: "1",
-    fill: "none",
-    strokeDasharray: "3 6",
-    opacity: "0.5"
-  }), /*#__PURE__*/React.createElement("text", {
-    x: "20",
-    y: "22",
-    fill: "#444",
-    fontSize: "10",
-    fontFamily: "monospace",
-    letterSpacing: "2"
-  }, "N\xDA\xD1EZ \xB7 CABA"), /*#__PURE__*/React.createElement("text", {
-    x: "500",
-    y: "270",
-    fill: "#444",
-    fontSize: "10",
-    fontFamily: "monospace",
-    letterSpacing: "2"
-  }, "R\xCDO DE LA PLATA")), /*#__PURE__*/React.createElement("div", {
-    className: "infra__map-pin"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "infra__map-pin-dot"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "infra__map-pin-label"
-  }, "Espacio IEB"))))));
-}
-
-/* ============================================================
-   RESPALDO IEB
-   ============================================================ */
-function Respaldo() {
-  const stats = [{
-    n: '01',
-    value: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("sup", null, "+USD"), "2.000", /*#__PURE__*/React.createElement("em", null, "M")),
-    label: 'gestionados a través de Grupo IEB'
-  }, {
-    n: '02',
-    value: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("sup", null, "+"), "200"),
-    label: 'personas en el equipo IEB'
-  }, {
-    n: '03',
-    value: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("sup", null, "+"), "150"),
-    label: 'productores externos vinculados'
-  }, {
-    n: '04',
-    value: /*#__PURE__*/React.createElement(React.Fragment, null, "Mercado", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("em", null, "de capitales")),
-    label: 'trayectoria institucional comprobada'
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "respaldo section",
-    id: "respaldo",
-    "aria-labelledby": "respaldo-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__bg"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__inner"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line"
-  }, "08 \xB7 Respaldo"), /*#__PURE__*/React.createElement("h2", {
-    className: "respaldo__title",
-    id: "respaldo-title"
-  }, "Con el respaldo de ", /*#__PURE__*/React.createElement("em", null, "Grupo IEB"), "."), /*#__PURE__*/React.createElement("p", {
-    className: "respaldo__lead"
-  }, "Grupo IEB cuenta con trayectoria en mercado de capitales, equipos especializados y una oferta de soluciones para individuos, empresas e instituciones. Espacio IEB toma esa estructura y la pone al servicio de los asesores externos."), /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__sig"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/logos/espacio-ieb-nav.png",
-    alt: "Espacio IEB",
-    width: "558",
-    height: "98",
-    style: {
-      height: '34px',
-      width: 'auto'
-    }
-  }), /*#__PURE__*/React.createElement("span", null, "Grupo IEB \xB7 Buenos Aires, Argentina"))), /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__stats",
-    "aria-label": "M\xE9tricas de Grupo IEB"
-  }, stats.map(s => /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__stat",
-    key: s.n
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__stat-num"
-  }, s.n), /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__stat-value"
-  }, s.value), /*#__PURE__*/React.createElement("div", {
-    className: "respaldo__stat-label"
-  }, s.label)))))));
-}
-
-/* ============================================================
-   MODELO DE ACCESO
-   ============================================================ */
-function Modelo() {
-  const rules = [{
-    text: /*#__PURE__*/React.createElement(React.Fragment, null, "El acceso a Espacio IEB es ", /*#__PURE__*/React.createElement("strong", null, "100% gratuito"), " para asesores externos validados."),
-    flag: 'Gratuito',
-    neutral: false
-  }, {
-    text: /*#__PURE__*/React.createElement(React.Fragment, null, "Pod\xE9s ", /*#__PURE__*/React.createElement("strong", null, "seguir operando con las ALyCs"), " con las que ya trabaj\xE1s. No hay exclusividad con IEB."),
-    flag: 'Sin exclusividad',
-    neutral: false
-  }, {
-    text: /*#__PURE__*/React.createElement(React.Fragment, null, "Us\xE1s el espacio cuando lo necesit\xE1s. ", /*#__PURE__*/React.createElement("strong", null, "Sin m\xEDnimos de uso"), " ni horarios obligatorios."),
-    flag: 'Flexible',
-    neutral: false
-  }, {
-    text: /*#__PURE__*/React.createElement(React.Fragment, null, "Recib\xED clientes en salas de reuni\xF3n, hac\xE9 videollamadas en boxes privados y particip\xE1 de la comunidad."),
-    flag: 'Cliente',
-    neutral: true
-  }, {
-    text: /*#__PURE__*/React.createElement(React.Fragment, null, "Acceso al equipo de ", /*#__PURE__*/React.createElement("strong", null, "Middle Office"), " y cercan\xEDa con especialistas, traders y research."),
-    flag: 'Soporte',
-    neutral: true
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "modelo section",
-    id: "modelo",
-    "aria-labelledby": "modelo-title"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modelo__inner"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow-line is-gray"
-  }, "09 \xB7 Modelo de acceso"), /*#__PURE__*/React.createElement("h2", {
-    className: "modelo__title",
-    id: "modelo-title"
-  }, "Gratuito, flexible y ", /*#__PURE__*/React.createElement("em", null, "sin exclusividad"), "."), /*#__PURE__*/React.createElement("p", {
-    className: "modelo__lead"
-  }, "Espacio IEB est\xE1 pensado para adaptarse a la forma de trabajo de cada asesor. Pod\xE9s usar el espacio, recibir clientes, participar de encuentros y seguir operando con las ALyCs con las que ya trabaj\xE1s."), /*#__PURE__*/React.createElement("a", {
+    className: "gf-num"
+  }, "0", i + 1), /*#__PURE__*/React.createElement("span", {
+    className: "gf-feature-text"
+  }, f)))), /*#__PURE__*/React.createElement("a", {
     href: "#acceso",
-    className: "btn btn--dark"
-  }, "Solicitar acceso \u2192")), /*#__PURE__*/React.createElement("div", {
-    className: "modelo__rules"
-  }, rules.map((r, i) => /*#__PURE__*/React.createElement("div", {
-    className: "modelo__rule",
-    key: i
+    className: "btn btn--dark",
+    style: {
+      marginTop: '32px'
+    }
+  }, "Quiero saber m\xE1s \u2192")), /*#__PURE__*/React.createElement("div", {
+    className: "gf-visual"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "modelo__rule-num"
-  }, "REGLA \xB7 0", i + 1), /*#__PURE__*/React.createElement("div", {
-    className: "modelo__rule-text"
-  }, r.text), /*#__PURE__*/React.createElement("div", {
-    className: `modelo__rule-flag ${r.neutral ? 'modelo__rule-flag--neutral' : ''}`
-  }, r.flag)))))));
+    className: "gf-phone-frame"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-screen"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-header"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gf-phone-brand"
+  }, "Tu marca")), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-line"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-line gf-phone-line--short"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-chart"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-line gf-phone-line--short"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-line"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "gf-phone-label"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "smartphone",
+    size: 14
+  }), /*#__PURE__*/React.createElement("span", null, "Grow Finance \xB7 Powered by IEB")))))));
+}
+
+/* ============================================================
+   TECNOLOGIA (2-card tech grid)
+   ============================================================ */
+function Tecnologia() {
+  return /*#__PURE__*/React.createElement("section", {
+    className: "tecnologia section section--light",
+    id: "tecnologia",
+    "aria-labelledby": "tec-title"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head__meta"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow-line is-gray"
+  }, "Tecnolog\xEDa")), /*#__PURE__*/React.createElement("h2", {
+    id: "tec-title"
+  }, "Dos plataformas. ", /*#__PURE__*/React.createElement("em", null, "Un ecosistema"), ".")), /*#__PURE__*/React.createElement("div", {
+    className: "tec-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tec-card tec-card--investor"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tec-card-eyebrow"
+  }, "Para tus clientes"), /*#__PURE__*/React.createElement("h3", {
+    className: "tec-card-title"
+  }, "App para inversores"), /*#__PURE__*/React.createElement("p", {
+    className: "tec-card-body"
+  }, "La experiencia digital que tus clientes necesitan para invertir y hacer seguimiento de su cartera con facilidad."), /*#__PURE__*/React.createElement("ul", {
+    className: "tec-card-list"
+  }, /*#__PURE__*/React.createElement("li", null, "Seguimiento de cartera en tiempo real"), /*#__PURE__*/React.createElement("li", null, "Operatoria simple e intuitiva"), /*#__PURE__*/React.createElement("li", null, "Acceso a todos los instrumentos del mercado local"))), /*#__PURE__*/React.createElement("div", {
+    className: "tec-card tec-card--advisor"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tec-card-eyebrow"
+  }, "Para vos"), /*#__PURE__*/React.createElement("h3", {
+    className: "tec-card-title"
+  }, "Plataforma para asesores"), /*#__PURE__*/React.createElement("p", {
+    className: "tec-card-body"
+  }, "La herramienta exclusiva para gestionar tu cartera de clientes, operar y armar informes con datos en tiempo real."), /*#__PURE__*/React.createElement("ul", {
+    className: "tec-card-list"
+  }, /*#__PURE__*/React.createElement("li", null, "Gesti\xF3n integral de cartera de clientes"), /*#__PURE__*/React.createElement("li", null, "APIs para armado de informes propios"), /*#__PURE__*/React.createElement("li", null, "Herramientas de an\xE1lisis y seguimiento"))))));
 }
 
 /* ============================================================
@@ -1067,8 +1048,8 @@ const FAQ_ITEMS = [{
   q: '¿Exige exclusividad con IEB?',
   a: 'No. Espacio IEB no exige exclusividad. El asesor puede seguir operando con las ALyCs con las que ya trabaja. La propuesta es sumar estructura, comunidad y respaldo, sin condicionar la libertad operativa del asesor.'
 }, {
-  q: '¿Puedo recibir clientes?',
-  a: 'Sí. Espacio IEB cuenta con salas de reunión y boxes privados para videollamadas, pensados específicamente para que el asesor pueda recibir y atender a sus clientes en un entorno profesional e institucional.'
+  q: '¿Cómo funciona el simulador de comisiones?',
+  a: 'El simulador te muestra cuánto más ganarías si el payout que recibís fuera del 60% que ofrece Partners, comparado con el porcentaje actual de tu AlyC. Es una estimación basada en tu comisión mensual bruta. Los números exactos se coordinan en la etapa de onboarding.'
 }, {
   q: '¿Cómo puedo solicitar acceso?',
   a: 'Podés solicitar acceso completando el formulario al final de esta página. El equipo de Espacio IEB se va a contactar para validar el perfil, coordinar una visita y explicarte cómo funciona el espacio en detalle.'
@@ -1085,7 +1066,7 @@ function FAQ() {
     className: "faq__head"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow-line"
-  }, "10 \xB7 FAQ"), /*#__PURE__*/React.createElement("h2", {
+  }, "FAQ"), /*#__PURE__*/React.createElement("h2", {
     className: "faq__title",
     id: "faq-title"
   }, "Lo que asesores como vos ", /*#__PURE__*/React.createElement("em", null, "nos preguntan"), ".")), /*#__PURE__*/React.createElement("p", {
@@ -1167,7 +1148,7 @@ function Acceso() {
     className: "acceso__inner"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow-line"
-  }, "11 \xB7 Solicitar acceso"), /*#__PURE__*/React.createElement("h2", {
+  }, "Solicitar acceso"), /*#__PURE__*/React.createElement("h2", {
     className: "acceso__title",
     id: "acceso-title"
   }, "Sumate a la comunidad de ", /*#__PURE__*/React.createElement("em", null, "asesores externos"), " de Espacio IEB."), /*#__PURE__*/React.createElement("p", {
@@ -1272,7 +1253,7 @@ function Acceso() {
   }, "Agente Productor Independiente"), /*#__PURE__*/React.createElement("option", {
     value: "ALyC"
   }, "Asesor financiero en ALyC"), /*#__PURE__*/React.createElement("option", {
-    value: "Senior"
+    value: "TL"
   }, "Asesor senior / Team leader"), /*#__PURE__*/React.createElement("option", {
     value: "Otro"
   }, "Otro")))), /*#__PURE__*/React.createElement("div", {
@@ -1313,7 +1294,7 @@ function Acceso() {
     checked: data.consent,
     onChange: onChange('consent')
   }), /*#__PURE__*/React.createElement("span", null, "Acepto que Grupo IEB use mis datos para contactarme y validar mi perfil. Consultar la ", /*#__PURE__*/React.createElement("a", {
-    href: "#privacidad"
+    href: "privacidad.html"
   }, "pol\xEDtica de privacidad"), ".")), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "form__submit",
@@ -1342,29 +1323,27 @@ function Footer() {
       height: '28px',
       width: 'auto'
     }
-  }), /*#__PURE__*/React.createElement("p", null, "Una iniciativa de Grupo IEB para fortalecer la comunidad de asesores financieros externos en Argentina. N\xFA\xF1ez, Buenos Aires.")), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("p", null, "Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout m\xE1s alto del mercado. N\xFA\xF1ez, Buenos Aires.")), /*#__PURE__*/React.createElement("div", {
     className: "footer__col"
   }, /*#__PURE__*/React.createElement("p", {
     className: "footer__col-heading"
   }, "Navegar"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#que-es"
-  }, "Qu\xE9 es")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#por-que"
-  }, "Por qu\xE9 existe")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#beneficios"
+    href: "#simulador"
+  }, "Simulador")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#partners"
+  }, "Partners")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#espacio"
+  }, "Espacio IEB")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#hospitalities"
   }, "Beneficios")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#comunidad"
-  }, "Comunidad")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#infraestructura"
-  }, "Infraestructura")))), /*#__PURE__*/React.createElement("div", {
+    href: "#tecnologia"
+  }, "Tecnolog\xEDa")))), /*#__PURE__*/React.createElement("div", {
     className: "footer__col"
   }, /*#__PURE__*/React.createElement("p", {
     className: "footer__col-heading"
   }, "Sumate"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#para-quien"
-  }, "Para qui\xE9n es")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#modelo"
-  }, "Modelo de acceso")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#grow-finance"
+  }, "Grow Finance")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#faq"
   }, "FAQ")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#acceso"
@@ -1391,7 +1370,7 @@ function Footer() {
   }, /*#__PURE__*/React.createElement("a", {
     href: "#"
   }, "T\xE9rminos"), /*#__PURE__*/React.createElement("a", {
-    href: "#"
+    href: "privacidad.html"
   }, "Privacidad"), /*#__PURE__*/React.createElement("a", {
     href: "#"
   }, "Cookies")))));
@@ -1401,6 +1380,6 @@ function Footer() {
    APP
    ============================================================ */
 function App() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(PorQue, null), /*#__PURE__*/React.createElement(QueEs, null), /*#__PURE__*/React.createElement(Beneficios, null), /*#__PURE__*/React.createElement(Comunidad, null), /*#__PURE__*/React.createElement(Audience, null), /*#__PURE__*/React.createElement(Infra, null), /*#__PURE__*/React.createElement(Respaldo, null), /*#__PURE__*/React.createElement(Modelo, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(Acceso, null)), /*#__PURE__*/React.createElement(Footer, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(Simulador, null), /*#__PURE__*/React.createElement(Partners, null), /*#__PURE__*/React.createElement(GrupoIEB, null), /*#__PURE__*/React.createElement(EspacioIEB, null), /*#__PURE__*/React.createElement(Hospitalities, null), /*#__PURE__*/React.createElement(GrowFinance, null), /*#__PURE__*/React.createElement(Tecnologia, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(Acceso, null)), /*#__PURE__*/React.createElement(Footer, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
