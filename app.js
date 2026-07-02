@@ -268,17 +268,20 @@ const Icon = ({
 function Nav() {
   const [active, setActive] = useState('');
   const links = [{
-    id: 'simulador',
-    label: 'Simulador'
-  }, {
-    id: 'partners',
-    label: 'Partners'
+    id: 'grupo',
+    label: 'Grupo IEB'
   }, {
     id: 'espacio',
     label: 'Espacio'
   }, {
+    id: 'partners',
+    label: 'Partners'
+  }, {
     id: 'hospitalities',
     label: 'Beneficios'
+  }, {
+    id: 'grow-finance',
+    label: 'Grow Finance'
   }, {
     id: 'tecnologia',
     label: 'Tecnología'
@@ -309,14 +312,18 @@ function Nav() {
   }, /*#__PURE__*/React.createElement("a", {
     href: "#top",
     className: "nav__logo",
-    "aria-label": "Espacio IEB \u2014 inicio"
+    "aria-label": "IEB External Advisors \u2014 inicio"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "nav__wordmark"
   }, /*#__PURE__*/React.createElement("img", {
-    className: "nav__logo-mark",
-    src: "assets/logos/espacio-ieb-nav.png",
-    alt: "Espacio IEB",
-    width: "558",
-    height: "98"
+    className: "nav__logo-ieb",
+    src: "assets/logos/ieb-logotype-white.png",
+    alt: "IEB",
+    width: "383",
+    height: "148"
   }), /*#__PURE__*/React.createElement("span", {
+    className: "nav__wordmark-accent"
+  }, "External Advisors")), /*#__PURE__*/React.createElement("span", {
     className: "nav__divider"
   }), /*#__PURE__*/React.createElement("span", {
     className: "nav__logo-sub"
@@ -372,9 +379,9 @@ function Hero() {
     className: "hero__meta"
   }, /*#__PURE__*/React.createElement("span", {
     className: "hero__meta-tick"
-  }), /*#__PURE__*/React.createElement("span", null, "Espacio IEB \xB7 Partners para asesores financieros externos")), /*#__PURE__*/React.createElement("h1", {
+  }), /*#__PURE__*/React.createElement("span", null, "IEB External Advisors \xB7 Programa para asesores financieros externos")), /*#__PURE__*/React.createElement("h1", {
     className: "hero__title"
-  }, "La propuesta m\xE1s completa del mercado para ", /*#__PURE__*/React.createElement("em", null, "asesores financieros"), " externos."), /*#__PURE__*/React.createElement("p", {
+  }, "La propuesta m\xE1s completa del mercado para ", /*#__PURE__*/React.createElement("em", null, "agentes productores"), " y asesores que buscan independizarse."), /*#__PURE__*/React.createElement("p", {
     className: "hero__sub"
   }, "Escal\xE1 tu cartera y la de tu equipo con el respaldo de Grupo IEB. Sin exclusividad, sin costos fijos y con el payout m\xE1s alto del mercado."), /*#__PURE__*/React.createElement("div", {
     className: "hero__pills",
@@ -478,10 +485,12 @@ function Simulador() {
     id: "sim-comision",
     className: "sim-input-number",
     type: "number",
+    inputMode: "numeric",
     value: comision,
     min: "0",
+    max: "5000000",
     step: "100000",
-    onChange: e => setComision(parseFloat(e.target.value) || 0)
+    onChange: e => setComision(Math.min(Math.max(parseFloat(e.target.value) || 0, 0), 5000000))
   })), /*#__PURE__*/React.createElement("div", {
     className: "sim-field"
   }, /*#__PURE__*/React.createElement("label", {
@@ -665,7 +674,7 @@ function Partners() {
     className: "eyebrow-line is-gray"
   }, "Partners \xB7 Perfiles de acceso")), /*#__PURE__*/React.createElement("h2", {
     id: "partners-title"
-  }, "Eleg\xED el perfil que ", /*#__PURE__*/React.createElement("em", null, "mejor se adapta"), " a tu forma de trabajar.")), /*#__PURE__*/React.createElement("div", {
+  }, "Desarroll\xE1 tu propio equipo, con estructura y ", /*#__PURE__*/React.createElement("em", null, "sin resignar independencia"), ".")), /*#__PURE__*/React.createElement("div", {
     className: "partners-table-wrap"
   }, /*#__PURE__*/React.createElement("table", {
     className: "partners-table"
@@ -744,7 +753,7 @@ function GrupoIEB() {
     className: "eyebrow-line"
   }, "Por qu\xE9 Grupo IEB")), /*#__PURE__*/React.createElement("h2", {
     id: "grupo-title"
-  }, "El respaldo de una instituci\xF3n con ", /*#__PURE__*/React.createElement("em", null, "trayectoria comprobada"), ".")), /*#__PURE__*/React.createElement("div", {
+  }, "Somos el ", /*#__PURE__*/React.createElement("em", null, "Broker #1"), " en servicio a Agentes Productores.")), /*#__PURE__*/React.createElement("div", {
     className: "grupo-ieb-grid"
   }, pillars.map((p, i) => /*#__PURE__*/React.createElement("div", {
     className: "grupo-ieb-card",
@@ -802,7 +811,9 @@ function EspacioIEB() {
     className: "eyebrow-line is-gray"
   }, "El espacio")), /*#__PURE__*/React.createElement("h2", {
     id: "espacio-title"
-  }, "Una base dise\xF1ada para que ", /*#__PURE__*/React.createElement("em", null, "trabajes mejor"), ".")), /*#__PURE__*/React.createElement("div", {
+  }, "Un espacio ", /*#__PURE__*/React.createElement("em", null, "exclusivo"), " para Asesores Externos."), /*#__PURE__*/React.createElement("p", {
+    className: "espacio-ieb-lead"
+  }, "100% gratuito. Oficinas, salas privadas, Middle Office y todo el equipo de IEB acompa\xF1\xE1ndote, en N\xFA\xF1ez.")), /*#__PURE__*/React.createElement("div", {
     className: "espacio-ieb-inner"
   }, /*#__PURE__*/React.createElement("div", {
     className: "espacio-ieb-list"
@@ -819,48 +830,35 @@ function EspacioIEB() {
     className: "espacio-ieb-desc"
   }, f.desc))))), /*#__PURE__*/React.createElement("div", {
     className: "espacio-ieb-img",
-    "aria-label": "Espacio IEB \u2014 N\xFA\xF1ez, Buenos Aires"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "espacio-ieb-placeholder"
-  }, /*#__PURE__*/React.createElement("svg", {
-    viewBox: "0 0 500 360",
-    preserveAspectRatio: "xMidYMid slice",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("pattern", {
-    id: "grid-esp",
-    width: "40",
-    height: "40",
-    patternUnits: "userSpaceOnUse"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M 40 0 L 0 0 0 40",
-    fill: "none",
-    stroke: "#2a2a28",
-    strokeWidth: "1"
-  }))), /*#__PURE__*/React.createElement("rect", {
-    width: "500",
-    height: "360",
-    fill: "#141414"
-  }), /*#__PURE__*/React.createElement("rect", {
-    width: "500",
-    height: "360",
-    fill: "url(#grid-esp)"
-  }), /*#__PURE__*/React.createElement("text", {
-    x: "50%",
-    y: "45%",
-    textAnchor: "middle",
-    fill: "#333",
-    fontSize: "13",
-    fontFamily: "monospace",
-    letterSpacing: "3"
-  }, "N\xDA\xD1EZ \xB7 BUENOS AIRES"), /*#__PURE__*/React.createElement("text", {
-    x: "50%",
-    y: "55%",
-    textAnchor: "middle",
-    fill: "#222",
-    fontSize: "11",
-    fontFamily: "monospace",
-    letterSpacing: "2"
-  }, "Espacio IEB \xB7 Fotos pr\xF3ximamente")))))));
+    "aria-label": "Espacio IEB \u2014 oficinas en N\xFA\xF1ez, Buenos Aires"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "espacio-ieb-photo espacio-ieb-photo--main",
+    src: "assets/fotos/oficina-1.jpg",
+    alt: "Oficinas de Espacio IEB en N\xFA\xF1ez, Buenos Aires",
+    width: "1600",
+    height: "900",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "espacio-ieb-gallery"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/fotos/oficina-2.jpg",
+    alt: "Puestos de trabajo en Espacio IEB",
+    width: "1600",
+    height: "1200",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "assets/fotos/oficina-3.jpg",
+    alt: "Salas de reuni\xF3n en Espacio IEB",
+    width: "1600",
+    height: "1200",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "assets/fotos/oficina-4.jpg",
+    alt: "Espacios comunes en Espacio IEB",
+    width: "1600",
+    height: "1200",
+    loading: "lazy"
+  }))))));
 }
 
 /* ============================================================
@@ -868,19 +866,19 @@ function EspacioIEB() {
    ============================================================ */
 function Hospitalities() {
   const cards = [{
-    emoji: '🎾',
+    img: 'assets/fotos/argentina-open.jpg',
     title: 'Argentina Open',
     desc: 'IEB+ es naming sponsor del torneo. Palcos preferenciales y acceso exclusivo al evento más importante del tenis argentino.'
   }, {
-    emoji: '⚽',
+    img: 'assets/fotos/river-plate.jpg',
     title: 'River Plate · Monumental',
     desc: 'Acceso VIP a partidos en el estadio más grande de Argentina. Una experiencia única para vos y tus mejores clientes.'
   }, {
-    emoji: '🏟️',
+    img: 'assets/fotos/talleres.jpg',
     title: 'Atlético Talleres · Kempes',
     desc: 'Experiencias premium en uno de los estadios más modernos del país, con atención y espacios de primer nivel.'
   }, {
-    emoji: '🎵',
+    img: 'assets/fotos/movistar-arena.jpg',
     title: 'Movistar Arena',
     desc: 'Espacios preferenciales en los principales shows y eventos del año. El entretenimiento como herramienta comercial.'
   }];
@@ -904,13 +902,18 @@ function Hospitalities() {
     className: "hosp-card",
     key: i
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hosp-emoji",
-    "aria-hidden": "true"
-  }, c.emoji), /*#__PURE__*/React.createElement("h3", {
+    className: "hosp-card-media"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: c.img,
+    alt: c.title,
+    loading: "lazy"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "hosp-card-body"
+  }, /*#__PURE__*/React.createElement("h3", {
     className: "hosp-title"
   }, c.title), /*#__PURE__*/React.createElement("p", {
     className: "hosp-desc"
-  }, c.desc))))));
+  }, c.desc)))))));
 }
 
 /* ============================================================
@@ -952,32 +955,19 @@ function GrowFinance() {
     }
   }, "Quiero saber m\xE1s \u2192")), /*#__PURE__*/React.createElement("div", {
     className: "gf-visual"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-frame"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-screen"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-header"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "gf-phone-brand"
-  }, "Tu marca")), /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-content"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-line"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "gf-mockup",
+    src: "assets/fotos/grow-app.png",
+    alt: "App de inversiones con marca blanca \u2014 Grow Finance, powered by IEB",
+    width: "1200",
+    height: "1091",
+    loading: "lazy"
   }), /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-line gf-phone-line--short"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-chart"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-line gf-phone-line--short"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "gf-phone-line"
-  }))), /*#__PURE__*/React.createElement("div", {
     className: "gf-phone-label"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "smartphone",
     size: 14
-  }), /*#__PURE__*/React.createElement("span", null, "Grow Finance \xB7 Powered by IEB")))))));
+  }), /*#__PURE__*/React.createElement("span", null, "Grow Finance \xB7 Powered by IEB"))))));
 }
 
 /* ============================================================
@@ -1047,6 +1037,9 @@ const FAQ_ITEMS = [{
 }, {
   q: '¿Exige exclusividad con IEB?',
   a: 'No. Espacio IEB no exige exclusividad. El asesor puede seguir operando con las ALyCs con las que ya trabaja. La propuesta es sumar estructura, comunidad y respaldo, sin condicionar la libertad operativa del asesor.'
+}, {
+  q: '¿Puedo recibir clientes en Espacio IEB?',
+  a: 'Sí. Espacio IEB cuenta con salas de reunión y boxes privados para videollamadas, pensados específicamente para que el asesor pueda recibir y atender a sus clientes en un entorno profesional e institucional.'
 }, {
   q: '¿Cómo funciona el simulador de comisiones?',
   a: 'El simulador te muestra cuánto más ganarías si el payout que recibís fuera del 60% que ofrece Partners, comparado con el porcentaje actual de tu AlyC. Es una estimación basada en tu comisión mensual bruta. Los números exactos se coordinan en la etapa de onboarding.'
@@ -1123,6 +1116,8 @@ function Acceso() {
     consent: false
   });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
   const valid = data.nombre.length > 1 && /\S+@\S+\.\S+/.test(data.email) && data.perfil && data.consent;
   const onChange = k => e => {
     const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -1131,10 +1126,26 @@ function Acceso() {
       [k]: val
     });
   };
-  const submit = e => {
+  const submit = async e => {
     e.preventDefault();
-    if (!valid) return;
-    setSent(true);
+    if (!valid || sending) return;
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('request failed');
+      setSent(true);
+    } catch (err) {
+      setError('No pudimos enviar tu solicitud. Probá de nuevo en unos minutos.');
+    } finally {
+      setSending(false);
+    }
   };
   return /*#__PURE__*/React.createElement("section", {
     className: "acceso section",
@@ -1193,7 +1204,7 @@ function Acceso() {
     noValidate: true
   }, /*#__PURE__*/React.createElement("div", {
     className: "form__label-row"
-  }, /*#__PURE__*/React.createElement("span", null, "Formulario \xB7 Acceso"), /*#__PURE__*/React.createElement("span", null, sent ? 'Enviado' : valid ? 'Listo' : 'Completar')), sent ? /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Formulario \xB7 Acceso"), /*#__PURE__*/React.createElement("span", null, sent ? 'Enviado' : sending ? 'Enviando…' : valid ? 'Listo' : 'Completar')), sent ? /*#__PURE__*/React.createElement("div", {
     className: "form__success"
   }, /*#__PURE__*/React.createElement("div", {
     className: "form__success-tick"
@@ -1295,11 +1306,14 @@ function Acceso() {
     onChange: onChange('consent')
   }), /*#__PURE__*/React.createElement("span", null, "Acepto que Grupo IEB use mis datos para contactarme y validar mi perfil. Consultar la ", /*#__PURE__*/React.createElement("a", {
     href: "privacidad.html"
-  }, "pol\xEDtica de privacidad"), ".")), /*#__PURE__*/React.createElement("button", {
+  }, "pol\xEDtica de privacidad"), ".")), error && /*#__PURE__*/React.createElement("p", {
+    className: "form__error",
+    role: "alert"
+  }, error), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "form__submit",
-    disabled: !valid
-  }, /*#__PURE__*/React.createElement("span", null, "Enviar solicitud"), /*#__PURE__*/React.createElement("span", null, "\u2192")))))));
+    disabled: !valid || sending
+  }, /*#__PURE__*/React.createElement("span", null, sending ? 'Enviando…' : 'Enviar solicitud'), /*#__PURE__*/React.createElement("span", null, "\u2192")))))));
 }
 
 /* ============================================================
@@ -1314,16 +1328,17 @@ function Footer() {
     className: "footer__top"
   }, /*#__PURE__*/React.createElement("div", {
     className: "footer__brand"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "footer__wordmark"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/logos/espacio-ieb-nav.png",
-    alt: "Espacio IEB",
-    width: "558",
-    height: "98",
-    style: {
-      height: '28px',
-      width: 'auto'
-    }
-  }), /*#__PURE__*/React.createElement("p", null, "Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout m\xE1s alto del mercado. N\xFA\xF1ez, Buenos Aires.")), /*#__PURE__*/React.createElement("div", {
+    className: "footer__logo-ieb",
+    src: "assets/logos/ieb-logotype-white.png",
+    alt: "IEB",
+    width: "383",
+    height: "148"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "footer__wordmark-accent"
+  }, "External Advisors")), /*#__PURE__*/React.createElement("p", null, "Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout m\xE1s alto del mercado. N\xFA\xF1ez, Buenos Aires.")), /*#__PURE__*/React.createElement("div", {
     className: "footer__col"
   }, /*#__PURE__*/React.createElement("p", {
     className: "footer__col-heading"
@@ -1380,6 +1395,6 @@ function Footer() {
    APP
    ============================================================ */
 function App() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(Simulador, null), /*#__PURE__*/React.createElement(Partners, null), /*#__PURE__*/React.createElement(GrupoIEB, null), /*#__PURE__*/React.createElement(EspacioIEB, null), /*#__PURE__*/React.createElement(Hospitalities, null), /*#__PURE__*/React.createElement(GrowFinance, null), /*#__PURE__*/React.createElement(Tecnologia, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(Acceso, null)), /*#__PURE__*/React.createElement(Footer, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(GrupoIEB, null), /*#__PURE__*/React.createElement(EspacioIEB, null), /*#__PURE__*/React.createElement(Partners, null), /*#__PURE__*/React.createElement(Simulador, null), /*#__PURE__*/React.createElement(Hospitalities, null), /*#__PURE__*/React.createElement(GrowFinance, null), /*#__PURE__*/React.createElement(Tecnologia, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(Acceso, null)), /*#__PURE__*/React.createElement(Footer, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));

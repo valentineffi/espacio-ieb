@@ -30,10 +30,11 @@ const Icon = ({ name, size = 20 }) => {
 function Nav() {
   const [active, setActive] = useState('');
   const links = [
-    { id: 'simulador', label: 'Simulador' },
-    { id: 'partners', label: 'Partners' },
+    { id: 'grupo', label: 'Grupo IEB' },
     { id: 'espacio', label: 'Espacio' },
+    { id: 'partners', label: 'Partners' },
     { id: 'hospitalities', label: 'Beneficios' },
+    { id: 'grow-finance', label: 'Grow Finance' },
     { id: 'tecnologia', label: 'Tecnología' },
     { id: 'faq', label: 'FAQ' },
   ];
@@ -53,8 +54,11 @@ function Nav() {
   return (
     <nav className="nav" aria-label="Navegación principal">
       <div className="nav__inner">
-        <a href="#top" className="nav__logo" aria-label="Espacio IEB — inicio">
-          <img className="nav__logo-mark" src="assets/logos/espacio-ieb-nav.png" alt="Espacio IEB" width="558" height="98"/>
+        <a href="#top" className="nav__logo" aria-label="IEB External Advisors — inicio">
+          <span className="nav__wordmark">
+            <img className="nav__logo-ieb" src="assets/logos/ieb-logotype-white.png" alt="IEB" width="383" height="148"/>
+            <span className="nav__wordmark-accent">External Advisors</span>
+          </span>
           <span className="nav__divider"></span>
           <span className="nav__logo-sub">Una iniciativa de Grupo IEB</span>
         </a>
@@ -95,10 +99,10 @@ function Hero() {
           <div className="hero__copy">
             <div className="hero__meta">
               <span className="hero__meta-tick"></span>
-              <span>Espacio IEB · Partners para asesores financieros externos</span>
+              <span>IEB External Advisors · Programa para asesores financieros externos</span>
             </div>
             <h1 className="hero__title">
-              La propuesta más completa del mercado para <em>asesores financieros</em> externos.
+              La propuesta más completa del mercado para <em>agentes productores</em> y asesores que buscan independizarse.
             </h1>
             <p className="hero__sub">
               Escalá tu cartera y la de tu equipo con el respaldo de Grupo IEB.
@@ -227,10 +231,12 @@ function Simulador() {
                 id="sim-comision"
                 className="sim-input-number"
                 type="number"
+                inputMode="numeric"
                 value={comision}
                 min="0"
+                max="5000000"
                 step="100000"
-                onChange={e => setComision(parseFloat(e.target.value) || 0)}
+                onChange={e => setComision(Math.min(Math.max(parseFloat(e.target.value) || 0, 0), 5000000))}
               />
             </div>
             <div className="sim-field">
@@ -331,7 +337,7 @@ function Partners() {
             <span className="eyebrow-line is-gray">Partners · Perfiles de acceso</span>
           </div>
           <h2 id="partners-title">
-            Elegí el perfil que <em>mejor se adapta</em> a tu forma de trabajar.
+            Desarrollá tu propio equipo, con estructura y <em>sin resignar independencia</em>.
           </h2>
         </div>
         <div className="partners-table-wrap">
@@ -411,7 +417,7 @@ function GrupoIEB() {
             <span className="eyebrow-line">Por qué Grupo IEB</span>
           </div>
           <h2 id="grupo-title">
-            El respaldo de una institución con <em>trayectoria comprobada</em>.
+            Somos el <em>Broker #1</em> en servicio a Agentes Productores.
           </h2>
         </div>
         <div className="grupo-ieb-grid">
@@ -448,8 +454,12 @@ function EspacioIEB() {
             <span className="eyebrow-line is-gray">El espacio</span>
           </div>
           <h2 id="espacio-title">
-            Una base diseñada para que <em>trabajes mejor</em>.
+            Un espacio <em>exclusivo</em> para Asesores Externos.
           </h2>
+          <p className="espacio-ieb-lead">
+            100% gratuito. Oficinas, salas privadas, Middle Office y todo el equipo
+            de IEB acompañándote, en Núñez.
+          </p>
         </div>
         <div className="espacio-ieb-inner">
           <div className="espacio-ieb-list">
@@ -465,19 +475,13 @@ function EspacioIEB() {
               </div>
             ))}
           </div>
-          <div className="espacio-ieb-img" aria-label="Espacio IEB — Núñez, Buenos Aires">
-            <div className="espacio-ieb-placeholder">
-              <svg viewBox="0 0 500 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <defs>
-                  <pattern id="grid-esp" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a28" strokeWidth="1"/>
-                  </pattern>
-                </defs>
-                <rect width="500" height="360" fill="#141414"/>
-                <rect width="500" height="360" fill="url(#grid-esp)"/>
-                <text x="50%" y="45%" textAnchor="middle" fill="#333" fontSize="13" fontFamily="monospace" letterSpacing="3">NÚÑEZ · BUENOS AIRES</text>
-                <text x="50%" y="55%" textAnchor="middle" fill="#222" fontSize="11" fontFamily="monospace" letterSpacing="2">Espacio IEB · Fotos próximamente</text>
-              </svg>
+          <div className="espacio-ieb-img" aria-label="Espacio IEB — oficinas en Núñez, Buenos Aires">
+            <img className="espacio-ieb-photo espacio-ieb-photo--main" src="assets/fotos/oficina-1.jpg"
+                 alt="Oficinas de Espacio IEB en Núñez, Buenos Aires" width="1600" height="900" loading="lazy"/>
+            <div className="espacio-ieb-gallery">
+              <img src="assets/fotos/oficina-2.jpg" alt="Puestos de trabajo en Espacio IEB" width="1600" height="1200" loading="lazy"/>
+              <img src="assets/fotos/oficina-3.jpg" alt="Salas de reunión en Espacio IEB" width="1600" height="1200" loading="lazy"/>
+              <img src="assets/fotos/oficina-4.jpg" alt="Espacios comunes en Espacio IEB" width="1600" height="1200" loading="lazy"/>
             </div>
           </div>
         </div>
@@ -492,22 +496,22 @@ function EspacioIEB() {
 function Hospitalities() {
   const cards = [
     {
-      emoji: '🎾',
+      img: 'assets/fotos/argentina-open.jpg',
       title: 'Argentina Open',
       desc: 'IEB+ es naming sponsor del torneo. Palcos preferenciales y acceso exclusivo al evento más importante del tenis argentino.',
     },
     {
-      emoji: '⚽',
+      img: 'assets/fotos/river-plate.jpg',
       title: 'River Plate · Monumental',
       desc: 'Acceso VIP a partidos en el estadio más grande de Argentina. Una experiencia única para vos y tus mejores clientes.',
     },
     {
-      emoji: '🏟️',
+      img: 'assets/fotos/talleres.jpg',
       title: 'Atlético Talleres · Kempes',
       desc: 'Experiencias premium en uno de los estadios más modernos del país, con atención y espacios de primer nivel.',
     },
     {
-      emoji: '🎵',
+      img: 'assets/fotos/movistar-arena.jpg',
       title: 'Movistar Arena',
       desc: 'Espacios preferenciales en los principales shows y eventos del año. El entretenimiento como herramienta comercial.',
     },
@@ -526,9 +530,13 @@ function Hospitalities() {
         <div className="hosp-grid">
           {cards.map((c, i) => (
             <div className="hosp-card" key={i}>
-              <div className="hosp-emoji" aria-hidden="true">{c.emoji}</div>
-              <h3 className="hosp-title">{c.title}</h3>
-              <p className="hosp-desc">{c.desc}</p>
+              <div className="hosp-card-media">
+                <img src={c.img} alt={c.title} loading="lazy"/>
+              </div>
+              <div className="hosp-card-body">
+                <h3 className="hosp-title">{c.title}</h3>
+                <p className="hosp-desc">{c.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -574,23 +582,12 @@ function GrowFinance() {
             <a href="#acceso" className="btn btn--dark" style={{marginTop:'32px'}}>Quiero saber más →</a>
           </div>
           <div className="gf-visual">
-            <div className="gf-phone-frame">
-              <div className="gf-phone-screen">
-                <div className="gf-phone-header">
-                  <span className="gf-phone-brand">Tu marca</span>
-                </div>
-                <div className="gf-phone-content">
-                  <div className="gf-phone-line"></div>
-                  <div className="gf-phone-line gf-phone-line--short"></div>
-                  <div className="gf-phone-chart"></div>
-                  <div className="gf-phone-line gf-phone-line--short"></div>
-                  <div className="gf-phone-line"></div>
-                </div>
-              </div>
-              <div className="gf-phone-label">
-                <Icon name="smartphone" size={14}/>
-                <span>Grow Finance · Powered by IEB</span>
-              </div>
+            <img className="gf-mockup" src="assets/fotos/grow-app.png"
+                 alt="App de inversiones con marca blanca — Grow Finance, powered by IEB"
+                 width="1200" height="1091" loading="lazy"/>
+            <div className="gf-phone-label">
+              <Icon name="smartphone" size={14}/>
+              <span>Grow Finance · Powered by IEB</span>
             </div>
           </div>
         </div>
@@ -658,6 +655,7 @@ const FAQ_ITEMS = [
   { q: '¿Dónde queda Espacio IEB?', a: 'Espacio IEB está ubicado en el barrio de Núñez, en la Ciudad Autónoma de Buenos Aires (CABA), Argentina. Es una zona estratégica con buena conectividad y cocheras disponibles.' },
   { q: '¿Tiene costo?', a: 'No. El acceso a Espacio IEB es 100% gratuito para los asesores financieros externos validados por Grupo IEB. No hay membresía ni pagos asociados al uso del espacio.' },
   { q: '¿Exige exclusividad con IEB?', a: 'No. Espacio IEB no exige exclusividad. El asesor puede seguir operando con las ALyCs con las que ya trabaja. La propuesta es sumar estructura, comunidad y respaldo, sin condicionar la libertad operativa del asesor.' },
+  { q: '¿Puedo recibir clientes en Espacio IEB?', a: 'Sí. Espacio IEB cuenta con salas de reunión y boxes privados para videollamadas, pensados específicamente para que el asesor pueda recibir y atender a sus clientes en un entorno profesional e institucional.' },
   { q: '¿Cómo funciona el simulador de comisiones?', a: 'El simulador te muestra cuánto más ganarías si el payout que recibís fuera del 60% que ofrece Partners, comparado con el porcentaje actual de tu AlyC. Es una estimación basada en tu comisión mensual bruta. Los números exactos se coordinan en la etapa de onboarding.' },
   { q: '¿Cómo puedo solicitar acceso?', a: 'Podés solicitar acceso completando el formulario al final de esta página. El equipo de Espacio IEB se va a contactar para validar el perfil, coordinar una visita y explicarte cómo funciona el espacio en detalle.' },
 ];
@@ -715,6 +713,8 @@ function Acceso() {
     consent: false,
   });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   const valid = data.nombre.length > 1 && /\S+@\S+\.\S+/.test(data.email) && data.perfil && data.consent;
 
@@ -723,10 +723,24 @@ function Acceso() {
     setData({ ...data, [k]: val });
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    if (!valid) return;
-    setSent(true);
+    if (!valid || sending) return;
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('request failed');
+      setSent(true);
+    } catch (err) {
+      setError('No pudimos enviar tu solicitud. Probá de nuevo en unos minutos.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -754,7 +768,7 @@ function Acceso() {
           <form className="form" onSubmit={submit} noValidate>
             <div className="form__label-row">
               <span>Formulario · Acceso</span>
-              <span>{sent ? 'Enviado' : (valid ? 'Listo' : 'Completar')}</span>
+              <span>{sent ? 'Enviado' : (sending ? 'Enviando…' : (valid ? 'Listo' : 'Completar'))}</span>
             </div>
             {sent ? (
               <div className="form__success">
@@ -820,8 +834,9 @@ function Acceso() {
                   <input type="checkbox" checked={data.consent} onChange={onChange('consent')}/>
                   <span>Acepto que Grupo IEB use mis datos para contactarme y validar mi perfil. Consultar la <a href="privacidad.html">política de privacidad</a>.</span>
                 </label>
-                <button type="submit" className="form__submit" disabled={!valid}>
-                  <span>Enviar solicitud</span>
+                {error && <p className="form__error" role="alert">{error}</p>}
+                <button type="submit" className="form__submit" disabled={!valid || sending}>
+                  <span>{sending ? 'Enviando…' : 'Enviar solicitud'}</span>
                   <span>→</span>
                 </button>
               </>
@@ -842,7 +857,10 @@ function Footer() {
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <img src="assets/logos/espacio-ieb-nav.png" alt="Espacio IEB" width="558" height="98" style={{height:'28px',width:'auto'}}/>
+            <span className="footer__wordmark">
+              <img className="footer__logo-ieb" src="assets/logos/ieb-logotype-white.png" alt="IEB" width="383" height="148"/>
+              <span className="footer__wordmark-accent">External Advisors</span>
+            </span>
             <p>Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout más alto del mercado. Núñez, Buenos Aires.</p>
           </div>
           <div className="footer__col">
@@ -896,10 +914,10 @@ function App() {
       <main>
         <Hero/>
         <Ticker/>
-        <Simulador/>
-        <Partners/>
         <GrupoIEB/>
         <EspacioIEB/>
+        <Partners/>
+        <Simulador/>
         <Hospitalities/>
         <GrowFinance/>
         <Tecnologia/>
