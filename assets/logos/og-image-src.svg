@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <rect width="1200" height="1200" fill="#1D1D1B"/>
+  <!-- OG content lives in the centered 630-tall band (y 285..915); crop to that band. -->
+  <rect x="0" y="285" width="1200" height="8" fill="#FDE100"/>
+  <text x="80" y="435" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="26"
+        letter-spacing="4" fill="#8a8a8a">UNA INICIATIVA DE GRUPO IEB</text>
+  <text x="76" y="585" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="92"
+        letter-spacing="1" fill="#FFFFFF">IEB <tspan fill="#9a9a9a" font-weight="400">External Advisors</tspan></text>
+  <rect x="80" y="632" width="120" height="12" rx="3" fill="#FDE100"/>
+  <text x="80" y="725" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="38"
+        fill="#e6e6e6">La propuesta más completa del mercado</text>
+  <text x="80" y="779" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="38"
+        fill="#e6e6e6">para asesores financieros y agentes productores.</text>
+  <text x="80" y="870" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="26"
+        letter-spacing="2" fill="#8a8a8a">Núñez, Buenos Aires · iebexternaladvisors.com.ar</text>
+</svg>

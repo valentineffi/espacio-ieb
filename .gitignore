@@ -10,3 +10,10 @@ qa/
 # Build dependencies (run: npm install)
 node_modules/
 package-lock.json
+.cloudflare.env
+.wrangler/
+dist/
+
+# Raw source assets (optimized versions live in assets/fotos/)
+Fotos Espacio/
+Web v2/
