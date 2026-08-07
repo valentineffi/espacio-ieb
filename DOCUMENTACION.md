@@ -105,7 +105,7 @@ No hace falta `vercel.json` — Vercel detecta automáticamente el HTML estátic
 
 Design tokens en [assets/colors_and_type.css](assets/colors_and_type.css) — paleta 60/30/10 (Negro + Blanco dominante/secundario, acento en **Celeste `#00A6FB`** para énfasis editorial y **Azul IEB `#404EFF`** para CTAs/interactividad). Sin amarillo — reemplazado en el rebrand 2026. Tipografía Poly Sans (Slim/Neutral/Median/Bulky + Mono), servida localmente desde `assets/fonts/`.
 
-> ⚠️ **Las fuentes Poly Sans son versiones trial.** Antes de ir a producción bajo el dominio real hace falta una licencia comercial (Pangram Pangram) o migrar a un sustituto de Google Fonts.
+> ⚠️ **Las fuentes Poly Sans (PolySans, de la fundición Gradient — [wearegradient.net](https://www.wearegradient.net)) son versiones trial.** No es una fuente de Google Fonts. Antes de ir a producción bajo el dominio real hace falta comprar la licencia comercial completa (~€50-55 por peso/estilo en el sitio de Gradient) o migrar a un sustituto gratuito de Google Fonts — los más parecidos son **Space Grotesk** o **DM Sans**.
 
 ---
 

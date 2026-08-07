@@ -66,4 +66,4 @@ Photos live in [assets/fotos/](assets/fotos/) (optimized from the raw `Fotos Esp
 
 JSON-LD schemas embedded in `index.html`: Organization (Grupo IEB), LocalBusiness + FinancialService (Espacio IEB), WebPage/WebSite (IEB External Advisors), BreadcrumbList, FAQPage.
 
-> **Fonts:** Poly Sans files in `assets/fonts/` are trial versions — a commercial license (or a Google Fonts substitute) is required before public go-live under the real domain.
+> **Fonts:** Poly Sans (PolySans, by Gradient — wearegradient.net) files in `assets/fonts/` are trial versions — not a Google Fonts typeface. A commercial license (or a Google Fonts substitute, e.g. Space Grotesk / DM Sans) is required before public go-live under the real domain.
