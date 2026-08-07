@@ -28,8 +28,11 @@ Completo: define la entidad, audiencia, propuesta de valor, modelo de acceso, ci
 ## Hallazgos y acciones
 
 ### Corregido en esta sesión
-1. **Branding inconsistente** en `faq.html`/`sobre-ieb.html` (title, og:title, meta description, JSON-LD) — decía "Espacio IEB" donde `index.html`/`privacidad.html` ya decían "IEB External Advisors". Corregido — ver commit de branding.
+1. **Branding inconsistente** en `faq.html`/`sobre-ieb.html` (title, og:title, meta description, JSON-LD) — decía "Espacio IEB" donde `index.html`/`privacidad.html` ya decían "IEB External Advisors". Corregido.
 2. **`sitemap.xml` con `lastmod` desactualizado** (2026-05-05, previo al rebrand) — actualizado a la fecha de esta entrega.
+3. **Títulos/descripciones fuera del largo recomendado** — `index.html` (title 75, description 208 caracteres) y `sobre-ieb.html`/`privacidad.html` (description >160) se truncaban en el snippet de Google. Acortados todos a ≤60 (title) y ≤155 (description) sin perder el mensaje central.
+4. **`<link rel="preconnect" href="https://unpkg.com">` huérfano** en `faq.html` y `sobre-ieb.html` — resabio de cuando React se cargaba desde ese CDN; hoy React está self-hosted en `assets/` y unpkg.com no se usa en ningún lado. El preconnect abría una conexión a un dominio que nunca se usaba (costo de DNS/TLS sin beneficio). Eliminado.
+5. **`hreflang` solo en `index.html`** — las 3 páginas secundarias no declaraban ninguna alternante. Se agregó el mismo patrón autorreferencial (es-AR / es / x-default) a `faq.html`, `sobre-ieb.html` y `privacidad.html`, apuntando cada una a su propia URL (no a la home, que hubiera sido una señal incorrecta).
 
 ### Recomendado, no bloqueante para la entrega
 3. **Passages del `<noscript>` un poco cortos** (~60-90 palabras por respuesta) vs. el rango óptimo de citabilidad (134-167 palabras). No es un error — es una decisión de brevedad razonable — pero si se busca más presencia en AI Overviews, ampliar 2-3 de las respuestas más buscadas ("¿Qué es Espacio IEB?", "¿Tiene costo?") a un párrafo más completo ayudaría.
