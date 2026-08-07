@@ -121,7 +121,7 @@ Auditoría GEO detallada (score, hallazgos, próximos pasos) en **[GEO-ANALYSIS.
 
 | Pendiente | Detalle |
 |---|---|
-| Licencia de Poly Sans | Versión trial — necesaria licencia comercial o sustituto de Google Fonts antes del go-live público |
+| **Decisión pendiente — Poly Sans** | Hoy son archivos trial de PolySans (fundición Gradient, wearegradient.net — no es Google Fonts). Antes del go-live público hay que elegir: **(a)** comprar la licencia comercial completa en Gradient (~€50-55 por peso/estilo, son varios pesos) o **(b)** migrar a un sustituto gratuito de Google Fonts (los más parecidos: **Space Grotesk** o **DM Sans**). Es una decisión de presupuesto/marca de IEB, no técnica — queda para que la resuelvan ellos. |
 | Dominio real conectado | Canonicals/schemas apuntan a `www.iebexternaladvisors.com.ar` — conectar en el hosting elegido |
 | `CONTACT_FROM` de producción | Hoy usa el sandbox de Resend (`onboarding@resend.dev`) — configurar un remitente verificado del dominio propio |
 | Analytics | No hay ningún sistema de tracking instalado (GA4, Plausible, etc.) — no hay forma de medir tráfico ni conversión del formulario hasta que se agregue |
