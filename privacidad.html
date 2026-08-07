@@ -22,46 +22,26 @@
 </head>
 <body>
 
-<nav class="nav" aria-label="Navegación principal" style="position:fixed">
+<nav class="nav is-scrolled" aria-label="Navegación principal">
   <div class="nav__inner">
     <a href="./" class="nav__logo" aria-label="IEB External Advisors — inicio">
-      <span class="nav__wordmark"><img class="nav__logo-ieb" src="assets/logos/ieb-logotype-white.png" alt="IEB" width="383" height="148"/><span class="nav__wordmark-accent">External Advisors</span></span>
-      <span class="nav__divider"></span>
-      <span class="nav__logo-sub">Una iniciativa de Grupo IEB</span>
+      <img class="nav__logo-img" src="assets/logos/ieb-logotype-black.png" alt="IEB External Advisors" width="383" height="148"/>
     </a>
-    <div class="nav__links">
-      <a href="./#que-es" class="nav__link">Qué es</a>
-      <a href="./#beneficios" class="nav__link">Beneficios</a>
-      <a href="./#comunidad" class="nav__link">Comunidad</a>
-      <a href="./#infraestructura" class="nav__link">Infraestructura</a>
+    <div class="nav__links" id="navlinks">
+      <a href="./#simulador" class="nav__link">Simulador</a>
+      <a href="./#partners" class="nav__link">Partners</a>
+      <a href="./#espacio" class="nav__link">Espacio</a>
+      <a href="./#tecnologia" class="nav__link">Tecnología</a>
       <a href="faq.html" class="nav__link">FAQ</a>
+      <a href="./#contacto" class="nav__cta nav__cta--mobile">Contacto</a>
     </div>
-    <a href="./#acceso" class="nav__cta">Solicitar acceso <span>→</span></a>
-    <button class="nav__menu-btn" id="nav-toggle" aria-label="Menú" aria-expanded="false">MENÚ</button>
-  </div>
-  <div class="nav__mobile-menu" id="nav-mobile" style="display:none">
-    <a href="./#que-es" class="nav__mobile-link">Qué es</a>
-    <a href="./#beneficios" class="nav__mobile-link">Beneficios</a>
-    <a href="./#comunidad" class="nav__mobile-link">Comunidad</a>
-    <a href="./#infraestructura" class="nav__mobile-link">Infraestructura</a>
-    <a href="faq.html" class="nav__mobile-link">FAQ</a>
-    <a href="sobre-ieb.html" class="nav__mobile-link">Sobre Espacio IEB</a>
-    <a href="./#acceso" class="nav__mobile-cta">Solicitar acceso →</a>
+    <a href="./#contacto" class="nav__cta">Contacto</a>
+    <button class="nav__menu-btn" id="navtoggle" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
   </div>
 </nav>
-<script>
-(function(){
-  var btn=document.getElementById('nav-toggle'),menu=document.getElementById('nav-mobile'),open=false;
-  btn.addEventListener('click',function(){
-    open=!open;
-    menu.style.display=open?'flex':'none';
-    btn.textContent=open?'✕':'MENÚ';
-    btn.setAttribute('aria-expanded',open);
-  });
-})();
-</script>
+<script>(function(){var b=document.getElementById('navtoggle'),l=document.getElementById('navlinks');if(!b)return;var o=false;b.addEventListener('click',function(){o=!o;l.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);});})();</script>
 
-<main style="padding-top:68px">
+<main>
   <section class="section" style="background:var(--ieb-black);padding-top:64px;padding-bottom:80px">
     <div class="container">
       <div style="max-width:720px;margin:0 auto">
@@ -140,7 +120,7 @@
               <li><strong style="color:var(--ieb-white);font-weight:400">Oposición:</strong> oponerse al tratamiento de sus datos en los casos previstos por la ley</li>
             </ul>
             <p style="margin-top:12px">Para ejercer estos derechos, el titular puede comunicarse a través del teléfono <strong style="color:var(--ieb-white);font-weight:400">+54 (11) 5353-5500</strong> o mediante el formulario de contacto disponible en <a href="https://grupoieb.com.ar" style="color:var(--accent)">grupoieb.com.ar</a>.</p>
-            <p style="margin-top:12px;padding:16px;background:var(--ieb-ink-12);font-size:13px">La Dirección Nacional de Protección de Datos Personales, Órgano de Control de la Ley 25.326, tiene la atribución de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales.</p>
+            <p style="margin-top:12px;padding:16px;background:var(--gray-900);font-size:13px">La Dirección Nacional de Protección de Datos Personales, Órgano de Control de la Ley 25.326, tiene la atribución de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales.</p>
           </div>
 
           <div>
@@ -155,7 +135,7 @@
 
         </div>
 
-        <div style="margin-top:56px;padding-top:32px;border-top:1px solid var(--ieb-ink-line)">
+        <div style="margin-top:56px;padding-top:32px;border-top:1px solid var(--border-on-dark)">
           <a href="./" style="font-size:14px;color:var(--fg-on-dark-3)">← Volver al inicio</a>
         </div>
 
@@ -166,13 +146,38 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer__bottom">
-      <span>© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
-      <div class="footer__legal">
-        <a href="./">Inicio</a>
-        <a href="faq.html">FAQ</a>
-        <a href="sobre-ieb.html">Sobre Espacio IEB</a>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/logos/ieb-logotype-white.png" alt="IEB External Advisors" width="383" height="148"/>
+        <p>Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout más alto del mercado. Núñez, Buenos Aires.</p>
       </div>
+      <div class="footer__col">
+        <p class="footer__col-heading">Navegar</p>
+        <ul>
+          <li><a href="./#simulador">Simulador</a></li>
+          <li><a href="./#partners">Partners</a></li>
+          <li><a href="./#espacio">Espacio IEB</a></li>
+          <li><a href="./#hospitalities">Beneficios</a></li>
+          <li><a href="./#tecnologia">Tecnología</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-heading">Grupo IEB</p>
+        <ul>
+          <li><a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer">grupoieb.com.ar</a></li>
+          <li><a href="https://ar.linkedin.com/company/grupoieb" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="./#contacto">Contacto</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer" class="footer__grupo" aria-label="Ir a grupoieb.com.ar">
+        <img src="assets/logos/ieb-monogram-on-dark.svg" alt="Grupo IEB" width="40" height="40"/>
+        <span>Una empresa de <strong>Grupo IEB</strong></span>
+      </a>
+      <span class="footer__copy">© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
     </div>
   </div>
 </footer>

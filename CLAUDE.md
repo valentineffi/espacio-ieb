@@ -15,10 +15,16 @@ npx serve .
 **Build step (required after editing UI):** the JSX in [app.jsx](app.jsx) is compiled to `app.js` — `index.html` loads the compiled `app.js`, not the JSX. After any change to `app.jsx`, run:
 
 ```bash
-node compile.js   # app.jsx → app.js (Babel, classic runtime)
+node compile.js    # app.jsx → app.js (Babel, classic runtime)
 ```
 
-The contact form is a Cloudflare Pages Function ([functions/api/contact.js](functions/api/contact.js)) that sends mail via Resend; local testing of that endpoint needs `wrangler pages dev`.
+After any change to the homepage CSS (`styles.css` or `assets/colors_and_type.css`), regenerate the inlined `<style>` block in `index.html`:
+
+```bash
+node sync-css.js   # re-inlines colors_and_type.css + styles.css into index.html's <style>
+```
+
+The contact form is a Vercel Serverless Function ([api/contact.js](api/contact.js)) that sends mail via Resend; local testing of that endpoint needs `vercel dev` (requires `vercel link` once, and `RESEND_API_KEY`/`CONTACT_TO` set via `vercel env pull` or the Vercel dashboard).
 
 ## Architecture
 
@@ -28,24 +34,22 @@ This is a **single-page static website** — no bundler at runtime. React 18 is 
 - [app.jsx](app.jsx) — **source of truth** for all React components. Edit this, then `node compile.js`.
 - `app.js` — compiled output loaded by `index.html`. **Do not edit by hand.**
 - [index.html](index.html) — HTML shell, SEO metadata (Open Graph, JSON-LD schemas), `<noscript>` crawler fallback, and inline CSS `:root` tokens. Loads `app.js`.
-- [functions/api/contact.js](functions/api/contact.js) — Cloudflare Pages Function for the contact form (Resend).
+- [api/contact.js](api/contact.js) — Vercel Serverless Function for the contact form (Resend).
 - [styles.css](styles.css) — component/layout styles. **Used directly only by the secondary pages** (faq/sobre/privacidad, which `<link>` it).
 - [assets/colors_and_type.css](assets/colors_and_type.css) — design system foundation: CSS custom properties for color tokens and typography
 - [annotator.js](annotator.js) — standalone feedback annotation tool; only injected on localhost
 
-> ⚠️ **CSS is duplicated for the homepage.** `index.html` does **not** link `styles.css` — its CSS is fully **inlined** in a `<style>` block (a PageSpeed optimization done once by [patch-index.js](patch-index.js), which is a one-time migration, not a repeatable build). Any CSS change for the homepage must be made **in both** `styles.css` (source of truth / secondary pages) **and** the inline `<style>` in `index.html`. Editing only `styles.css` has no effect on the homepage.
+> ⚠️ **CSS is inlined for the homepage.** `index.html` does **not** link `styles.css` — its CSS is fully **inlined** in a `<style>` block (a PageSpeed optimization). Edit the two source files (`styles.css` for components, `assets/colors_and_type.css` for tokens/fonts) — those are the source of truth and are what the secondary pages `<link>` — then run **`node sync-css.js`** to regenerate the inline block (it concatenates both files and rewrites `fonts/` → `assets/fonts/`). Editing only the source files without running `sync-css.js` has no effect on the homepage. (`patch-index.js` was the one-time migration that first inlined the CSS; it is not re-runnable — use `sync-css.js` for updates.)
 
-> ⚠️ **Image sizing gotcha:** `<img>` tags with both `width` and `height` attributes ignore CSS `aspect-ratio` unless you also set `height: auto`. Photo slots (`.espacio-ieb-*`, `.hosp-card-media`, `.gf-mockup`) rely on this.
+> ⚠️ **Image sizing gotcha:** `<img>` tags with both `width` and `height` attributes ignore CSS `aspect-ratio` unless you also set `height: auto`. Photo slots (`.espacio__photo`, `.hosp__media img`, `.tec__mockup`) rely on this.
 
 ## Design System
 
 Enforced entirely via CSS custom properties defined in [assets/colors_and_type.css](assets/colors_and_type.css).
 
-Color philosophy: **60/30/10** — Black (dominant), White (secondary), Yellow accent (`--color-amarillo`).
+Color philosophy: **60/30/10** — Black + White (dominant/secondary, white-led "siempre sobre blanco"), accent in **Celeste `#00A6FB`** (`--ieb-cyan` / `--accent` — editorial emphasis on keywords + numbers) and **Azul IEB `#404EFF`** (`--ieb-blue` / `--accent-strong` — CTAs / interactive). Per the Key Visual 2026 design system. **No yellow** — the earlier yellow accent was replaced in the 2026 rebrand.
 
 Typography: Poly Sans family (Slim 300, Neutral 400, Median 500, Bulky 700 + Italic and Mono variants), served from local OTF files in [assets/fonts/](assets/fonts/).
-
-Pattern assets (SVGs for backgrounds): [assets/tramas/](assets/tramas/) — diagonal, grid, isometric, radial.
 
 Logo variants: [assets/logos/](assets/logos/) — monogram and full branding on dark/light backgrounds.
 
@@ -54,9 +58,9 @@ Logo variants: [assets/logos/](assets/logos/) — monogram and full branding on 
 **IEB External Advisors** — the program brand for Grupo IEB's proposal to independent financial advisors and agentes productores in Argentina (Núñez, Buenos Aires). "Grupo IEB" is the umbrella organization; "Espacio IEB" is the name of the physical workspace (one section), not the site brand.
 
 - **Primary domain:** `www.iebexternaladvisors.com.ar`
-- **Contact form recipient:** `iebexternaladvisors@grupoieb.com.ar` (via `CONTACT_TO` env var in the Cloudflare Function)
+- **Contact form recipient:** `iebexternaladvisors@grupoieb.com.ar` (via `CONTACT_TO` env var in the Vercel Function)
 
-Landing sections (in [app.jsx](app.jsx)): Nav, Hero, Simulador, Partners, Grupo IEB, Espacio IEB (office photos), Hospitalities (venue benefits), Grow Finance (white-label app), Tecnología, FAQ, Acceso (contact form), Footer.
+Landing sections (in [app.jsx](app.jsx)): Nav, Hero (office photo + subtle Ken Burns motion), Simulador (interactive payout — the signature element), Partners (comparison table), Grupo IEB (dark band, 4 pillars), Espacio IEB (office photos), Hospitalities (venue benefits), Tecnología (Grow Finance white-label + investor/advisor platforms, merged), FAQ, Contacto (contact form), Footer. Kept deliberately minimal per the IEB team's "más limpio" brief — the old Ticker, hero coordinates/aside-stack, and numbered lists were removed as visual clutter.
 
 Photos live in [assets/fotos/](assets/fotos/) (optimized from the raw `Fotos Espacio/` folder). Brand assets in [assets/logos/](assets/logos/): `ieb-monogram-on-dark.svg` (favicon) + PNG raster sizes; social card is `og-image.jpg` (1200×630).
 

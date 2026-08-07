@@ -1,6 +1,6 @@
-// Cloudflare Pages Function — POST /api/contact
+// Vercel Serverless Function — POST /api/contact
 // Recibe el formulario de acceso y envía un mail vía Resend.
-// Secrets/vars (wrangler pages secret put / dashboard):
+// Env vars (Vercel → Project Settings → Environment Variables):
 //   RESEND_API_KEY  (requerido)
 //   CONTACT_TO      (opcional, default iebexternaladvisors@grupoieb.com.ar)
 //   CONTACT_FROM    (opcional, default onboarding@resend.dev — sandbox de Resend)
@@ -14,16 +14,16 @@ const PERFIL = {
   Otro: 'Otro',
 };
 
-export async function onRequestPost({ request, env }) {
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return json({ error: 'Cuerpo inválido' }, 400);
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ error: 'Método no permitido' });
   }
 
+  const body = typeof req.body === 'object' && req.body ? req.body : {};
+
   // Honeypot anti-bot: si viene relleno, fingimos éxito y no enviamos nada.
-  if (body.website) return json({ ok: true });
+  if (body.website) return res.status(200).json({ ok: true });
 
   const nombre = String(body.nombre || '').trim();
   const email = String(body.email || '').trim();
@@ -35,15 +35,15 @@ export async function onRequestPost({ request, env }) {
   const consent = body.consent === true;
 
   if (nombre.length < 2 || !/^\S+@\S+\.\S+$/.test(email) || !perfil || !consent) {
-    return json({ error: 'Datos incompletos o inválidos' }, 422);
+    return res.status(422).json({ error: 'Datos incompletos o inválidos' });
   }
 
-  if (!env.RESEND_API_KEY) {
-    return json({ error: 'Servicio de email no configurado' }, 500);
+  if (!process.env.RESEND_API_KEY) {
+    return res.status(500).json({ error: 'Servicio de email no configurado' });
   }
 
-  const to = env.CONTACT_TO || 'iebexternaladvisors@grupoieb.com.ar';
-  const from = env.CONTACT_FROM || 'IEB External Advisors <onboarding@resend.dev>';
+  const to = process.env.CONTACT_TO || 'iebexternaladvisors@grupoieb.com.ar';
+  const from = process.env.CONTACT_FROM || 'IEB External Advisors <onboarding@resend.dev>';
   const perfilLabel = PERFIL[perfil] || perfil;
 
   const esc = (s) =>
@@ -70,7 +70,7 @@ export async function onRequestPost({ request, env }) {
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -84,15 +84,8 @@ export async function onRequestPost({ request, env }) {
 
   if (!r.ok) {
     const detail = await r.text();
-    return json({ error: 'No se pudo enviar el email', detail }, 502);
+    return res.status(502).json({ error: 'No se pudo enviar el email', detail });
   }
 
-  return json({ ok: true });
-}
-
-function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return res.status(200).json({ ok: true });
 }

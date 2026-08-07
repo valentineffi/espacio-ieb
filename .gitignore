@@ -17,3 +17,8 @@ dist/
 # Raw source assets (optimized versions live in assets/fotos/)
 Fotos Espacio/
 Web v2/
+.vercel
+.env*
+
+# Internal handoff note — not for the client
+NOTA-TRASPASO-GITHUB.md

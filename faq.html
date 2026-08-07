@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
 
-<title>Preguntas frecuentes sobre Espacio IEB | Grupo IEB</title>
+<title>Preguntas frecuentes | IEB External Advisors — Grupo IEB</title>
 <meta name="description" content="Respondemos las preguntas más comunes sobre Espacio IEB: qué es, quiénes pueden acceder, si tiene costo, si exige exclusividad, dónde queda y cómo solicitar acceso."/>
 <meta name="robots" content="index,follow,max-snippet:-1"/>
 <link rel="canonical" href="https://www.iebexternaladvisors.com.ar/faq.html"/>
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="IEB External Advisors"/>
 <meta property="og:locale" content="es_AR"/>
-<meta property="og:title" content="Preguntas frecuentes | Espacio IEB"/>
+<meta property="og:title" content="Preguntas frecuentes | IEB External Advisors"/>
 <meta property="og:description" content="Todo lo que necesitás saber sobre Espacio IEB: costo, exclusividad, ubicación, infraestructura y cómo solicitar acceso."/>
 <meta property="og:url" content="https://www.iebexternaladvisors.com.ar/faq.html"/>
 
@@ -90,46 +90,26 @@
 </head>
 <body>
 
-<nav class="nav" id="site-nav" aria-label="Navegación principal" style="position:fixed">
+<nav class="nav is-scrolled" aria-label="Navegación principal">
   <div class="nav__inner">
     <a href="./" class="nav__logo" aria-label="IEB External Advisors — inicio">
-      <span class="nav__wordmark"><img class="nav__logo-ieb" src="assets/logos/ieb-logotype-white.png" alt="IEB" width="383" height="148"/><span class="nav__wordmark-accent">External Advisors</span></span>
-      <span class="nav__divider"></span>
-      <span class="nav__logo-sub">Una iniciativa de Grupo IEB</span>
+      <img class="nav__logo-img" src="assets/logos/ieb-logotype-black.png" alt="IEB External Advisors" width="383" height="148"/>
     </a>
-    <div class="nav__links">
-      <a href="./#que-es" class="nav__link">Qué es</a>
-      <a href="./#beneficios" class="nav__link">Beneficios</a>
-      <a href="./#comunidad" class="nav__link">Comunidad</a>
-      <a href="./#infraestructura" class="nav__link">Infraestructura</a>
+    <div class="nav__links" id="navlinks">
+      <a href="./#simulador" class="nav__link">Simulador</a>
+      <a href="./#partners" class="nav__link">Partners</a>
+      <a href="./#espacio" class="nav__link">Espacio</a>
+      <a href="./#tecnologia" class="nav__link">Tecnología</a>
       <a href="faq.html" class="nav__link is-active">FAQ</a>
+      <a href="./#contacto" class="nav__cta nav__cta--mobile">Contacto</a>
     </div>
-    <a href="./#acceso" class="nav__cta">Solicitar acceso <span>→</span></a>
-    <button class="nav__menu-btn" id="nav-toggle" aria-label="Menú" aria-expanded="false">MENÚ</button>
-  </div>
-  <div class="nav__mobile-menu" id="nav-mobile" style="display:none">
-    <a href="./#que-es" class="nav__mobile-link">Qué es</a>
-    <a href="./#beneficios" class="nav__mobile-link">Beneficios</a>
-    <a href="./#comunidad" class="nav__mobile-link">Comunidad</a>
-    <a href="./#infraestructura" class="nav__mobile-link">Infraestructura</a>
-    <a href="faq.html" class="nav__mobile-link">FAQ</a>
-    <a href="sobre-ieb.html" class="nav__mobile-link">Sobre Espacio IEB</a>
-    <a href="./#acceso" class="nav__mobile-cta">Solicitar acceso →</a>
+    <a href="./#contacto" class="nav__cta">Contacto</a>
+    <button class="nav__menu-btn" id="navtoggle" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
   </div>
 </nav>
-<script>
-(function(){
-  var btn=document.getElementById('nav-toggle'),menu=document.getElementById('nav-mobile'),open=false;
-  btn.addEventListener('click',function(){
-    open=!open;
-    menu.style.display=open?'flex':'none';
-    btn.textContent=open?'✕':'MENÚ';
-    btn.setAttribute('aria-expanded',open);
-  });
-})();
-</script>
+<script>(function(){var b=document.getElementById('navtoggle'),l=document.getElementById('navlinks');if(!b)return;var o=false;b.addEventListener('click',function(){o=!o;l.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);});})();</script>
 
-<main style="padding-top:68px">
+<main>
   <section class="section" style="background:var(--ieb-black)">
     <div class="container">
       <div style="max-width:720px;margin:0 auto">
@@ -143,7 +123,7 @@
           </ol>
         </nav>
 
-        <span class="eyebrow-line">FAQ · Espacio IEB</span>
+        <span class="eyebrow">FAQ · Espacio IEB</span>
         <h1 style="font-size:clamp(28px,3.5vw,48px);font-weight:300;line-height:1.15;margin-bottom:16px;color:var(--ieb-white)">
           Preguntas frecuentes<br/>sobre <em style="font-style:normal;color:var(--accent)">Espacio IEB</em>
         </h1>
@@ -153,56 +133,56 @@
 
         <div class="faq__list" itemscope itemtype="https://schema.org/FAQPage">
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Qué es Espacio IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">Espacio IEB es una iniciativa de Grupo IEB para fortalecer la comunidad de asesores financieros externos e independientes en Argentina. No es un coworking genérico: es una base operativa, comercial y profesional pensada exclusivamente para asesores del mercado de capitales. Combina puestos de trabajo modernos, salas de reunión, boxes privados para videollamadas, cocheras, soporte de Middle Office, acceso a equipos de research y traders, charlas de mercado y una comunidad activa de pares. Ubicado en Núñez, Ciudad Autónoma de Buenos Aires.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Por qué Grupo IEB creó Espacio IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">Porque el asesor financiero independiente cumple un rol clave en el desarrollo del mercado de capitales argentino, pero muchas veces trabaja de forma aislada: sin oficina profesional para recibir clientes, sin acceso ágil a soporte operativo, sin contacto cotidiano con especialistas y sin una comunidad donde compartir visión de mercado. Espacio IEB nace para crear un entorno profesional donde los asesores externos puedan trabajar con estructura, recibir clientes, estar cerca de especialistas de Grupo IEB y fortalecer la comunidad del sector.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Espacio IEB es un coworking?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">No. Espacio IEB no es un coworking. La diferencia es fundamental: un coworking es un espacio de trabajo compartido para cualquier tipo de profesional. Espacio IEB es una base operativa, comercial y profesional pensada exclusivamente para asesores financieros externos. Eso significa que además de la infraestructura física, el espacio incluye soporte de Middle Office, cercanía con equipos de Grupo IEB y una comunidad específica del mercado de capitales. No convivís con otros rubros: estás entre pares del sector.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Quiénes pueden usar Espacio IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">Espacio IEB está pensado para cuatro perfiles: Agentes Productores Independientes (API) registrados que buscan una base operativa; asesores financieros en ALyCs que quieren un entorno profesional y una red de pares; team leaders y asesores senior que están desarrollando equipo propio; y profesionales del mercado de capitales que buscan más independencia sin perder estructura.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Dónde queda Espacio IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">Espacio IEB está ubicado en el barrio de Núñez, en la Ciudad Autónoma de Buenos Aires (CABA), Argentina. Núñez es una zona estratégica del norte de la ciudad, con buena conectividad por avenidas principales y acceso por transporte público. El espacio cuenta con cocheras disponibles para quienes van en auto.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Tiene costo? ¿Es gratuito?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">No tiene costo. El acceso a Espacio IEB es 100% gratuito para los asesores financieros externos validados por Grupo IEB. No hay membresía, no hay cuota mensual y no hay pagos asociados al uso del espacio ni a ninguno de sus servicios. La propuesta de Grupo IEB es sumar valor al trabajo del asesor externo, sin cobrarle por ello.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Exige exclusividad con IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">No. Espacio IEB no exige exclusividad. El asesor puede seguir operando con todas las ALyCs con las que ya trabaja, sin necesidad de modificar su operatoria actual. La propuesta es complementaria: sumar infraestructura, comunidad y respaldo institucional, sin condicionar la libertad operativa del asesor. Podés usar Espacio IEB y seguir trabajando con otras instituciones sin ningún conflicto.</p>
             </div>
           </article>
 
-          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--ieb-ink-line);padding:32px 0">
+          <article class="faq__item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid var(--border-on-dark);padding:32px 0">
             <h2 itemprop="name" style="font-size:17px;font-weight:500;color:var(--ieb-white);margin-bottom:14px">¿Puedo recibir clientes en Espacio IEB?</h2>
             <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <p itemprop="text" style="color:var(--fg-on-dark-2);line-height:1.7">Sí. Espacio IEB está diseñado específicamente para que el asesor pueda recibir y atender a sus clientes de forma profesional. El espacio cuenta con salas de reunión reservables para reuniones presenciales, y boxes privados e insonorizados para videollamadas, ideales para atender clientes a distancia con privacidad y en un entorno institucional.</p>
@@ -218,9 +198,9 @@
 
         </div>
 
-        <div style="margin-top:56px;padding:32px;background:var(--ieb-ink-12);border-radius:8px;text-align:center">
+        <div style="margin-top:56px;padding:32px;background:var(--gray-900);border-radius:8px;text-align:center">
           <p style="color:var(--fg-on-dark-2);margin-bottom:20px">¿Tu pregunta no está acá? Completá el formulario y te respondemos en 48 horas.</p>
-          <a href="./#acceso" class="btn btn--primary">Solicitar acceso <span>→</span></a>
+          <a href="./#contacto" class="btn btn--accent">Contacto <span>→</span></a>
         </div>
       </div>
     </div>
@@ -229,13 +209,38 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer__bottom">
-      <span>© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
-      <div class="footer__legal">
-        <a href="./">Inicio</a>
-        <a href="sobre-ieb.html">Sobre Espacio IEB</a>
-        <a href="privacidad.html">Privacidad</a>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/logos/ieb-logotype-white.png" alt="IEB External Advisors" width="383" height="148"/>
+        <p>Una iniciativa de Grupo IEB para asesores financieros externos en Argentina. Infraestructura, comunidad y el payout más alto del mercado. Núñez, Buenos Aires.</p>
       </div>
+      <div class="footer__col">
+        <p class="footer__col-heading">Navegar</p>
+        <ul>
+          <li><a href="./#simulador">Simulador</a></li>
+          <li><a href="./#partners">Partners</a></li>
+          <li><a href="./#espacio">Espacio IEB</a></li>
+          <li><a href="./#hospitalities">Beneficios</a></li>
+          <li><a href="./#tecnologia">Tecnología</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-heading">Grupo IEB</p>
+        <ul>
+          <li><a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer">grupoieb.com.ar</a></li>
+          <li><a href="https://ar.linkedin.com/company/grupoieb" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="./#contacto">Contacto</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer" class="footer__grupo" aria-label="Ir a grupoieb.com.ar">
+        <img src="assets/logos/ieb-monogram-on-dark.svg" alt="Grupo IEB" width="40" height="40"/>
+        <span>Una empresa de <strong>Grupo IEB</strong></span>
+      </a>
+      <span class="footer__copy">© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
     </div>
   </div>
 </footer>
