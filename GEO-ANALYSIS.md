@@ -37,7 +37,7 @@ Completo: define la entidad, audiencia, propuesta de valor, modelo de acceso, ci
 ### Recomendado, no bloqueante para la entrega
 3. **Passages del `<noscript>` un poco cortos** (~60-90 palabras por respuesta) vs. el rango óptimo de citabilidad (134-167 palabras). No es un error — es una decisión de brevedad razonable — pero si se busca más presencia en AI Overviews, ampliar 2-3 de las respuestas más buscadas ("¿Qué es Espacio IEB?", "¿Tiene costo?") a un párrafo más completo ayudaría.
 4. **Sin contenido multi-modal accesible a crawlers sin JS** — las fotos de la oficina y el simulador solo existen dentro del árbol de React. No se recomienda duplicar imágenes en el `<noscript>` (agregaría peso sin necesidad), pero si en el futuro se suma contenido editorial (blog, casos de asesores), ahí sí conviene que las imágenes tengan `alt` descriptivo y estén fuera del bloque JS-only.
-5. **Sin presencia de marca en Wikipedia/Reddit/YouTube/LinkedIn con actividad regular** — señal de autoridad más fuerte para ChatGPT/Perplexity que backlinks. Fuera de alcance de este trabajo (es una acción de marketing/relaciones públicas, no de código), queda documentada como próximo paso en `DOCUMENTACION.md`.
+5. **Sin presencia de marca en Wikipedia/Reddit/YouTube/LinkedIn con actividad regular** — señal de autoridad más fuerte para ChatGPT/Perplexity que backlinks. Fuera de alcance de este trabajo (es una acción de marketing/relaciones públicas, no de código), queda documentada como próximo paso en `README.md`.
 
 ## Top 5 cambios de mayor impacto (si se quiere seguir invirtiendo en GEO)
 
