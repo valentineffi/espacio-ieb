@@ -962,7 +962,7 @@ function Footer() {
     target: "_blank",
     rel: "noopener noreferrer"
   }, "grupoieb.com.ar")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "https://ar.linkedin.com/company/grupoieb",
+    href: "https://ar.linkedin.com/company/invertirenbolsa",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "LinkedIn")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
