@@ -978,10 +978,10 @@ function Footer() {
     className: "footer__grupo",
     "aria-label": "Ir a grupoieb.com.ar"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/logos/ieb-monogram-on-dark.svg",
-    alt: "Grupo IEB",
-    width: "40",
-    height: "40"
+    src: "assets/logos/ieb-logotype-white.png",
+    alt: "IEB External Advisors",
+    width: "140",
+    height: "54"
   }), /*#__PURE__*/React.createElement("span", null, "Una empresa de ", /*#__PURE__*/React.createElement("strong", null, "Grupo IEB"))), /*#__PURE__*/React.createElement("span", {
     className: "footer__copy"
   }, "\xA9 2026 Grupo IEB \xB7 Espacio IEB \xB7 N\xFA\xF1ez, CABA"))));

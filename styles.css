@@ -258,7 +258,7 @@ html { scroll-behavior: smooth; }
 .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 28px; }
 .footer__grupo { display: inline-flex; align-items: center; gap: 12px; color: var(--fg-on-dark-2); }
 .footer__grupo:hover { color: var(--ieb-white); }
-.footer__grupo img { width: 36px; height: 36px; }
+.footer__grupo img { height: 16px; width: auto; }
 .footer__grupo span { font-size: var(--fs-body-sm); }
 .footer__grupo strong { color: var(--ieb-white); font-weight: var(--fw-medium); }
 .footer__copy { font-size: var(--fs-caption); color: var(--fg-on-dark-3); font-family: var(--font-mono); }

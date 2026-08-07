@@ -617,7 +617,7 @@ function Footer() {
         </div>
         <div className="footer__bottom">
           <a href="https://grupoieb.com.ar" target="_blank" rel="noopener noreferrer" className="footer__grupo" aria-label="Ir a grupoieb.com.ar">
-            <img src="assets/logos/ieb-monogram-on-dark.svg" alt="Grupo IEB" width="40" height="40"/>
+            <img src="assets/logos/ieb-logotype-white.png" alt="IEB External Advisors" width="140" height="54"/>
             <span>Una empresa de <strong>Grupo IEB</strong></span>
           </a>
           <span className="footer__copy">© 2026 Grupo IEB · Espacio IEB · Núñez, CABA</span>
